@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Perkembangan Dunia Internasional Menjadi Sorotan Publik — BUSER INFO</title>
+  <meta name="description" content="Baca berita lengkap seputar perkembangan dunia internasional dan dinamika diplomasi global terkini di BUSER INFO.">
+  <meta name="author" content="PT. GOLDENMIX MEDIA BUSERINFO">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/favicon.svg">
+
+  <!-- Reading Progress Bar -->
+  <div id="reading-progress-bar"></div>
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            buser: {
+              black: '#0B0B0B',
+              red: '#D71920',
+              redHover: '#B80F15',
+              dark: '#222222',
+              light: '#F5F5F5',
+              border: '#E5E7EB'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F5F5F5] text-[#0B0B0B] antialiased flex flex-col min-h-screen">
+
+  <!-- TOP BAR -->
+  <div class="bg-[#151515] text-gray-400 text-xs py-1.5 px-4 border-b border-gray-800 hidden sm:block">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center text-gray-300">
+          <svg class="w-3.5 h-3.5 mr-1.5 text-buser-red" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+          </svg>
+          <span class="live-date-text">Memuat waktu...</span>
+        </span>
+      </div>
+      <div class="flex items-center space-x-4 text-[11px]">
+        <a href="tentang.html" class="hover:text-white transition-colors">Tentang Kami</a>
+        <span class="text-gray-600">|</span>
+        <a href="tentang.html#redaksi" class="hover:text-white transition-colors">Redaksi</a>
+        <span class="text-gray-600">|</span>
+        <a href="tentang.html#pedoman" class="hover:text-white transition-colors">Pedoman Media Siber</a>
+        <span class="text-gray-600">|</span>
+        <a href="https://wa.me/6283172988502" target="_blank" class="text-emerald-400 hover:text-emerald-300 flex items-center">
+          Hotline: 0831-7298-8502
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="bg-[#0B0B0B] text-white sticky top-0 z-40 shadow-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <div class="flex items-center space-x-2">
+          <button type="button" class="mobile-menu-btn lg:hidden p-2 rounded text-white hover:bg-gray-800 focus:outline-none" aria-label="Buka Menu Navigasi">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          <a href="index.html" class="flex items-center" aria-label="BUSER INFO Beranda">
+            <img src="assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO Logo" class="h-10 sm:h-12 w-auto object-contain" />
+          </a>
+        </div>
+
+        <!-- Desktop Quick Search Bar -->
+        <div class="hidden md:flex items-center flex-1 max-w-xs lg:max-w-sm mx-6">
+          <form action="cari.html" method="GET" class="w-full relative">
+            <input type="text" name="q" placeholder="Cari topik atau berita..." class="w-full bg-[#1A1A1A] text-xs text-white placeholder-gray-400 pl-3 pr-9 py-2 rounded-sm border border-gray-700 focus:border-buser-red focus:outline-none" />
+            <button type="submit" class="absolute right-0 top-0 h-full px-2.5 text-gray-400 hover:text-white" aria-label="Cari">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </button>
+          </form>
+        </div>
+
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <button type="button" class="open-search-modal-btn md:hidden p-2 rounded text-gray-300 hover:text-white hover:bg-gray-800" aria-label="Cari Berita">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </button>
+
+          <button type="button" class="open-bookmark-btn relative p-2 rounded text-gray-300 hover:text-white hover:bg-gray-800 flex items-center" title="Berita Tersimpan">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
+            <span class="bookmark-count-badge hidden absolute -top-1 -right-1 bg-buser-red text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+          </button>
+
+          <a href="index.html" class="inline-flex items-center bg-[#222] hover:bg-gray-800 text-white text-xs font-semibold px-3 py-1.5 rounded-sm border border-gray-700">
+            &larr; Indeks Berita
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HORIZONTAL CATEGORY NAVIGATION BAR -->
+    <div class="bg-[#121212] border-t border-gray-800 relative">
+      <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 relative flex items-center">
+        <button id="scroll-nav-left" class="hidden lg:flex items-center justify-center w-6 h-9 bg-black/70 hover:bg-buser-red text-white z-10" aria-label="Geser Kiri">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+
+        <nav id="category-scroll-nav" class="flex items-center space-x-1 sm:space-x-1.5 overflow-x-auto no-scrollbar py-2 text-xs sm:text-sm font-semibold uppercase tracking-wider flex-1 scroll-smooth">
+          <a href="index.html" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Home</a>
+          <a href="internasional.html?cat=nasional" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Nasional</a>
+          <a href="internasional.html?cat=daerah" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Daerah</a>
+          <a href="internasional.html?cat=politik" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Politik</a>
+          <a href="internasional.html?cat=kriminal" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Kriminal</a>
+          <a href="internasional.html?cat=ekonomi" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Ekonomi</a>
+          <a href="internasional.html?cat=pendidikan" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Pendidikan</a>
+          <a href="internasional.html?cat=teknologi" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Teknologi</a>
+          <a href="internasional.html?cat=olahraga" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Olahraga</a>
+          <a href="internasional.html" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Internasional</a>
+          <a href="internasional.html?cat=lifestyle" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Lifestyle</a>
+        </nav>
+
+        <button id="scroll-nav-right" class="hidden lg:flex items-center justify-center w-6 h-9 bg-black/70 hover:bg-buser-red text-white z-10" aria-label="Geser Kanan">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="h-[3px] bg-[#D71920] w-full"></div>
+  </header>
+
+  <!-- MAIN ARTICLE CONTAINER -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-6 flex-1 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+
+      <!-- LEFT COLUMN: ARTICLE DETAIL CONTENT (8 cols) -->
+      <article class="lg:col-span-8 bg-white border border-gray-200 rounded-sm p-4 sm:p-7 shadow-sm">
+        
+        <!-- Breadcrumb: Home / Internasional / Judul Berita -->
+        <nav class="flex items-center space-x-2 text-xs text-gray-500 mb-3 overflow-x-auto whitespace-nowrap no-scrollbar pb-1">
+          <a href="index.html" class="hover:text-buser-red flex-shrink-0">Home</a>
+          <span class="flex-shrink-0">/</span>
+          <a id="article-breadcrumb-cat" href="internasional.html" class="hover:text-buser-red flex-shrink-0">Internasional</a>
+          <span class="flex-shrink-0">/</span>
+          <span id="article-breadcrumb-title" class="text-gray-800 font-semibold truncate max-w-xs">
+            Perkembangan Dunia Internasional Menjadi Sorotan Publik
+          </span>
+        </nav>
+
+        <!-- Category Badge -->
+        <div class="mb-2.5">
+          <span id="article-cat-badge" class="bg-buser-red text-white text-xs font-black px-2.5 py-1 uppercase tracking-wider rounded-sm inline-block shadow-sm">
+            INTERNASIONAL
+          </span>
+        </div>
+
+        <!-- Headline (Bold, High Readability) -->
+        <h1 id="article-headline" class="text-2xl sm:text-3xl lg:text-4xl font-black text-gray-900 leading-tight mb-3">
+          Perkembangan Dunia Internasional Menjadi Sorotan Publik
+        </h1>
+
+        <!-- Excerpt / Sub-headline -->
+        <p id="article-excerpt" class="text-sm sm:text-base text-gray-600 leading-relaxed mb-4 font-normal">
+          Dinamika diplomasi global mencapai babak krusial saat sejumlah kepala negara menyepakati peta jalan mitigasi stabilitas geopolitik dan keamanan pasokan energi lintas benua.
+        </p>
+
+        <!-- Editorial Metadata Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 py-3 border-y border-gray-200 mb-5 text-xs text-gray-600 bg-gray-50/50 px-3 rounded-sm">
+          <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-full bg-buser-red text-white font-black flex items-center justify-center text-sm shadow">
+              B
+            </div>
+            <div>
+              <div class="font-bold text-gray-900" id="article-author">Ahmad Fauzi Ramadhan</div>
+              <div class="text-[11px] text-gray-500" id="article-author-role">Koresponden Internasional</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-gray-500">
+            <div><span class="font-medium text-gray-700" id="article-date">Rabu, 9 September 2026 - 14:35 WIB</span></div>
+            <div>&bull;</div>
+            <div id="article-read-time" class="font-semibold text-buser-red">4 menit baca</div>
+            <div>&bull;</div>
+            <div id="article-views" class="flex items-center">
+              <svg class="w-3.5 h-3.5 mr-1 text-gray-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+              48.210 pembaca
+            </div>
+          </div>
+        </div>
+
+        <!-- READER TOOLBAR (Font resizer, bookmark, share buttons) -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-5 p-2.5 bg-white border border-gray-200 rounded-sm">
+          
+          <!-- Font Size Controls (A- / Normal / A+) -->
+          <div class="flex items-center space-x-1.5">
+            <span class="text-xs text-gray-500 font-semibold mr-1">Ukuran Teks:</span>
+            <button id="font-decrease-btn" class="px-2.5 py-1 text-xs border border-gray-300 rounded hover:bg-gray-100 font-semibold" title="Perkecil Ukuran Huruf">A-</button>
+            <button id="font-reset-btn" class="px-2.5 py-1 text-xs border border-gray-300 rounded hover:bg-gray-100 font-semibold bg-buser-red text-white" title="Ukuran Normal">A</button>
+            <button id="font-increase-btn" class="px-2.5 py-1 text-xs border border-gray-300 rounded hover:bg-gray-100 font-semibold" title="Perbesar Ukuran Huruf">A+</button>
+          </div>
+
+          <!-- Actions: Bookmark & Share -->
+          <div class="flex items-center space-x-2">
+            <!-- Bookmark Button -->
+            <button id="article-bookmark-btn" class="flex items-center space-x-1.5 px-3 py-1.5 border border-gray-300 hover:border-buser-red hover:text-buser-red text-xs font-bold rounded transition-colors" title="Simpan ke Daftar Baca">
+              <svg id="article-bookmark-icon" class="w-4 h-4 text-buser-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+              </svg>
+              <span id="article-bookmark-text">Simpan Berita</span>
+            </button>
+
+            <!-- Quick Share Dropdown / Buttons -->
+            <div class="flex items-center space-x-1">
+              <a id="share-wa" href="#" target="_blank" class="p-1.5 bg-[#25D366] text-white rounded hover:opacity-90 transition-opacity" title="Bagikan ke WhatsApp">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              </a>
+              <a id="share-fb" href="#" target="_blank" class="p-1.5 bg-[#1877F2] text-white rounded hover:opacity-90 transition-opacity" title="Bagikan ke Facebook">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              </a>
+              <a id="share-tw" href="#" target="_blank" class="p-1.5 bg-[#000] text-white rounded hover:opacity-90 transition-opacity" title="Bagikan ke X">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              <button id="share-copy" class="p-1.5 bg-gray-700 text-white rounded hover:bg-buser-red transition-colors" title="Salin Tautan Berita">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- HERO ARTICLE MEDIA -->
+        <figure class="mb-6">
+          <div class="relative overflow-hidden aspect-[16/9] w-full rounded-sm bg-gray-900">
+            <img id="article-hero-img" src="assets/images/berita/internasional/diplomasi-ktt-global.jpg" alt="Diplomasi Global" class="w-full h-full object-cover" />
+          </div>
+          <figcaption id="article-hero-caption" class="text-xs text-gray-500 italic mt-2 px-1 border-l-2 border-gray-300">
+            Para delegasi internasional saat menghadiri sesi pleno diplomasi multilateral di Jenewa, Swiss. (Foto: Dok. BUSER INFO)
+          </figcaption>
+        </figure>
+
+        <!-- ARTICLE BODY CONTENT (Optimized paragraph spacing & line-height) -->
+        <div id="article-body-content" class="article-text-md font-sans text-gray-800 space-y-4">
+          <!-- Injected dynamically by article.js -->
+        </div>
+
+        <!-- EDITOR SIGN-OFF -->
+        <div class="mt-8 pt-4 border-t border-gray-200 text-xs text-gray-500 italic">
+          <p>Editor Penanggung Jawab: <strong id="article-editor" class="text-gray-800 not-italic">Hendy Yustana</strong></p>
+          <p class="mt-0.5">Hak Cipta Terlindungi &copy; 2026 PT. GOLDENMIX MEDIA BUSERINFO</p>
+        </div>
+
+        <!-- TAGS CONTAINER -->
+        <div class="mt-6 pt-4 border-t border-gray-100">
+          <span class="text-xs font-bold text-gray-700 uppercase tracking-wider block mb-2">Topik Terkait:</span>
+          <div id="article-tags-container" class="flex flex-wrap gap-2">
+            <!-- Injected by article.js -->
+          </div>
+        </div>
+
+        <!-- READER REACTION SECTION -->
+        <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-sm">
+          <h3 class="font-bold text-sm text-gray-900 mb-3 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Bagaimana Reaksi Anda Terhadap Berita Ini?
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            <button class="reaction-btn flex items-center justify-center space-x-1.5 p-2 bg-white border border-gray-200 hover:border-buser-red rounded-sm transition-colors font-medium">
+              <span>👍 Mendukung</span>
+              <span class="reaction-count text-buser-red font-bold">142</span>
+            </button>
+            <button class="reaction-btn flex items-center justify-center space-x-1.5 p-2 bg-white border border-gray-200 hover:border-buser-red rounded-sm transition-colors font-medium">
+              <span>😲 Kaget</span>
+              <span class="reaction-count text-buser-red font-bold">58</span>
+            </button>
+            <button class="reaction-btn flex items-center justify-center space-x-1.5 p-2 bg-white border border-gray-200 hover:border-buser-red rounded-sm transition-colors font-medium">
+              <span>🤔 Kritis</span>
+              <span class="reaction-count text-buser-red font-bold">94</span>
+            </button>
+            <button class="reaction-btn flex items-center justify-center space-x-1.5 p-2 bg-white border border-gray-200 hover:border-buser-red rounded-sm transition-colors font-medium">
+              <span>👏 Inspiratif</span>
+              <span class="reaction-count text-buser-red font-bold">81</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- READER COMMENTS SECTION -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <div class="section-heading-bar mb-4 justify-between">
+            <h3 class="text-base font-black uppercase text-gray-900">Komentar Pembaca</h3>
+            <span class="text-xs text-gray-500">Komentar santun & patuhi hukum</span>
+          </div>
+
+          <!-- Comment Form -->
+          <form id="comment-form" class="space-y-3 mb-6 bg-gray-50 p-4 rounded-sm border border-gray-200">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input type="text" id="comment-name" required placeholder="Nama Lengkap Anda..." class="w-full text-xs p-2.5 bg-white border border-gray-300 rounded-sm focus:border-buser-red focus:outline-none" />
+              <input type="email" id="comment-email" placeholder="Email (tidak akan dipublikasikan)..." class="w-full text-xs p-2.5 bg-white border border-gray-300 rounded-sm focus:border-buser-red focus:outline-none" />
+            </div>
+            <textarea id="comment-text" required rows="3" placeholder="Tuliskan pandangan atau tanggapan Anda..." class="w-full text-xs p-2.5 bg-white border border-gray-300 rounded-sm focus:border-buser-red focus:outline-none"></textarea>
+            <div class="flex justify-end">
+              <button type="submit" class="bg-buser-red hover:bg-buser-redHover text-white px-5 py-2 text-xs font-bold rounded-sm transition-colors shadow">
+                Kirim Komentar
+              </button>
+            </div>
+          </form>
+
+          <!-- Comment List -->
+          <div id="comment-list" class="space-y-3">
+            <div class="p-3 bg-white border border-gray-200 rounded-sm">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-sm text-gray-900">Ir. M. Ridwan Hakim</span>
+                <span class="text-[11px] text-gray-500">2 jam yang lalu</span>
+              </div>
+              <p class="text-xs text-gray-700 leading-relaxed">
+                Liputan yang sangat mendalam dan berimbang. Diplomasi multilateral memang memerlukan kesabaran ekstra agar kepentingan bangsa kepulauan tetap terlindungi secara adil.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BERITA TERKAIT (3-4 Related Articles) -->
+        <div class="mt-10 pt-6 border-t-2 border-gray-200">
+          <div class="section-heading-bar mb-5 justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 bg-buser-red inline-block"></span>
+              <h3 class="text-base sm:text-lg font-black uppercase tracking-tight text-gray-900">
+                Berita Terkait
+              </h3>
+            </div>
+            <span class="text-xs text-gray-500">Rekomendasi Editor</span>
+          </div>
+
+          <div id="related-articles-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Populated by article.js -->
+          </div>
+        </div>
+
+      </article>
+
+      <!-- RIGHT COLUMN: SIDEBAR (4 cols) -->
+      <aside class="lg:col-span-4 space-y-6">
+        
+        <!-- SIDEBAR TRENDING -->
+        <div class="bg-white border border-gray-200 rounded-sm p-4 shadow-sm">
+          <div class="section-heading-bar mb-4 justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 bg-buser-red inline-block"></span>
+              <h2 class="text-base font-black uppercase tracking-tight text-gray-900">
+                Trending Populer
+              </h2>
+            </div>
+            <span class="text-[10px] bg-red-100 text-buser-red font-extrabold px-2 py-0.5 rounded">24 JAM</span>
+          </div>
+
+          <div class="divide-y divide-gray-100">
+            
+            <article class="py-3 flex items-start space-x-3.5 group">
+              <span class="text-3xl font-black text-buser-red leading-none flex-shrink-0 w-8 text-center pt-0.5">1</span>
+              <div class="flex-1">
+                <span class="text-[10px] font-bold uppercase text-gray-500">INTERNASIONAL &bull; 48.2K</span>
+                <a href="artikel.html?id=int-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red leading-snug mt-0.5 news-headline">
+                  Perkembangan Dunia Internasional Menjadi Sorotan Utama Hari Ini
+                </a>
+              </div>
+            </article>
+
+            <article class="py-3 flex items-start space-x-3.5 group">
+              <span class="text-3xl font-black text-buser-red leading-none flex-shrink-0 w-8 text-center pt-0.5">2</span>
+              <div class="flex-1">
+                <span class="text-[10px] font-bold uppercase text-gray-500">POLITIK &bull; 39.6K</span>
+                <a href="artikel.html?id=pol-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red leading-snug mt-0.5 news-headline">
+                  Sidang Paripurna DPR Bahas Penyesuaian Anggaran Belanja Negara
+                </a>
+              </div>
+            </article>
+
+            <article class="py-3 flex items-start space-x-3.5 group">
+              <span class="text-3xl font-black text-buser-red leading-none flex-shrink-0 w-8 text-center pt-0.5">3</span>
+              <div class="flex-1">
+                <span class="text-[10px] font-bold uppercase text-gray-500">KRIMINAL &bull; 44.3K</span>
+                <a href="artikel.html?id=krim-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red leading-snug mt-0.5 news-headline">
+                  Rilis Mabes Polri Ungkap Jaringan Sindikat Penipuan Digital
+                </a>
+              </div>
+            </article>
+
+            <article class="py-3 flex items-start space-x-3.5 group">
+              <span class="text-3xl font-black text-buser-red leading-none flex-shrink-0 w-8 text-center pt-0.5">4</span>
+              <div class="flex-1">
+                <span class="text-[10px] font-bold uppercase text-gray-500">EKONOMI &bull; 32.4K</span>
+                <a href="artikel.html?id=eko-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red leading-snug mt-0.5 news-headline">
+                  BI Catat Surplus Neraca Dagang dan Penguatan Kurs Rupiah
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- SUBSCRIBE NEWSLETTER -->
+        <div class="bg-[#0B0B0B] text-white p-5 rounded-sm border-t-4 border-buser-red">
+          <span class="text-[10px] font-black uppercase text-buser-red tracking-wider">NEWSLETTER BUSER INFO</span>
+          <h4 class="text-sm font-bold mt-1 mb-2">Dapatkan Berita Pilihan Setiap Pagi</h4>
+          <p class="text-xs text-gray-300 leading-relaxed mb-3">
+            Rangkuman peristiwa penting langsung ke email Anda tanpa spam.
+          </p>
+          <form onsubmit="event.preventDefault(); window.showToast('Terima kasih sudah berlangganan!', 'success');" class="space-y-2">
+            <input type="email" required placeholder="Masukkan alamat email..." class="w-full text-xs p-2.5 bg-[#1F1F1F] text-white border border-gray-700 rounded-sm focus:outline-none focus:border-buser-red" />
+            <button type="submit" class="w-full bg-buser-red hover:bg-buser-redHover text-white py-2 text-xs font-bold rounded-sm transition-colors">
+              Langganan Sekarang
+            </button>
+          </form>
+        </div>
+
+        <!-- HOTLINE LAPORAN -->
+        <div class="bg-white border border-gray-200 rounded-sm p-4">
+          <h4 class="text-xs font-black uppercase tracking-wider text-gray-900 mb-2">Kontak Pengaduan & Redaksi</h4>
+          <p class="text-xs text-gray-600 leading-relaxed mb-3">
+            Laporkan informasi atau klarifikasi pemberitaan langsung kepada redaksi:
+          </p>
+          <div class="space-y-2 text-xs">
+            <a href="https://wa.me/6283172988502" target="_blank" class="flex items-center text-emerald-600 font-bold hover:underline">
+              <span>WhatsApp: 0831-7298-8502</span>
+            </a>
+            <a href="mailto:hendyyustana@gmail.com" class="flex items-center text-buser-red font-bold hover:underline">
+              <span>Email: hendyyustana@gmail.com</span>
+            </a>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B0B0B] text-white border-t-4 border-buser-red pt-10 pb-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 border-b border-gray-800">
+        
+        <div class="lg:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block" aria-label="BUSER INFO Beranda">
+            <img src="assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="h-12 w-auto object-contain" />
+          </a>
+          <p class="text-xs sm:text-sm text-gray-300 font-semibold">
+            "Berita Terkini, Fakta Tanpa Batas"
+          </p>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Portal berita independen menyajikan laporan investigasi, fakta hukum, kabar daerah, dinamika politik, perekonomian, dan geopolitik internasional secara akurat, tajam, dan berintegritas.
+          </p>
+        </div>
+
+        <div class="lg:col-span-3 space-y-3 text-xs text-gray-300">
+          <h3 class="text-sm font-black text-white uppercase tracking-wider border-b border-gray-800 pb-2 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Informasi Perusahaan
+          </h3>
+          <div class="space-y-1.5">
+            <p class="font-bold text-white text-sm">PT. GOLDENMIX MEDIA BUSERINFO</p>
+            <p><span class="text-gray-400">Keputusan Menkumham:</span><br/><strong class="text-white font-mono text-[11px]">AHU.008226.AH.01.31.TAHUN.2023</strong></p>
+            <p><span class="text-gray-400">Nomor Induk Berusaha (NIB):</span><br/><strong class="text-white font-mono text-[11px]">0208230150016</strong></p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3 space-y-3 text-xs text-gray-300">
+          <h3 class="text-sm font-black text-white uppercase tracking-wider border-b border-gray-800 pb-2 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Kantor Redaksi
+          </h3>
+          <address class="not-italic space-y-1 text-gray-300">
+            <p class="font-semibold text-white">Komplek Griya Asri Blok G2 No15</p>
+            <p>RT 31 RW 05, Kel. Tanah Mas, Kec. Talang Kelapa</p>
+            <p>Kab. Banyuasin, Prov. Sumatera Selatan</p>
+            <p class="pt-1 text-emerald-400 font-mono">WhatsApp: 083172988502</p>
+            <p class="text-buser-red font-mono">Email: hendyyustana@gmail.com</p>
+          </address>
+        </div>
+
+        <div class="lg:col-span-2 space-y-3 text-xs">
+          <h3 class="text-sm font-black text-white uppercase tracking-wider border-b border-gray-800 pb-2 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Navigasi
+          </h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="tentang.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+            <li><a href="tentang.html#redaksi" class="hover:text-white transition-colors">Susunan Redaksi</a></li>
+            <li><a href="tentang.html#kontak" class="hover:text-white transition-colors">Kontak & Hotline</a></li>
+            <li><a href="tentang.html#pedoman" class="hover:text-white transition-colors">Pedoman Media Siber</a></li>
+            <li><a href="tentang.html#privasi" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
+        <p>&copy; 2026 BUSER INFO. All Rights Reserved.</p>
+        <p class="text-[11px] text-gray-500">PT. GOLDENMIX MEDIA BUSERINFO</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODALS & DRAWERS -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+    <div id="drawer-backdrop" class="drawer-backdrop fixed inset-0 bg-black/70 backdrop-blur-sm"></div>
+    <div id="drawer-panel" class="drawer-panel fixed top-0 left-0 bottom-0 w-4/5 max-w-sm bg-[#0B0B0B] text-white z-10 flex flex-col shadow-2xl border-r border-gray-800">
+      <div class="p-4 border-b border-gray-800 flex items-center justify-between">
+        <a href="index.html" class="block">
+          <img src="assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="h-9 w-auto object-contain" />
+        </a>
+        <button class="close-drawer-btn text-gray-400 hover:text-white p-1 rounded" aria-label="Tutup Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="p-3 border-b border-gray-800">
+        <form action="cari.html" method="GET" class="relative">
+          <input type="text" name="q" placeholder="Cari berita..." class="w-full bg-[#1A1A1A] text-xs text-white placeholder-gray-400 pl-3 pr-8 py-2 rounded-sm border border-gray-700 focus:border-buser-red focus:outline-none" />
+          <button type="submit" class="absolute right-0 top-0 h-full px-2 text-gray-400 hover:text-white">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          </button>
+        </form>
+      </div>
+      <div class="flex-1 overflow-y-auto py-3 px-3 space-y-1 text-sm font-semibold divide-y divide-gray-800/60">
+        <div class="space-y-1 pb-2">
+          <span class="text-[10px] font-bold text-gray-400 tracking-wider uppercase px-2">Kanal Berita</span>
+          <a href="index.html" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Beranda</a>
+          <a href="internasional.html?cat=nasional" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Nasional</a>
+          <a href="internasional.html?cat=daerah" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Daerah</a>
+          <a href="internasional.html?cat=politik" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Politik</a>
+          <a href="internasional.html?cat=kriminal" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Kriminal</a>
+          <a href="internasional.html?cat=ekonomi" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Ekonomi</a>
+          <a href="internasional.html?cat=pendidikan" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Pendidikan</a>
+          <a href="internasional.html?cat=teknologi" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Teknologi</a>
+          <a href="internasional.html?cat=olahraga" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Olahraga</a>
+          <a href="internasional.html" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Internasional</a>
+          <a href="internasional.html?cat=lifestyle" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Lifestyle</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bookmark-modal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+    <div id="bookmark-backdrop" class="drawer-backdrop fixed inset-0 bg-black/70 backdrop-blur-sm"></div>
+    <div id="bookmark-panel" class="bookmark-panel fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#F5F5F5] z-10 flex flex-col shadow-2xl border-l border-gray-300">
+      <div class="p-4 bg-[#0B0B0B] text-white flex items-center justify-between border-b-2 border-buser-red">
+        <div class="flex items-center space-x-2">
+          <svg class="w-5 h-5 text-buser-red" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/></svg>
+          <h2 class="font-black text-sm uppercase tracking-wider">Berita Tersimpan</h2>
+        </div>
+        <button class="close-bookmark-btn text-gray-400 hover:text-white p-1" aria-label="Tutup">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="bookmark-modal-list" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+    </div>
+  </div>
+
+  <div id="quick-search-modal" class="fixed inset-0 z-50 hidden flex items-start justify-center pt-20 px-4">
+    <div id="search-modal-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="relative bg-white w-full max-w-lg rounded-sm shadow-2xl p-5 z-10 border-t-4 border-buser-red">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-black text-base text-gray-900 uppercase">Cari Berita BUSER INFO</h3>
+        <button id="close-search-modal-btn" class="text-gray-400 hover:text-black">&times;</button>
+      </div>
+      <form id="quick-search-form" class="space-y-3">
+        <input type="text" id="quick-search-input" placeholder="Ketik kata kunci berita..." class="w-full text-sm border-2 border-gray-300 focus:border-buser-red p-2.5 rounded-sm focus:outline-none" />
+        <div class="flex justify-end">
+          <button type="submit" class="bg-buser-red hover:bg-buser-redHover text-white px-4 py-1.5 font-bold rounded-sm transition-colors">Cari</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="assets/js/news-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/article.js"></script>
+</body>
+</html>

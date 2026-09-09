@@ -1,0 +1,853 @@
+/**
+ * BUSER INFO - News Database & Data Store
+ * Tagline: "Berita Terkini, Fakta Tanpa Batas"
+ * PT. GOLDENMIX MEDIA BUSERINFO
+ */
+
+const BUSER_CATEGORIES = [
+  { id: 'home', name: 'Home', slug: 'home', path: 'index.html' },
+  { id: 'nasional', name: 'Nasional', slug: 'nasional', path: 'internasional.html?cat=nasional' },
+  { id: 'daerah', name: 'Daerah', slug: 'daerah', path: 'internasional.html?cat=daerah' },
+  { id: 'politik', name: 'Politik', slug: 'politik', path: 'internasional.html?cat=politik' },
+  { id: 'kriminal', name: 'Kriminal', slug: 'kriminal', path: 'internasional.html?cat=kriminal' },
+  { id: 'ekonomi', name: 'Ekonomi', slug: 'ekonomi', path: 'internasional.html?cat=ekonomi' },
+  { id: 'pendidikan', name: 'Pendidikan', slug: 'pendidikan', path: 'internasional.html?cat=pendidikan' },
+  { id: 'teknologi', name: 'Teknologi', slug: 'teknologi', path: 'internasional.html?cat=teknologi' },
+  { id: 'olahraga', name: 'Olahraga', slug: 'olahraga', path: 'internasional.html?cat=olahraga' },
+  { id: 'internasional', name: 'Internasional', slug: 'internasional', path: 'internasional.html' },
+  { id: 'lifestyle', name: 'Lifestyle', slug: 'lifestyle', path: 'internasional.html?cat=lifestyle' }
+];
+
+const BREAKING_NEWS_LIST = [
+  {
+    id: 'break-1',
+    title: 'Perkembangan terbaru pertemuan bilateral tingkat tinggi hari ini menjadi perhatian publik internasional...',
+    link: 'artikel.html?id=int-01'
+  },
+  {
+    id: 'break-2',
+    title: 'Mabes Polri gelar konferensi pers pengungkapan sindikat kejahatan siber lintas negara dengan aset puluhan miliar rupiah...',
+    link: 'artikel.html?id=krim-01'
+  },
+  {
+    id: 'break-3',
+    title: 'Rapat Paripurna DPR RI sepakati pengesahan RUU strategis pasca uji publik intensif bersama para pakar hukum...',
+    link: 'artikel.html?id=pol-01'
+  },
+  {
+    id: 'break-4',
+    title: 'Bank Indonesia laporkan posisi cadangan devisa menguat di tengah pemulihan rantai pasok global kuartal ini...',
+    link: 'artikel.html?id=eko-01'
+  }
+];
+
+const BUSER_ARTICLES = [
+  // INTERNASIONAL (Flagship Articles)
+  {
+    id: 'int-01',
+    category: 'Internasional',
+    categorySlug: 'internasional',
+    title: 'Perkembangan Dunia Internasional Menjadi Sorotan Utama Hari Ini',
+    slug: 'perkembangan-dunia-internasional-menjadi-sorotan-utama-hari-ini',
+    excerpt: 'Dinamika diplomasi global mencapai babak krusial saat sejumlah kepala negara menyepakati peta jalan mitigasi stabilitas geopolitik dan keamanan pasokan energi lintas benua.',
+    image: 'assets/images/berita/internasional/diplomasi-ktt-global.jpg',
+    imageCaption: 'Para delegasi internasional saat menghadiri sesi pleno diplomasi multilateral di Jenewa, Swiss. (Foto: Dok. BUSER INFO)',
+    author: 'Ahmad Fauzi Ramadhan',
+    authorRole: 'Koresponden Internasional',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '14:35 WIB',
+    timestamp: 1788941700000,
+    readTime: '4 menit baca',
+    views: '48.210',
+    shares: '1.420',
+    isHero: true,
+    isTrending: true,
+    trendingRank: 1,
+    tags: ['Diplomasi Global', 'KTT Internasional', 'Geopolitik', 'PBB', 'Kerjasama Regional'],
+    content: `
+      <p class="lead font-medium text-lg text-gray-800 leading-relaxed mb-4">
+        <strong>JENEWA</strong> — Pertemuan tingkat tinggi perwakilan negara-negara dunia yang digelar di Jenewa memasuki fase penentuan terkait stabilitas ekonomi global serta mitigasi eskalasi sengketa lintas kawasan. Kesepakatan strategis yang dinegosiasikan selama empat hari penuh tersebut dinilai para pengamat sebagai titik balik penting dalam menjaga keseimbangan tatanan internasional.
+      </p>
+      
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        Dalam agenda persidangan yang dihadiri perwakilan lebih dari 40 negara tersebut, isu ketahanan pangan serta keamanan jalur pelayaran komersial internasional menjadi fokus perdebatan yang paling menyita perhatian. Krisis rantai pasok dunia dalam beberapa bulan terakhir mendorong dibentuknya mekanisme respons cepat antarnegara guna menjamin transparansi distribusi kebutuhan vital.
+      </p>
+
+      <blockquote class="my-6 p-4 border-l-4 border-buser-red bg-red-50 italic text-gray-800 font-serif text-lg">
+        "Kami memandang bahwa de-eskalasi dan dialog terbuka tanpa syarat praduga adalah satu-satunya jalan keluar yang bermartabat bagi semua pihak demi menjamin kesejahteraan rakyat di berbagai belahan bumi," tegas salah seorang perwakilan delegasi utama dalam pidato resminya.
+      </blockquote>
+
+      <h3 class="text-xl font-bold text-black mt-6 mb-3">Peta Jalan Diplomasi dan Relevansinya bagi Asia Tenggara</h3>
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        Bagi kawasan Asia Tenggara, rumusan komitmen bersama ini membawa kepastian iklim investasi dan keberlanjutan perdagangan logistik maritim. Indonesia melalui delegasi resminya menggarisbawahi posisi netral dan aktif, mendorong agar forum internasional tidak sekadar menghasilkan deklarasi normatif melainkan implementasi konkret di lapangan.
+      </p>
+
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        Sejumlah pakar hubungan internasional yang memantau jalannya KTT menyatakan optimisme terukur. Kendati perbedaan pandangan pada klausul sanksi perdagangan masih memerlukan harmonisasi lebih mendalam, pencapaian naskah konsensus awal telah meredakan kekhawatiran spekulasi pasar global.
+      </p>
+
+      <h3 class="text-xl font-bold text-black mt-6 mb-3">Tindak Lanjut Sidang Pekan Depan</h3>
+      <p class="mb-4 text-gray-700 leading-relaxed">
+        Tahapan teknis implementasi keputusan dijadwalkan mulai diratifikasi oleh komite kerja pada awal pekan mendatang. Media internasional dan lembaga riset independen terus memantau pemenuhan komitmen ini untuk memastikan kesepakatan tidak terhenti sebatas tanda tangan seremonial belaka.
+      </p>
+    `
+  },
+  {
+    id: 'int-02',
+    category: 'Internasional',
+    categorySlug: 'internasional',
+    title: 'Negosiasi Perjanjian Iklim Global Hasilkan Komitmen Dana Hijau bagi Negara Berkembang',
+    slug: 'negosiasi-perjanjian-iklim-global-hasilkan-komitmen-dana-hijau',
+    excerpt: 'Konferensi transisi energi dunia menyepakati pengucuran dana iklim multilateral guna mempercepat dekarbonisasi dan proteksi hutan tropis.',
+    image: 'assets/images/berita/internasional/krisis-energi-eropa.jpg',
+    imageCaption: 'Sesi pleno konferensi transisi energi berkelanjutan. (Foto: Dok. BUSER INFO)',
+    author: 'Dina Kusuma',
+    authorRole: 'Jurnalis Lingkungan',
+    editor: 'Bambang Sudiro',
+    date: 'Rabu, 9 September 2026',
+    time: '13:10 WIB',
+    timestamp: 1788936600000,
+    readTime: '3 menit baca',
+    views: '23.410',
+    shares: '680',
+    isHero: false,
+    isTrending: false,
+    tags: ['Transisi Energi', 'Dana Iklim', 'Hutan Tropis', 'PBB'],
+    content: `<p class="mb-4">Komitmen pembiayaan hijau disepakati dengan nilai awal puluhan miliar dollar untuk mendukung transisi energi ramah lingkungan di negara-negara kepulauan dan kawasan tropis dunia.</p>`
+  },
+  {
+    id: 'int-03',
+    category: 'Internasional',
+    categorySlug: 'internasional',
+    title: 'Dinamika Pemilu Parlemen Negara Maju: Polarisasi Isu Ekonomi dan Keamanan Perbatasan',
+    slug: 'dinamika-pemilu-parlemen-negara-maju-polarisasi-isu-ekonomi',
+    excerpt: 'Survei elektoral menunjukkan pergeseran suara pemilih muda yang menuntut transparansi kebijakan fiskal dan mitigasi inflasi domestik.',
+    image: 'assets/images/berita/internasional/pemilu-amerika-serikat.jpg',
+    imageCaption: 'Antusiasme warga saat mendatangi bilik suara pemilihan parlemen. (Foto: Dok. BUSER INFO)',
+    author: 'Rian Pratama',
+    authorRole: 'Editor Hubungan Luar Negeri',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '11:45 WIB',
+    timestamp: 1788931500000,
+    readTime: '4 menit baca',
+    views: '19.850',
+    shares: '510',
+    isHero: false,
+    isTrending: false,
+    tags: ['Pemilu Internasional', 'Parlemen', 'Politik Luar Negeri'],
+    content: `<p class="mb-4">Perhelatan pemilu parlemen di beberapa negara utama menarik perhatian dunia karena diprediksi akan mengubah arah kebijakan kerja sama luar negeri serta perdagangan bilateral.</p>`
+  },
+  {
+    id: 'int-04',
+    category: 'Internasional',
+    categorySlug: 'internasional',
+    title: 'Upaya De-eskalasi Konflik Regional: Koridor Kemanusiaan Internasional Resmi Dibuka',
+    slug: 'upaya-de-eskalasi-konflik-regional-koridor-kemanusiaan-resmi-dibuka',
+    excerpt: 'Palang Merah Internasional dan badan PBB mengonfirmasi konvoi bantuan logistik medis dan bahan makanan telah berhasil menembus zona terdampak.',
+    image: 'assets/images/berita/internasional/konflik-timur-tengah.jpg',
+    imageCaption: 'Truk logistik kemanusiaan bersiap melintasi zona perbatasan terawasi. (Foto: Dok. BUSER INFO)',
+    author: 'Ahmad Fauzi Ramadhan',
+    authorRole: 'Koresponden Internasional',
+    editor: 'Bambang Sudiro',
+    date: 'Rabu, 9 September 2026',
+    time: '09:20 WIB',
+    timestamp: 1788922800000,
+    readTime: '3 menit baca',
+    views: '31.200',
+    shares: '890',
+    isHero: false,
+    isTrending: false,
+    tags: ['Bantuan Kemanusiaan', 'PBB', 'Geopolitik'],
+    content: `<p class="mb-4">Setelah pembicaraan maraton di bawah naungan dewan keamanan, koridor perlindungan warga sipil akhirnya beroperasi penuh guna menyalurkan pasokan obat-obatan esensial.</p>`
+  },
+
+  // NASIONAL
+  {
+    id: 'nas-01',
+    category: 'Nasional',
+    categorySlug: 'nasional',
+    title: 'Pemerintah Terbitkan Kebijakan Strategis Percepatan Akselerasi Digital Layanan Publik',
+    slug: 'pemerintah-terbitkan-kebijakan-strategis-percepatan-akselerasi-digital',
+    excerpt: 'Integrasi satu data terpadu kementerian ditargetkan tuntas tahun ini guna memangkas birokrasi perizinan dan memperkuat transparansi tata kelola.',
+    image: 'assets/images/berita/nasional/konferensi-pers-istana.jpg',
+    imageCaption: 'Juru bicara kepresidenan memberikan pemaparan program integrasi sistem satu data nasional di Jakarta. (Foto: Dok. BUSER INFO)',
+    author: 'Wahyu Hidayat',
+    authorRole: 'Wartawan Istana Kepresidenan',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '14:15 WIB',
+    timestamp: 1788940500000,
+    readTime: '4 menit baca',
+    views: '35.800',
+    shares: '940',
+    isHero: false,
+    isTrending: false,
+    tags: ['Istana Kepresidenan', 'Transformasi Digital', 'Birokrasi', 'Layanan Publik'],
+    content: `<p class="mb-4">Kebijakan percepatan integrasi data ini menjadi tonggak reformasi birokrasi Indonesia untuk memastikan bantuan sosial dan izin berusaha berjalan tepat sasaran dan transparan.</p>`
+  },
+  {
+    id: 'nas-02',
+    category: 'Nasional',
+    categorySlug: 'nasional',
+    title: 'Pembangunan IKN Nusantara Masuki Tahap Fasilitas Sosial, Rumah Sakit dan Kampus Beroperasi',
+    slug: 'pembangunan-ikn-nusantara-masuki-tahap-fasilitas-sosial',
+    excerpt: 'Otorita IKN memastikan kesiapan infrastruktur hunian aparatur sipil negara dan pusat pendidikan ramah lingkungan dengan standar keberlanjutan tinggi.',
+    image: 'assets/images/berita/nasional/pembangunan-ikn-nusantara.jpg',
+    imageCaption: 'Progres konstruksi fasilitas publik di Kawasan Inti Pusat Pemerintahan IKN Nusantara. (Foto: Dok. BUSER INFO)',
+    author: 'Siti Rahmawati',
+    authorRole: 'Reporter Nasional',
+    editor: 'Bambang Sudiro',
+    date: 'Rabu, 9 September 2026',
+    time: '12:30 WIB',
+    timestamp: 1788934200000,
+    readTime: '3 menit baca',
+    views: '28.900',
+    shares: '710',
+    isHero: false,
+    isTrending: false,
+    tags: ['IKN Nusantara', 'Infrastruktur', 'Pembangunan'],
+    content: `<p class="mb-4">Pembangunan tahap lanjutan ibu kota baru menunjukkan progres signifikan dengan hadirnya fasilitas kesehatan modern dan kampus riset teknologi terapan.</p>`
+  },
+  {
+    id: 'nas-03',
+    category: 'Nasional',
+    categorySlug: 'nasional',
+    title: 'Optimalisasi Subsidi Energi Tepat Sasaran Gunakan Registrasi Digital Berbasis NIK',
+    slug: 'optimalisasi-subsidi-energi-tepat-sasaran-gunakan-registrasi-digital',
+    excerpt: 'Kementerian ESDM dan Pertamina perketat pengawasan distribusi bahan bakar bersubsidi demi menjamin perlindungan ekonomi masyarakat berpenghasilan rendah.',
+    image: 'assets/images/berita/nasional/kebijakan-subsidi-bbm.jpg',
+    imageCaption: 'Penerapan verifikasi kode digital di stasiun pengisian bahan bakar. (Foto: Dok. BUSER INFO)',
+    author: 'Wahyu Hidayat',
+    authorRole: 'Wartawan Nasional',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '10:05 WIB',
+    timestamp: 1788925500000,
+    readTime: '4 menit baca',
+    views: '22.140',
+    shares: '530',
+    isHero: false,
+    isTrending: false,
+    tags: ['ESDM', 'Subsidi Energi', 'Ekonomi Rakyat'],
+    content: `<p class="mb-4">Skema distribusi subsidi berbasis data terpadu dinilai mampu menghemat puluhan triliun rupiah anggaran belanja negara dari potensi penyalahgunaan komersial.</p>`
+  },
+  {
+    id: 'nas-04',
+    category: 'Nasional',
+    categorySlug: 'nasional',
+    title: 'Pemberantasan Mafia Tanah, Satgas Gabungan Kembalikan Ratusan Hektar Hak Warga Adat',
+    slug: 'pemberantasan-mafia-tanah-satgas-gabungan-kembalikan-ratusan-hektar',
+    excerpt: 'Operasi terpadu lintas institusi menegakkan kepastian hukum agraria dan memberikan perlindungan bagi masyarakat rentan.',
+    image: 'assets/images/berita/nasional/reformasi-birokrasi-kementerian.jpg',
+    imageCaption: 'Penyerahan sertifikat tanah redistribusi reforma agraria secara simbolis. (Foto: Dok. BUSER INFO)',
+    author: 'Siti Rahmawati',
+    authorRole: 'Reporter Hukum & Agraria',
+    editor: 'Bambang Sudiro',
+    date: 'Selasa, 8 September 2026',
+    time: '17:40 WIB',
+    timestamp: 1788866400000,
+    readTime: '3 menit baca',
+    views: '18.400',
+    shares: '420',
+    isHero: false,
+    isTrending: false,
+    tags: ['Agraria', 'Mafia Tanah', 'Hukum'],
+    content: `<p class="mb-4">Langkah tegas Kementerian ATR/BPN dalam menindak oknum sindikat pertanahan mendapat sambutan positif dari berbagai elemen lembaga swadaya masyarakat.</p>`
+  },
+
+  // KRIMINAL / HUKUM
+  {
+    id: 'krim-01',
+    category: 'Kriminal',
+    categorySlug: 'kriminal',
+    title: 'Rilis Mabes Polri Ungkap Jaringan Sindikat Penipuan Digital Antarprovinsi Senilai Puluhan Miliar',
+    slug: 'rilis-mabes-polri-ungkap-jaringan-sindikat-penipuan-digital',
+    excerpt: 'Bareskrim Polri berhasil mengamankan belasan tersangka spesialis pembobol rekening bank dan investasi ilegal berskala sindikat terorganisir.',
+    image: 'assets/images/berita/kriminal/rilis-mabes-polri.jpg',
+    imageCaption: 'Konferensi pers pengungkapan barang bukti kejahatan digital di Mabes Polri Jakarta. (Foto: Dok. BUSER INFO)',
+    author: 'Bripka Chandra Wijaya (Purn.)',
+    authorRole: 'Investigasi Hukum & Kriminal',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '13:50 WIB',
+    timestamp: 1788939000000,
+    readTime: '5 menit baca',
+    views: '44.300',
+    shares: '1.200',
+    isHero: false,
+    isTrending: true,
+    trendingRank: 3,
+    tags: ['Mabes Polri', 'Bareskrim', 'Cyber Crime', 'Hukum'],
+    content: `<p class="mb-4">Direktorat Tindak Pidana Siber Bareskrim Polri mengungkap modus operandi baru sniffing aplikasi phising yang menyasar nasabah perbankan secara masif lintas pulau.</p>`
+  },
+  {
+    id: 'krim-02',
+    category: 'Kriminal',
+    categorySlug: 'kriminal',
+    title: 'Sidang Tipikor di Pengadilan Negeri: Jaksa Tuntut Mantan Pejabat 12 Tahun Penjara',
+    slug: 'sidang-tipikor-pn-jaksa-tuntut-mantan-pejabat-12-tahun',
+    excerpt: 'Terdakwa dugaan korupsi pengadaan proyek revitalisasi pelabuhan dituntut membayar uang pengganti kerugian keuangan negara serta pencabutan hak politik.',
+    image: 'assets/images/berita/kriminal/sidang-tipikor-pn.jpg',
+    imageCaption: 'Suasana sidang lanjutan perkara tipikor di ruang sidang utama Pengadilan Tipikor. (Foto: Dok. BUSER INFO)',
+    author: 'Aditya Perkasa',
+    authorRole: 'Reporter Pengadilan',
+    editor: 'Bambang Sudiro',
+    date: 'Rabu, 9 September 2026',
+    time: '11:20 WIB',
+    timestamp: 1788930000000,
+    readTime: '4 menit baca',
+    views: '26.800',
+    shares: '640',
+    isHero: false,
+    isTrending: false,
+    tags: ['Sidang Tipikor', 'Pengadilan Negeri', 'KPK', 'Kejaksaan'],
+    content: `<p class="mb-4">Majelis hakim menyatakan persidangan akan dilanjutkan pekan depan dengan agenda pembacaan nota pembelaan (pledoi) dari tim penasihat hukum terdakwa.</p>`
+  },
+  {
+    id: 'krim-03',
+    category: 'Kriminal',
+    categorySlug: 'kriminal',
+    title: 'BNN dan Bea Cukai Gagalkan Penyelundupan Ratusan Kilogram Narkotika Jalur Selat Malaka',
+    slug: 'bnn-bea-cukai-gagalkan-penyelundupan-narkotika-selat-malaka',
+    excerpt: 'Operasi gabungan intercept kapal cepat di perairan lepas berhasil menyita sabu dan ekstasi kemasan teh cina yang diduga berasal dari jaringan internasional Golden Triangle.',
+    image: 'assets/images/berita/kriminal/penangkapan-sindikat-narkoba.jpg',
+    imageCaption: 'Petugas memperlihatkan tumpukan barang bukti narkotika hasil operasi laut. (Foto: Dok. BUSER INFO)',
+    author: 'Bripka Chandra Wijaya (Purn.)',
+    authorRole: 'Investigasi Kriminal',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '08:45 WIB',
+    timestamp: 1788920700000,
+    readTime: '3 menit baca',
+    views: '29.700',
+    shares: '810',
+    isHero: false,
+    isTrending: false,
+    tags: ['BNN', 'Narkoba', 'Bea Cukai', 'Patroli Laut'],
+    content: `<p class="mb-4">Pencegahan ini berhasil menyelamatkan jutaan generasi muda dari bahaya ketergantungan zat terlarang yang dipasok sindikat antarnegara.</p>`
+  },
+  {
+    id: 'krim-04',
+    category: 'Kriminal',
+    categorySlug: 'kriminal',
+    title: 'Polda Metro Jaya Bekuk Pelaku Curanmor Modus Kunci Duplikat dan Magnet Canggih',
+    slug: 'polda-metro-jaya-bekuk-pelaku-curanmor-modus-kunci-duplikat',
+    excerpt: 'Komplotan residivis yang beroperasi di wilayah permukiman padat dibekuk beserta puluhan unit sepeda motor siap edar ke luar daerah.',
+    image: 'assets/images/berita/kriminal/razia-cyber-crime.jpg',
+    imageCaption: 'Barang bukti puluhan sepeda motor hasil kejahatan dikembalikan kepada pemilik aslinya. (Foto: Dok. BUSER INFO)',
+    author: 'Aditya Perkasa',
+    authorRole: 'Reporter Kepolisian',
+    editor: 'Bambang Sudiro',
+    date: 'Selasa, 8 September 2026',
+    time: '19:30 WIB',
+    timestamp: 1788873000000,
+    readTime: '3 menit baca',
+    views: '16.500',
+    shares: '340',
+    isHero: false,
+    isTrending: false,
+    tags: ['Polda Metro', 'Curanmor', 'Kriminalitas'],
+    content: `<p class="mb-4">Polisi menghimbau masyarakat untuk melengkapi kendaraan roda dua dengan pengaman ganda dan mengaktifkan sistem GPS pelacak.</p>`
+  },
+
+  // POLITIK
+  {
+    id: 'pol-01',
+    category: 'Politik',
+    categorySlug: 'politik',
+    title: 'Sidang Paripurna DPR Bahas Penyesuaian Anggaran Belanja Negara dan Pengawasan APBN',
+    slug: 'sidang-paripurna-dpr-bahas-penyesuaian-anggaran-belanja-negara',
+    excerpt: 'Fraksi-fraksi di Senayan sepakat memperkuat alokasi belanja produktif pada sektor ketahanan pangan daerah dan riset pendidikan terapan.',
+    image: 'assets/images/berita/politik/sidang-paripurna-dpr.jpg',
+    imageCaption: 'Suasana ruang sidang paripurna Gedung Nusantara DPR RI saat agenda pandangan umum fraksi. (Foto: Dok. BUSER INFO)',
+    author: 'Fajar Nugroho',
+    authorRole: 'Koresponden Parlemen Senayan',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '14:00 WIB',
+    timestamp: 1788939600000,
+    readTime: '4 menit baca',
+    views: '39.600',
+    shares: '980',
+    isHero: false,
+    isTrending: true,
+    trendingRank: 2,
+    tags: ['DPR RI', 'Paripurna', 'APBN', 'Politik Nasional'],
+    content: `<p class="mb-4">Sidang paripurna yang dipimpin pimpinan dewan menekankan efektivitas penyerapan dana transfer ke daerah guna mempercepat pemerataan pembangunan pelosok negeri.</p>`
+  },
+  {
+    id: 'pol-02',
+    category: 'Politik',
+    categorySlug: 'politik',
+    title: 'Konsolidasi Koalisi Partai Jelang Pilkada Serentak Perkuat Strategi Pemenangan Daerah',
+    slug: 'konsolidasi-koalisi-partai-jelang-pilkada-serentak',
+    excerpt: 'Para pimpinan partai politik menggelar silaturahmi kebangsaan untuk mematangkan figur calon kepala daerah yang memiliki integritas dan rekam jejak bersih.',
+    image: 'assets/images/berita/politik/koalisi-partai-politik.jpg',
+    imageCaption: 'Pertemuan tertutup para sekjen partai politik di Jakarta Pusat. (Foto: Dok. BUSER INFO)',
+    author: 'Fajar Nugroho',
+    authorRole: 'Analis Politik',
+    editor: 'Bambang Sudiro',
+    date: 'Rabu, 9 September 2026',
+    time: '10:45 WIB',
+    timestamp: 1788927900000,
+    readTime: '3 menit baca',
+    views: '21.500',
+    shares: '480',
+    isHero: false,
+    isTrending: false,
+    tags: ['Pilkada', 'Partai Politik', 'Demokrasi'],
+    content: `<p class="mb-4">Komunikasi politik yang dinamis diharapkan melahirkan kontestasi yang sehat, demokratis, dan menyejukkan iklim persatuan bangsa.</p>`
+  },
+  {
+    id: 'pol-03',
+    category: 'Politik',
+    categorySlug: 'politik',
+    title: 'KPU Pastikan Sistem Sirekap Versi Terbaru Lebih Transparan dan Tahan Serangan Siber',
+    slug: 'kpu-pastikan-sistem-sirekap-versi-terbaru-lebih-transparan',
+    excerpt: 'Komisi Pemilihan Umum melibatkan akademisi dan BSSN dalam audit keamanan sistem tabulasi data rekapitulasi suara pemilu.',
+    image: 'assets/images/berita/politik/revisi-uu-pilkada.jpg',
+    imageCaption: 'Simulasi penggunaan aplikasi rekapitulasi digital di kantor KPU RI. (Foto: Dok. BUSER INFO)',
+    author: 'Dina Kusuma',
+    authorRole: 'Reporter Pemilu',
+    editor: 'Hendy Yustana',
+    date: 'Selasa, 8 September 2026',
+    time: '16:20 WIB',
+    timestamp: 1788861600000,
+    readTime: '4 menit baca',
+    views: '17.800',
+    shares: '390',
+    isHero: false,
+    isTrending: false,
+    tags: ['KPU', 'Sirekap', 'Pemilu', 'Teknologi'],
+    content: `<p class="mb-4">KPU menjamin masyarakat dan saksi dari seluruh peserta dapat mengunduh formulir C hasil secara langsung dan real-time tanpa penundaan.</p>`
+  },
+  {
+    id: 'pol-04',
+    category: 'Politik',
+    categorySlug: 'politik',
+    title: 'Bawaslu Siagakan Sentra Gakkumdu untuk Tindak Cepat Pelanggaran Netralitas ASN',
+    slug: 'bawaslu-siagakan-sentra-gakkumdu-tindak-netralitas-asn',
+    excerpt: 'Mekanisme pelaporan cepat berbasis ponsel disiapkan bagi masyarakat yang menemukan indikasi kecurangan maupun politisasi birokrasi.',
+    image: 'assets/images/berita/politik/pertemuan-petinggi-partai.jpg',
+    imageCaption: 'Sosialisasi pengawasan pemilu partisipatif bersama elemen kepemudaan. (Foto: Dok. BUSER INFO)',
+    author: 'Fajar Nugroho',
+    authorRole: 'Wartawan Parlemen',
+    editor: 'Bambang Sudiro',
+    date: 'Senin, 7 September 2026',
+    time: '15:10 WIB',
+    timestamp: 1788771000000,
+    readTime: '3 menit baca',
+    views: '14.200',
+    shares: '290',
+    isHero: false,
+    isTrending: false,
+    tags: ['Bawaslu', 'Netralitas ASN', 'Gakkumdu'],
+    content: `<p class="mb-4">Sentra penegakan hukum terpadu berkomitmen memproses seluruh laporan tanpa diskriminasi sesuai aturan perundang-undangan.</p>`
+  },
+
+  // EKONOMI
+  {
+    id: 'eko-01',
+    category: 'Ekonomi',
+    categorySlug: 'ekonomi',
+    title: 'BI Catat Surplus Neraca Dagang dan Penguatan Kurs Rupiah Ditopang Kinerja Ekspor',
+    slug: 'bi-catat-surplus-neraca-dagang-dan-penguatan-kurs-rupiah',
+    excerpt: 'Kinerja positif sektor manufaktur dan komoditas unggulan mendorong ketahanan eksternal ekonomi nasional tetap solid di tengah ketidakpastian pasar global.',
+    image: 'assets/images/berita/ekonomi/bursa-efek-perdagangan.jpg',
+    imageCaption: 'Layar monitor pergerakan Indeks Harga Saham Gabungan (IHSG) di Bursa Efek Indonesia. (Foto: Dok. BUSER INFO)',
+    author: 'M. Rizky Saputra',
+    authorRole: 'Analis Keuangan & Perbankan',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '13:30 WIB',
+    timestamp: 1788937800000,
+    readTime: '4 menit baca',
+    views: '32.400',
+    shares: '770',
+    isHero: false,
+    isTrending: true,
+    trendingRank: 4,
+    tags: ['Bursa Efek', 'Bank Indonesia', 'Kurs Rupiah', 'Neraca Dagang'],
+    content: `<p class="mb-4">Gubernur Bank Indonesia menyampaikan bahwa fundamental moneter Indonesia terjaga dengan baik didukung stabilitas suku bunga acuan dan devisa hasil ekspor.</p>`
+  },
+  {
+    id: 'eko-02',
+    category: 'Ekonomi',
+    categorySlug: 'ekonomi',
+    title: 'Digitalisasi UMKM Catat Lonjakan Omzet: Pemanfaatan QRIS Antarnegara Terus Diperluas',
+    slug: 'digitalisasi-umkm-catat-lonjakan-omzet-qris-antarnegara',
+    excerpt: 'Pelaku usaha mikro di berbagai sentra kerajinan dan kuliner merasakan kemudahan transaksi tanpa uang tunai dengan wisatawan mancanegara.',
+    image: 'assets/images/berita/ekonomi/pertumbuhan-umkm-digital.jpg',
+    imageCaption: 'Pelaku usaha kuliner melayani transaksi digital pelanggan di stan pameran dagang. (Foto: Dok. BUSER INFO)',
+    author: 'Siti Rahmawati',
+    authorRole: 'Reporter Ekonomi Kerakyatan',
+    editor: 'Bambang Sudiro',
+    date: 'Rabu, 9 September 2026',
+    time: '11:00 WIB',
+    timestamp: 1788928800000,
+    readTime: '3 menit baca',
+    views: '24.100',
+    shares: '560',
+    isHero: false,
+    isTrending: false,
+    tags: ['UMKM', 'QRIS', 'Fintech', 'Ekonomi Kreatif'],
+    content: `<p class="mb-4">Kemudahan adopsi teknologi pembayaran digital menjadi motor penggerak perputaran modal usaha mikro di daerah destinasi wisata utama.</p>`
+  },
+  {
+    id: 'eko-03',
+    category: 'Ekonomi',
+    categorySlug: 'ekonomi',
+    title: 'Hilirisasi Industri Pertambangan Dongkrak Nilai Tambah Ekspor dan Lapangan Kerja',
+    slug: 'hilirisasi-industri-pertambangan-dongkrak-nilai-tambah',
+    excerpt: 'Pengoperasian fasilitas pemurnian smelter baru di luar Pulau Jawa berkontribusi langsung pada penerimaan pajak daerah dan pertumbuhan upah riil.',
+    image: 'assets/images/berita/ekonomi/ekspor-komoditas-sawit.jpg',
+    imageCaption: 'Aktivitas pengangkutan komoditas industri bernilai tambah tinggi di pelabuhan peti kemas. (Foto: Dok. BUSER INFO)',
+    author: 'M. Rizky Saputra',
+    authorRole: 'Wartawan Industri & Energi',
+    editor: 'Hendy Yustana',
+    date: 'Selasa, 8 September 2026',
+    time: '14:40 WIB',
+    timestamp: 1788855600000,
+    readTime: '4 menit baca',
+    views: '19.300',
+    shares: '410',
+    isHero: false,
+    isTrending: false,
+    tags: ['Hilirisasi', 'Smelter', 'Investasi'],
+    content: `<p class="mb-4">Kebijakan hilirisasi terbukti meningkatkan daya saing produk manufaktur olahan Indonesia di kancah pasar ekspor Eropa dan Asia Timur.</p>`
+  },
+  {
+    id: 'eko-04',
+    category: 'Ekonomi',
+    categorySlug: 'ekonomi',
+    title: 'OJK Luncurkan Regulasi Perlindungan Konsumen Terhadap Praktik Pinjaman Ilegal',
+    slug: 'ojk-luncurkan-regulasi-perlindungan-konsumen-pinjol-ilegal',
+    excerpt: 'Penyedia jasa keuangan fintech peer-to-peer diwajibkan memenuhi standar etika penagihan ketat dan transparansi suku bunga harian.',
+    image: 'assets/images/berita/ekonomi/inflasi-bank-indonesia.jpg',
+    imageCaption: 'Pimpinan OJK memaparkan peta jalan penguatan industri keuangan non-bank di Jakarta. (Foto: Dok. BUSER INFO)',
+    author: 'M. Rizky Saputra',
+    authorRole: 'Reporter Regulasi Keuangan',
+    editor: 'Bambang Sudiro',
+    date: 'Senin, 7 September 2026',
+    time: '09:15 WIB',
+    timestamp: 1788749700000,
+    readTime: '3 menit baca',
+    views: '27.600',
+    shares: '730',
+    isHero: false,
+    isTrending: false,
+    tags: ['OJK', 'Pinjol Ilegal', 'Fintech', 'Konsumen'],
+    content: `<p class="mb-4">Satgas Pemberantasan Aktivitas Keuangan Ilegal telah memblokir ratusan entitas tanpa izin demi menjaga rasa aman masyarakat peminjam.</p>`
+  },
+
+  // DAERAH
+  {
+    id: 'dae-01',
+    category: 'Daerah',
+    categorySlug: 'daerah',
+    title: 'Proyek Konektivitas LRT dan Jalan Tol Lintas Sumatera Dikebut untuk Dongkrak Logistik',
+    slug: 'proyek-konektivitas-lrt-dan-jalan-tol-lintas-sumatera-dikebut',
+    excerpt: 'Pemerintah Provinsi Sumatera Selatan bersama kementerian PUPR resmikan seksi baru jalur penghubung antar-kabupaten guna memangkas waktu tempuh komoditas.',
+    image: 'assets/images/berita/daerah/infrastruktur-lrt-sumsel.jpg',
+    imageCaption: 'Rangkaian LRT melintas di koridor strategis Sumatera Selatan di bawah terik mentari pagi. (Foto: Dok. BUSER INFO)',
+    author: 'Hendra Saputra',
+    authorRole: 'Koresponden Sumatera Selatan',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '12:55 WIB',
+    timestamp: 1788935700000,
+    readTime: '4 menit baca',
+    views: '38.100',
+    shares: '860',
+    isHero: false,
+    isTrending: true,
+    trendingRank: 5,
+    tags: ['Sumatera Selatan', 'LRT', 'Tol Trans Sumatera', 'Banyuasin'],
+    content: `<p class="mb-4">Konektivitas terpadu ini memangkas biaya transportasi logistik hasil bumi dari perkebunan Banyuasin dan Musi Banyuasin menuju pelabuhan laut utama secara drastis.</p>`
+  },
+  {
+    id: 'dae-02',
+    category: 'Daerah',
+    categorySlug: 'daerah',
+    title: 'Pemkab Banyuasin Revitalisasi Dermaga Sungai dan Pasilitasi Nelayan Sentra Ikan Asin',
+    slug: 'pemkab-banyuasin-revitalisasi-dermaga-sungai-sentra-ikan',
+    excerpt: 'Dukungan fasilitas cold-storage tenaga surya dan dermaga sandar baru di Talang Kelapa membuka peluang ekspor olahan hasil laut langsung dari sentra pengolahan.',
+    image: 'assets/images/berita/daerah/revitalisasi-pelabuhan-banyuasin.jpg',
+    imageCaption: 'Kunjungan bupati dan jajaran redaksi media meninjau kesiapan dermaga rakyat Banyuasin. (Foto: Dok. BUSER INFO)',
+    author: 'Hendra Saputra',
+    authorRole: 'Biro Banyuasin & Sekitarnya',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '10:15 WIB',
+    timestamp: 1788926100000,
+    readTime: '3 menit baca',
+    views: '15.900',
+    shares: '310',
+    isHero: false,
+    isTrending: false,
+    tags: ['Banyuasin', 'Nelayan', 'Infrastruktur Pesisir', 'Sumsel'],
+    content: `<p class="mb-4">Inisiatif ini dirancang guna meningkatkan taraf hidup ribuan kepala keluarga nelayan dan pembudidaya tambak di pesisir Tanah Mas dan Sungsang.</p>`
+  },
+  {
+    id: 'dae-03',
+    category: 'Daerah',
+    categorySlug: 'daerah',
+    title: 'Festival Budaya Sriwijaya Hadirkan Ribuan Wisatawan, Angkat Seni Songket dan Dulmuluk',
+    slug: 'festival-budaya-sriwijaya-hadirkan-ribuan-wisatawan',
+    excerpt: 'Pekan perayaan seni tradisi di Palembang sukses menggerakkan sektor perhotelan, kuliner pempek, dan cinderamata khas nusantara.',
+    image: 'assets/images/berita/daerah/festival-budaya-palembang.jpg',
+    imageCaption: 'Pawai perahu hias dan atraksi seni budaya di tepian Sungai Musi. (Foto: Dok. BUSER INFO)',
+    author: 'Dewi Lestari',
+    authorRole: 'Reporter Budaya Daerah',
+    editor: 'Bambang Sudiro',
+    date: 'Selasa, 8 September 2026',
+    time: '18:15 WIB',
+    timestamp: 1788868500000,
+    readTime: '3 menit baca',
+    views: '20.400',
+    shares: '520',
+    isHero: false,
+    isTrending: false,
+    tags: ['Budaya', 'Palembang', 'Pariwisata', 'Sumatera'],
+    content: `<p class="mb-4">Festival ini kembali meneguhkan kekayaan khazanah budaya Melayu dan tradisi pesisir sebagai warisan luhur yang menarik minat turis mancanegara.</p>`
+  },
+  {
+    id: 'dae-04',
+    category: 'Daerah',
+    categorySlug: 'daerah',
+    title: 'Kesiapsiagaan Tanggap Bencana: BPBD Pasang Sensor Dini Peringatan Banjir di Das Sungai',
+    slug: 'kesiapsiagaan-tanggap-bencana-bpbd-pasang-sensor-banjir',
+    excerpt: 'Sistem peringatan dini otomatis berbasis telemetri disebar di 15 titik rawan luapan air guna mengamankan ribuan pemukiman warga saat musim penghujan.',
+    image: 'assets/images/berita/daerah/penanganan-banjir-sumatera.jpg',
+    imageCaption: 'Petugas teknis melakukan kalibrasi tiang sensor ketinggian air otomatis. (Foto: Dok. BUSER INFO)',
+    author: 'Hendra Saputra',
+    authorRole: 'Koresponden Kebencanaan',
+    editor: 'Bambang Sudiro',
+    date: 'Senin, 7 September 2026',
+    time: '16:00 WIB',
+    timestamp: 1788774000000,
+    readTime: '3 menit baca',
+    views: '12.800',
+    shares: '210',
+    isHero: false,
+    isTrending: false,
+    tags: ['BPBD', 'Mitigasi Bencana', 'Banjir'],
+    content: `<p class="mb-4">Data sensor terintegrasi langsung dengan ponsel pintar kepala desa sehingga evakuasi dapat dilaksanakan secara dini dan terkoordinasi rapi.</p>`
+  },
+
+  // TEKNOLOGI
+  {
+    id: 'tek-01',
+    category: 'Teknologi',
+    categorySlug: 'teknologi',
+    title: 'Pusat Keamanan Siber Nasional Gandeng Kampus Bentuk Pasukan Pertahanan Cyber Cerdas',
+    slug: 'pusat-keamanan-siber-nasional-gandeng-kampus',
+    excerpt: 'BSSN inisiasi program akselerasi sertifikasi talenta siber muda untuk memitigasi serangan ransomware dan kebocoran data strategis.',
+    image: 'assets/images/berita/teknologi/pusat-keamanan-siber.jpg',
+    imageCaption: 'Pusat operasi kendali siber 24 jam dengan tim analis ancaman digital. (Foto: Dok. BUSER INFO)',
+    author: 'Kevin Adityawarman',
+    authorRole: 'Jurnalis Teknologi & Gadget',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '12:00 WIB',
+    timestamp: 1788932400000,
+    readTime: '4 menit baca',
+    views: '27.300',
+    shares: '690',
+    isHero: false,
+    isTrending: false,
+    tags: ['Cyber Security', 'BSSN', 'Kecerdasan Buatan', 'Teknologi'],
+    content: `<p class="mb-4">Penguatan infrastruktur pusat data nasional menuntut ketersediaan analis keamanan informasi yang andal dan berdaya saing global.</p>`
+  },
+  {
+    id: 'tek-02',
+    category: 'Teknologi',
+    categorySlug: 'teknologi',
+    title: 'Pemerintah Rancang Pedoman Etika dan Regulasi Pemanfaatan AI Generatif di Indonesia',
+    slug: 'pemerintah-rancang-pedoman-etika-regulasi-ai-generatif',
+    excerpt: 'Regulasi baru mengatur hak cipta materi hasil sintesis kecerdasan buatan dan perlindungan privasi data pengguna dalam ekosistem digital.',
+    image: 'assets/images/berita/teknologi/regulasi-ai-indonesia.jpg',
+    imageCaption: 'Diskusi panel para pakar kecerdasan buatan dan perwakilan regulator. (Foto: Dok. BUSER INFO)',
+    author: 'Kevin Adityawarman',
+    authorRole: 'Reporter Digital & AI',
+    editor: 'Bambang Sudiro',
+    date: 'Selasa, 8 September 2026',
+    time: '15:30 WIB',
+    timestamp: 1788858600000,
+    readTime: '3 menit baca',
+    views: '19.900',
+    shares: '440',
+    isHero: false,
+    isTrending: false,
+    tags: ['AI Generatif', 'Regulasi AI', 'Kominfo'],
+    content: `<p class="mb-4">Pedoman ini bertujuan menyeimbangkan inovasi teknologi dengan perlindungan hak cipta pencipta konten asli di Indonesia.</p>`
+  },
+
+  // OLAHRAGA
+  {
+    id: 'ola-01',
+    category: 'Olahraga',
+    categorySlug: 'olahraga',
+    title: 'Pebulutangkis Merah Putih Tembus Final Turnamen Dunia Usai Duel Sengit Tiga Gim',
+    slug: 'pebulutangkis-merah-putih-tembus-final-turnamen-dunia',
+    excerpt: 'Penampilan spartan wakil tunggal putra di Istora disambut gemuruh ribuan penonton, mengunci tiket babak puncak melawan juara bertahan.',
+    image: 'assets/images/berita/olahraga/final-bulutangkis-dunia.jpg',
+    imageCaption: 'Aksi smash tajam pemain tunggal putra Indonesia saat membalikkan kedudukan pada gim penentuan. (Foto: Dok. BUSER INFO)',
+    author: 'Aris Munandar',
+    authorRole: 'Jurnalis Olahraga',
+    editor: 'Hendy Yustana',
+    date: 'Rabu, 9 September 2026',
+    time: '13:00 WIB',
+    timestamp: 1788936000000,
+    readTime: '3 menit baca',
+    views: '41.200',
+    shares: '1.350',
+    isHero: false,
+    isTrending: false,
+    tags: ['Bulutangkis', 'BWF', 'Timnas Indonesia', 'Olahraga'],
+    content: `<p class="mb-4">Kemenangan dramatis ini membuktikan kesiapan mental bertanding para atlet pelatnas menjelang ajang multi-event prestisius mendatang.</p>`
+  },
+  {
+    id: 'ola-02',
+    category: 'Olahraga',
+    categorySlug: 'olahraga',
+    title: 'Timnas Sepak Bola Matangkan Taktik Serangan Balik Cepat Hadapi Lanjutan Kualifikasi',
+    slug: 'timnas-sepak-bola-matangkan-taktik-kualifikasi',
+    excerpt: 'Pelatih kepala menggelar sesi latihan tertutup untuk memperkokoh transisi lini pertahanan dan efisiensi penyelesaian akhir penyerang sayap.',
+    image: 'assets/images/berita/olahraga/kualifikasi-piala-dunia-timnas.jpg',
+    imageCaption: 'Sesi latihan malam skuad Garuda di Stadion Utama Gelora Bung Karno. (Foto: Dok. BUSER INFO)',
+    author: 'Aris Munandar',
+    authorRole: 'Reporter Sepak Bola',
+    editor: 'Bambang Sudiro',
+    date: 'Selasa, 8 September 2026',
+    time: '20:10 WIB',
+    timestamp: 1788875400000,
+    readTime: '3 menit baca',
+    views: '37.800',
+    shares: '1.120',
+    isHero: false,
+    isTrending: false,
+    tags: ['PSSI', 'Timnas Day', 'Kualifikasi Piala Dunia'],
+    content: `<p class="mb-4">Dukungan penuh suporter menjadi modal moral besar bagi skuad garuda untuk memetik tiga poin krusial di kandang sendiri.</p>`
+  },
+
+  // PENDIDIKAN
+  {
+    id: 'pen-01',
+    category: 'Pendidikan',
+    categorySlug: 'pendidikan',
+    title: 'Perguruan Tinggi Perluas Program Magang Terintegrasi Industri dengan Rekognisi 20 SKS',
+    slug: 'perguruan-tinggi-perluas-program-magang-terintegrasi-industri',
+    excerpt: 'Kolaborasi kampus dan konsorsium perusahaan multinasional cetak ribuan lulusan siap kerja dengan kompetensi teruji di era automasi.',
+    image: 'assets/images/berita/pendidikan/wisuda-universitas-negeri.jpg',
+    imageCaption: 'Wisudawan sarjana dan diploma mengikuti prosesi wisuda khidmat. (Foto: Dok. BUSER INFO)',
+    author: 'Siti Rahmawati',
+    authorRole: 'Reporter Edukasi',
+    editor: 'Bambang Sudiro',
+    date: 'Rabu, 9 September 2026',
+    time: '11:15 WIB',
+    timestamp: 1788929700000,
+    readTime: '3 menit baca',
+    views: '16.700',
+    shares: '380',
+    isHero: false,
+    isTrending: false,
+    tags: ['Kampus Merdeka', 'Pendidikan Tinggi', 'Magang Kerja'],
+    content: `<p class="mb-4">Skema kurikulum terapan ini terbukti memperpendek masa tunggu lulusan untuk memperoleh pekerjaan pertama yang relevan dengan bidang ilmu.</p>`
+  },
+
+  // LIFESTYLE
+  {
+    id: 'lif-01',
+    category: 'Lifestyle',
+    categorySlug: 'lifestyle',
+    title: 'Tren Pola Makan Sehat Berbasis Pangan Lokal: Manfaat Sorgum dan Umbi-umbian Nusantara',
+    slug: 'tren-pola-makan-sehat-pangan-lokal-sorgum-umbi',
+    excerpt: 'Para ahli gizi mengkampanyekan diversifikasi pangan alternatif kaya serat dengan indeks glikemik rendah untuk mencegah diabetes generasi muda.',
+    image: 'assets/images/berita/ekonomi/pertumbuhan-umkm-digital.jpg',
+    imageCaption: 'Sajian kuliner sehat berbahan dasar komoditas lokal hasil inovasi koki muda. (Foto: Dok. BUSER INFO)',
+    author: 'Dewi Lestari',
+    authorRole: 'Jurnalis Gaya Hidup',
+    editor: 'Hendy Yustana',
+    date: 'Selasa, 8 September 2026',
+    time: '16:45 WIB',
+    timestamp: 1788863100000,
+    readTime: '3 menit baca',
+    views: '14.500',
+    shares: '270',
+    isHero: false,
+    isTrending: false,
+    tags: ['Pola Hidup Sehat', 'Pangan Lokal', 'Kesehatan'],
+    content: `<p class="mb-4">Pemanfaatan kekayaan hayati nusantara tidak hanya menyehatkan tubuh tetapi juga mendukung keberlanjutan ekonomi petani lokal.</p>`
+  }
+];
+
+// Helper Functions
+const NewsDB = {
+  getAll: () => BUSER_ARTICLES,
+  
+  getById: (id) => BUSER_ARTICLES.find(a => a.id === id) || BUSER_ARTICLES[0],
+  
+  getByCategory: (catSlug) => {
+    if (!catSlug || catSlug === 'home') return BUSER_ARTICLES;
+    return BUSER_ARTICLES.filter(a => a.categorySlug.toLowerCase() === catSlug.toLowerCase());
+  },
+
+  getHero: () => BUSER_ARTICLES.find(a => a.isHero) || BUSER_ARTICLES[0],
+
+  getHeroSupporting: () => {
+    // 3 curated supporting news cards
+    return [
+      BUSER_ARTICLES.find(a => a.id === 'krim-01'),
+      BUSER_ARTICLES.find(a => a.id === 'pol-01'),
+      BUSER_ARTICLES.find(a => a.id === 'eko-01')
+    ].filter(Boolean);
+  },
+
+  getTrending: () => {
+    return BUSER_ARTICLES
+      .filter(a => a.isTrending)
+      .sort((a, b) => (a.trendingRank || 99) - (b.trendingRank || 99))
+      .slice(0, 5);
+  },
+
+  getBreakingNews: () => BREAKING_NEWS_LIST,
+
+  getLatest: (limit = 6) => {
+    return [...BUSER_ARTICLES]
+      .sort((a, b) => b.timestamp - a.timestamp)
+      .slice(0, limit);
+  },
+
+  getRelated: (currentArticleId, categorySlug, limit = 4) => {
+    return BUSER_ARTICLES
+      .filter(a => a.id !== currentArticleId && (a.categorySlug === categorySlug || true))
+      .slice(0, limit);
+  },
+
+  search: (query = '', category = 'all') => {
+    const q = query.trim().toLowerCase();
+    return BUSER_ARTICLES.filter(a => {
+      const matchCat = (category === 'all' || !category) ? true : a.categorySlug.toLowerCase() === category.toLowerCase();
+      if (!matchCat) return false;
+      if (!q) return true;
+      return (
+        a.title.toLowerCase().includes(q) ||
+        a.excerpt.toLowerCase().includes(q) ||
+        a.category.toLowerCase().includes(q) ||
+        a.author.toLowerCase().includes(q) ||
+        a.tags.some(t => t.toLowerCase().includes(q))
+      );
+    });
+  }
+};
+
+// Export to window
+if (typeof window !== 'undefined') {
+  window.BUSER_CATEGORIES = BUSER_CATEGORIES;
+  window.BUSER_ARTICLES = BUSER_ARTICLES;
+  window.BREAKING_NEWS_LIST = BREAKING_NEWS_LIST;
+  window.NewsDB = NewsDB;
+}

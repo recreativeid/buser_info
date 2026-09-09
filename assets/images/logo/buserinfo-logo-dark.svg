@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" width="100%" height="100%">
+  <defs>
+    <linearGradient id="redGradientDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E51E25" />
+      <stop offset="100%" stop-color="#B80F15" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(4, 8)">
+    <polygon points="0,6 38,0 48,36 10,48" fill="url(#redGradientDark)" />
+    <text x="24" y="32" font-family="'Inter', 'Arial Black', sans-serif" font-weight="900" font-size="28" fill="#FFFFFF" text-anchor="middle">B</text>
+    <circle cx="38" cy="12" r="3.5" fill="#FFFFFF" />
+  </g>
+
+  <g transform="translate(62, 12)">
+    <text x="0" y="28" font-family="'Inter', 'Arial Black', sans-serif" font-weight="900" font-size="30" letter-spacing="1" fill="#0B0B0B">
+      BUSER<tspan fill="#D71920">.</tspan>
+    </text>
+    <rect x="122" y="6" width="68" height="24" rx="2" fill="#D71920" />
+    <text x="156" y="23" font-family="'Inter', 'Arial Black', sans-serif" font-weight="800" font-size="16" letter-spacing="1.5" fill="#FFFFFF" text-anchor="middle">INFO</text>
+    
+    <text x="1" y="44" font-family="'Inter', sans-serif" font-weight="700" font-size="8.5" letter-spacing="2.2" fill="#4B5563">
+      BERITA TERKINI, FAKTA TANPA BATAS
+    </text>
+  </g>
+</svg>

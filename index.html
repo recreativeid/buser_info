@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>BUSER INFO — Berita Terkini, Fakta Tanpa Batas</title>
+  <meta name="description" content="Portal berita digital Indonesia menyajikan informasi terkini, aktual, tajam, dan terpercaya seputar peristiwa nasional, politik, hukum, kriminal, ekonomi, dan internasional.">
+  <meta name="keywords" content="buser info, berita terkini, berita hari ini, berita indonesia, kriminal, politik, ekonomi, internasional">
+  <meta name="author" content="PT. GOLDENMIX MEDIA BUSERINFO">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/favicon.svg">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            buser: {
+              black: '#0B0B0B',
+              red: '#D71920',
+              redHover: '#B80F15',
+              dark: '#222222',
+              light: '#F5F5F5',
+              border: '#E5E7EB'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F5F5F5] text-[#0B0B0B] antialiased flex flex-col min-h-screen">
+
+  <!-- TOP BAR (Desktop / Tablet) -->
+  <div class="bg-[#151515] text-gray-400 text-xs py-1.5 px-4 border-b border-gray-800 hidden sm:block">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center text-gray-300">
+          <svg class="w-3.5 h-3.5 mr-1.5 text-buser-red" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+          </svg>
+          <span class="live-date-text">Memuat waktu...</span>
+        </span>
+      </div>
+      <div class="flex items-center space-x-4 text-[11px]">
+        <a href="tentang.html" class="hover:text-white transition-colors">Tentang Kami</a>
+        <span class="text-gray-600">|</span>
+        <a href="tentang.html#redaksi" class="hover:text-white transition-colors">Redaksi</a>
+        <span class="text-gray-600">|</span>
+        <a href="tentang.html#pedoman" class="hover:text-white transition-colors">Pedoman Media Siber</a>
+        <span class="text-gray-600">|</span>
+        <a href="https://wa.me/6283172988502" target="_blank" class="text-emerald-400 hover:text-emerald-300 flex items-center">
+          <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+          </svg>
+          Hotline Redaksi
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER (Black: #0B0B0B) -->
+  <header class="bg-[#0B0B0B] text-white sticky top-0 z-40 shadow-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Mobile Left: Hamburger Button -->
+        <div class="flex items-center space-x-2">
+          <button type="button" class="mobile-menu-btn lg:hidden p-2 rounded text-white hover:bg-gray-800 focus:outline-none" aria-label="Buka Menu Navigasi">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          <!-- BRAND LOGO -->
+          <a href="index.html" class="flex items-center" aria-label="BUSER INFO Beranda">
+            <img src="assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO Logo" class="h-10 sm:h-12 w-auto object-contain" />
+          </a>
+        </div>
+
+        <!-- Desktop Quick Search Bar (Middle-Right) -->
+        <div class="hidden md:flex items-center flex-1 max-w-xs lg:max-w-sm mx-6">
+          <form action="cari.html" method="GET" class="w-full relative">
+            <input type="text" name="q" placeholder="Cari topik atau berita terkini..." class="w-full bg-[#1A1A1A] text-xs text-white placeholder-gray-400 pl-3 pr-9 py-2 rounded-sm border border-gray-700 focus:border-buser-red focus:outline-none transition-colors" />
+            <button type="submit" class="absolute right-0 top-0 h-full px-2.5 text-gray-400 hover:text-white" aria-label="Cari">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Utilities: Saved Bookmarks & Search Icon for Mobile -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <!-- Quick Search Icon (Mobile) -->
+          <button type="button" class="open-search-modal-btn md:hidden p-2 rounded text-gray-300 hover:text-white hover:bg-gray-800" aria-label="Cari Berita">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+
+          <!-- Bookmarks / Simpan Berita Button -->
+          <button type="button" class="open-bookmark-btn relative p-2 rounded text-gray-300 hover:text-white hover:bg-gray-800 flex items-center" title="Berita Tersimpan">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+            </svg>
+            <span class="bookmark-count-badge hidden absolute -top-1 -right-1 bg-buser-red text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+          </button>
+
+          <!-- Live Streaming / E-Paper Pill -->
+          <a href="internasional.html" class="hidden sm:inline-flex items-center bg-buser-red hover:bg-buser-redHover text-white text-xs font-bold px-3 py-1.5 rounded-sm transition-colors uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-white mr-1.5 pulse-badge"></span>
+            Edisi Khusus
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HORIZONTAL CATEGORY NAVIGATION BAR -->
+    <div class="bg-[#121212] border-t border-gray-800 relative">
+      <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 relative flex items-center">
+        
+        <!-- Left Scroll Arrow (Desktop) -->
+        <button id="scroll-nav-left" class="hidden lg:flex items-center justify-center w-6 h-9 bg-black/70 hover:bg-buser-red text-white z-10" aria-label="Geser Kiri">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <!-- Scrollable Category Track -->
+        <nav id="category-scroll-nav" class="flex items-center space-x-1 sm:space-x-1.5 overflow-x-auto no-scrollbar py-2 text-xs sm:text-sm font-semibold uppercase tracking-wider flex-1 scroll-smooth">
+          <a href="index.html" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Home</a>
+          <a href="internasional.html?cat=nasional" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Nasional</a>
+          <a href="internasional.html?cat=daerah" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Daerah</a>
+          <a href="internasional.html?cat=politik" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Politik</a>
+          <a href="internasional.html?cat=kriminal" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Kriminal</a>
+          <a href="internasional.html?cat=ekonomi" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Ekonomi</a>
+          <a href="internasional.html?cat=pendidikan" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Pendidikan</a>
+          <a href="internasional.html?cat=teknologi" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Teknologi</a>
+          <a href="internasional.html?cat=olahraga" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Olahraga</a>
+          <a href="internasional.html" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Internasional</a>
+          <a href="internasional.html?cat=lifestyle" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Lifestyle</a>
+        </nav>
+
+        <!-- Right Scroll Arrow (Desktop) -->
+        <button id="scroll-nav-right" class="hidden lg:flex items-center justify-center w-6 h-9 bg-black/70 hover:bg-buser-red text-white z-10" aria-label="Geser Kanan">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- THIN RED LINE BELOW HEADER -->
+    <div class="h-[3px] bg-[#D71920] w-full"></div>
+  </header>
+
+  <!-- BREAKING NEWS TICKER -->
+  <section class="bg-[#D71920] text-white py-1.5 px-3 sm:px-4 shadow-inner" aria-label="Breaking News">
+    <div class="max-w-7xl mx-auto flex items-center">
+      <div class="flex items-center space-x-2 bg-black px-2.5 py-1 rounded-sm flex-shrink-0 mr-3 text-[11px] sm:text-xs font-black uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-red-500 pulse-badge"></span>
+        <span>BREAKING NEWS</span>
+      </div>
+      <div class="ticker-wrapper flex-1">
+        <div id="breaking-ticker-track" class="ticker-track">
+          <!-- Injected dynamically by main.js -->
+          <span class="text-xs sm:text-sm font-medium">Memuat siaran kilat Buser Info...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-5 sm:py-7 flex-1 w-full space-y-8 sm:space-y-10">
+
+    <!-- HERO / HEADLINE SECTION -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6">
+      
+      <!-- Primary Big Featured Headline (7 cols on desktop) -->
+      <article class="lg:col-span-8 bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between shadow-sm">
+        <div class="relative overflow-hidden aspect-[16/9] w-full bg-gray-900">
+          <img src="assets/images/berita/internasional/diplomasi-ktt-global.jpg" alt="Perkembangan Dunia Internasional Menjadi Sorotan Utama Hari Ini" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-buser-red text-white text-xs font-black px-2.5 py-1 uppercase tracking-wider rounded-sm shadow">
+            INTERNASIONAL
+          </span>
+          <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-[11px] px-2.5 py-1 rounded flex items-center space-x-1.5">
+            <svg class="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+            </svg>
+            <span>48.210 Dilihat</span>
+          </div>
+        </div>
+
+        <div class="p-4 sm:p-6">
+          <div class="flex items-center space-x-2 text-xs text-gray-500 mb-2">
+            <span class="font-bold text-gray-800">Ahmad Fauzi Ramadhan</span>
+            <span>&bull;</span>
+            <span>Rabu, 9 September 2026 - 14:35 WIB</span>
+            <span>&bull;</span>
+            <span class="text-buser-red font-semibold">4 menit baca</span>
+          </div>
+
+          <h1 class="text-xl sm:text-2xl lg:text-3xl font-black text-gray-900 leading-tight group-hover:text-buser-red transition-colors mb-3">
+            <a href="artikel.html?id=int-01">
+              Perkembangan Dunia Internasional Menjadi Sorotan Utama Hari Ini
+            </a>
+          </h1>
+
+          <p class="text-sm sm:text-base text-gray-700 leading-relaxed mb-4 line-clamp-3">
+            Dinamika diplomasi global mencapai babak krusial saat sejumlah kepala negara menyepakati peta jalan mitigasi stabilitas geopolitik dan keamanan pasokan energi lintas benua. Kesepakatan di Jenewa ini menjadi angin segar bagi kepastian logistik perdagangan kawasan Asia Tenggara.
+          </p>
+
+          <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+            <div class="flex items-center space-x-2">
+              <span class="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded font-medium">#DiplomasiGlobal</span>
+              <span class="text-xs bg-gray-100 text-gray-700 px-2 py-0.5 rounded font-medium">#KTTInternasional</span>
+            </div>
+            <a href="artikel.html?id=int-01" class="inline-flex items-center text-xs sm:text-sm font-bold text-buser-red hover:text-buser-redHover">
+              Baca Selengkapnya
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 Supporting News Cards (4 cols on desktop) -->
+      <aside class="lg:col-span-4 flex flex-col space-y-3.5 sm:space-y-4">
+        
+        <!-- Supporting Card 1: Kriminal -->
+        <article class="bg-white border border-gray-200 rounded-sm p-3 sm:p-3.5 news-card-hover group flex flex-col justify-between shadow-sm">
+          <div class="flex gap-3">
+            <a href="artikel.html?id=krim-01" class="w-28 sm:w-32 h-20 sm:h-24 flex-shrink-0 relative overflow-hidden rounded-sm block">
+              <img src="assets/images/berita/kriminal/rilis-mabes-polri.jpg" alt="Rilis Mabes Polri" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <span class="absolute top-1 left-1 bg-buser-red text-white text-[9px] font-bold px-1.5 py-0.5 uppercase">KRIMINAL</span>
+            </a>
+            <div class="flex-1 min-w-0">
+              <div class="text-[11px] text-gray-500 mb-1">9 Sep 2026 &bull; 13:50 WIB</div>
+              <a href="artikel.html?id=krim-01" class="block font-bold text-xs sm:text-sm text-gray-900 group-hover:text-buser-red line-clamp-3 leading-snug news-headline">
+                Rilis Mabes Polri Ungkap Jaringan Sindikat Penipuan Digital Antarprovinsi Senilai Puluhan Miliar
+              </a>
+            </div>
+          </div>
+          <div class="mt-2 pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+            <span>Investigasi Mabes</span>
+            <span class="text-buser-red font-semibold">5 menit baca</span>
+          </div>
+        </article>
+
+        <!-- Supporting Card 2: Politik -->
+        <article class="bg-white border border-gray-200 rounded-sm p-3 sm:p-3.5 news-card-hover group flex flex-col justify-between shadow-sm">
+          <div class="flex gap-3">
+            <a href="artikel.html?id=pol-01" class="w-28 sm:w-32 h-20 sm:h-24 flex-shrink-0 relative overflow-hidden rounded-sm block">
+              <img src="assets/images/berita/politik/sidang-paripurna-dpr.jpg" alt="Sidang Paripurna DPR" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <span class="absolute top-1 left-1 bg-buser-red text-white text-[9px] font-bold px-1.5 py-0.5 uppercase">POLITIK</span>
+            </a>
+            <div class="flex-1 min-w-0">
+              <div class="text-[11px] text-gray-500 mb-1">9 Sep 2026 &bull; 14:00 WIB</div>
+              <a href="artikel.html?id=pol-01" class="block font-bold text-xs sm:text-sm text-gray-900 group-hover:text-buser-red line-clamp-3 leading-snug news-headline">
+                Sidang Paripurna DPR Bahas Penyesuaian Anggaran Belanja Negara dan Pengawasan APBN
+              </a>
+            </div>
+          </div>
+          <div class="mt-2 pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+            <span>Parlemen Senayan</span>
+            <span class="text-buser-red font-semibold">4 menit baca</span>
+          </div>
+        </article>
+
+        <!-- Supporting Card 3: Ekonomi -->
+        <article class="bg-white border border-gray-200 rounded-sm p-3 sm:p-3.5 news-card-hover group flex flex-col justify-between shadow-sm">
+          <div class="flex gap-3">
+            <a href="artikel.html?id=eko-01" class="w-28 sm:w-32 h-20 sm:h-24 flex-shrink-0 relative overflow-hidden rounded-sm block">
+              <img src="assets/images/berita/ekonomi/bursa-efek-perdagangan.jpg" alt="Bursa Efek" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <span class="absolute top-1 left-1 bg-buser-red text-white text-[9px] font-bold px-1.5 py-0.5 uppercase">EKONOMI</span>
+            </a>
+            <div class="flex-1 min-w-0">
+              <div class="text-[11px] text-gray-500 mb-1">9 Sep 2026 &bull; 13:30 WIB</div>
+              <a href="artikel.html?id=eko-01" class="block font-bold text-xs sm:text-sm text-gray-900 group-hover:text-buser-red line-clamp-3 leading-snug news-headline">
+                BI Catat Surplus Neraca Dagang dan Penguatan Kurs Rupiah Ditopang Kinerja Ekspor
+              </a>
+            </div>
+          </div>
+          <div class="mt-2 pt-2 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+            <span>Pasar Finansial</span>
+            <span class="text-buser-red font-semibold">4 menit baca</span>
+          </div>
+        </article>
+
+      </aside>
+    </section>
+
+    <!-- TWO COLUMNS SECTION: BERITA TERKINI (LEFT 70%) & TRENDING TERPOPULER (RIGHT 30%) -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+      
+      <!-- MAIN STREAM: BERITA TERKINI (8 cols) -->
+      <div class="lg:col-span-8 space-y-6">
+        
+        <div class="section-heading-bar justify-between">
+          <div class="flex items-center space-x-2">
+            <span class="w-3 h-3 bg-buser-red inline-block"></span>
+            <h2 class="text-lg sm:text-xl font-black uppercase tracking-tight text-gray-900">
+              Berita Terkini
+            </h2>
+          </div>
+          <span class="text-xs text-gray-500 font-medium">Update Terus Menerus 24 Jam</span>
+        </div>
+
+        <!-- Vertical News Feed -->
+        <div class="space-y-4">
+          
+          <!-- Card 1 -->
+          <article class="bg-white border border-gray-200 rounded-sm p-3.5 sm:p-4 news-card-hover group flex flex-col sm:flex-row gap-4">
+            <a href="artikel.html?id=nas-01" class="sm:w-52 h-36 flex-shrink-0 relative overflow-hidden rounded-sm block aspect-[16/10] sm:aspect-auto">
+              <img src="assets/images/berita/nasional/konferensi-pers-istana.jpg" alt="Kebijakan Strategis Pemerintah" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+              <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">NASIONAL</span>
+            </a>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-1.5">
+                  <span class="font-bold text-gray-800">Wahyu Hidayat</span>
+                  <span>&bull;</span>
+                  <span>9 Sep 2026 &bull; 14:15 WIB</span>
+                </div>
+                <h3 class="font-black text-base sm:text-lg text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                  <a href="artikel.html?id=nas-01">
+                    Pemerintah Terbitkan Kebijakan Strategis Percepatan Akselerasi Digital Layanan Publik
+                  </a>
+                </h3>
+                <p class="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed mb-2">
+                  Integrasi satu data terpadu kementerian ditargetkan tuntas tahun ini guna memangkas birokrasi perizinan dan memperkuat transparansi tata kelola.
+                </p>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-gray-500 pt-2 border-t border-gray-100">
+                <span>Waktu baca: 4 menit</span>
+                <a href="artikel.html?id=nas-01" class="text-buser-red font-bold hover:underline">Baca Selengkapnya &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="bg-white border border-gray-200 rounded-sm p-3.5 sm:p-4 news-card-hover group flex flex-col sm:flex-row gap-4">
+            <a href="artikel.html?id=dae-01" class="sm:w-52 h-36 flex-shrink-0 relative overflow-hidden rounded-sm block aspect-[16/10] sm:aspect-auto">
+              <img src="assets/images/berita/daerah/infrastruktur-lrt-sumsel.jpg" alt="Konektivitas LRT Sumsel" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+              <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">DAERAH</span>
+            </a>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-1.5">
+                  <span class="font-bold text-gray-800">Hendra Saputra</span>
+                  <span>&bull;</span>
+                  <span>9 Sep 2026 &bull; 12:55 WIB</span>
+                </div>
+                <h3 class="font-black text-base sm:text-lg text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                  <a href="artikel.html?id=dae-01">
+                    Proyek Konektivitas LRT dan Jalan Tol Lintas Sumatera Dikebut untuk Dongkrak Logistik
+                  </a>
+                </h3>
+                <p class="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed mb-2">
+                  Pemerintah Provinsi Sumatera Selatan bersama kementerian PUPR resmikan seksi baru jalur penghubung antar-kabupaten guna memangkas waktu tempuh komoditas.
+                </p>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-gray-500 pt-2 border-t border-gray-100">
+                <span>Waktu baca: 4 menit</span>
+                <a href="artikel.html?id=dae-01" class="text-buser-red font-bold hover:underline">Baca Selengkapnya &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="bg-white border border-gray-200 rounded-sm p-3.5 sm:p-4 news-card-hover group flex flex-col sm:flex-row gap-4">
+            <a href="artikel.html?id=tek-01" class="sm:w-52 h-36 flex-shrink-0 relative overflow-hidden rounded-sm block aspect-[16/10] sm:aspect-auto">
+              <img src="assets/images/berita/teknologi/pusat-keamanan-siber.jpg" alt="Pusat Keamanan Siber" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+              <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">TEKNOLOGI</span>
+            </a>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-1.5">
+                  <span class="font-bold text-gray-800">Kevin Adityawarman</span>
+                  <span>&bull;</span>
+                  <span>9 Sep 2026 &bull; 12:00 WIB</span>
+                </div>
+                <h3 class="font-black text-base sm:text-lg text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                  <a href="artikel.html?id=tek-01">
+                    Pusat Keamanan Siber Nasional Gandeng Kampus Bentuk Pasukan Pertahanan Cyber Cerdas
+                  </a>
+                </h3>
+                <p class="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed mb-2">
+                  BSSN inisiasi program akselerasi sertifikasi talenta siber muda untuk memitigasi serangan ransomware dan kebocoran data strategis.
+                </p>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-gray-500 pt-2 border-t border-gray-100">
+                <span>Waktu baca: 4 menit</span>
+                <a href="artikel.html?id=tek-01" class="text-buser-red font-bold hover:underline">Baca Selengkapnya &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="bg-white border border-gray-200 rounded-sm p-3.5 sm:p-4 news-card-hover group flex flex-col sm:flex-row gap-4">
+            <a href="artikel.html?id=ola-01" class="sm:w-52 h-36 flex-shrink-0 relative overflow-hidden rounded-sm block aspect-[16/10] sm:aspect-auto">
+              <img src="assets/images/berita/olahraga/final-bulutangkis-dunia.jpg" alt="Final Bulutangkis Dunia" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+              <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">OLAHRAGA</span>
+            </a>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 text-xs text-gray-500 mb-1.5">
+                  <span class="font-bold text-gray-800">Aris Munandar</span>
+                  <span>&bull;</span>
+                  <span>9 Sep 2026 &bull; 13:00 WIB</span>
+                </div>
+                <h3 class="font-black text-base sm:text-lg text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                  <a href="artikel.html?id=ola-01">
+                    Pebulutangkis Merah Putih Tembus Final Turnamen Dunia Usai Duel Sengit Tiga Gim
+                  </a>
+                </h3>
+                <p class="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed mb-2">
+                  Penampilan spartan wakil tunggal putra di Istora disambut gemuruh ribuan penonton, mengunci tiket babak puncak melawan juara bertahan.
+                </p>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-gray-500 pt-2 border-t border-gray-100">
+                <span>Waktu baca: 3 menit</span>
+                <a href="artikel.html?id=ola-01" class="text-buser-red font-bold hover:underline">Baca Selengkapnya &rarr;</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center pt-2">
+          <a href="internasional.html" class="inline-flex items-center justify-center px-6 py-2.5 bg-white border border-gray-300 hover:border-buser-red hover:text-buser-red font-bold text-xs sm:text-sm uppercase tracking-wider rounded-sm transition-colors shadow-sm">
+            Lihat Indeks Berita Terkini Lainnya
+            <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- SIDEBAR: TRENDING (4 cols) -->
+      <aside class="lg:col-span-4 space-y-6">
+        
+        <!-- TRENDING CARD BOX -->
+        <div class="bg-white border border-gray-200 rounded-sm p-4 shadow-sm">
+          <div class="section-heading-bar mb-4 justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="w-3 h-3 bg-buser-red inline-block"></span>
+              <h2 class="text-base font-black uppercase tracking-tight text-gray-900">
+                Trending Hari Ini
+              </h2>
+            </div>
+            <span class="text-[10px] bg-red-100 text-buser-red font-extrabold px-2 py-0.5 rounded">TERPOPULER</span>
+          </div>
+
+          <!-- List 1 to 5 with large red numbers -->
+          <div class="divide-y divide-gray-100">
+            
+            <!-- Item 1 -->
+            <article class="py-3 flex items-start space-x-3.5 group">
+              <span class="text-3xl font-black text-buser-red leading-none flex-shrink-0 w-8 text-center pt-0.5">1</span>
+              <div class="flex-1">
+                <span class="text-[10px] font-bold uppercase text-gray-500">INTERNASIONAL &bull; 48.2K Dilihat</span>
+                <a href="artikel.html?id=int-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red leading-snug mt-0.5 news-headline">
+                  Perkembangan Dunia Internasional Menjadi Sorotan Utama Hari Ini
+                </a>
+              </div>
+            </article>
+
+            <!-- Item 2 -->
+            <article class="py-3 flex items-start space-x-3.5 group">
+              <span class="text-3xl font-black text-buser-red leading-none flex-shrink-0 w-8 text-center pt-0.5">2</span>
+              <div class="flex-1">
+                <span class="text-[10px] font-bold uppercase text-gray-500">POLITIK &bull; 39.6K Dilihat</span>
+                <a href="artikel.html?id=pol-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red leading-snug mt-0.5 news-headline">
+                  Sidang Paripurna DPR Bahas Penyesuaian Anggaran Belanja Negara
+                </a>
+              </div>
+            </article>
+
+            <!-- Item 3 -->
+            <article class="py-3 flex items-start space-x-3.5 group">
+              <span class="text-3xl font-black text-buser-red leading-none flex-shrink-0 w-8 text-center pt-0.5">3</span>
+              <div class="flex-1">
+                <span class="text-[10px] font-bold uppercase text-gray-500">KRIMINAL &bull; 44.3K Dilihat</span>
+                <a href="artikel.html?id=krim-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red leading-snug mt-0.5 news-headline">
+                  Rilis Mabes Polri Ungkap Jaringan Sindikat Penipuan Digital Antarprovinsi
+                </a>
+              </div>
+            </article>
+
+            <!-- Item 4 -->
+            <article class="py-3 flex items-start space-x-3.5 group">
+              <span class="text-3xl font-black text-buser-red leading-none flex-shrink-0 w-8 text-center pt-0.5">4</span>
+              <div class="flex-1">
+                <span class="text-[10px] font-bold uppercase text-gray-500">EKONOMI &bull; 32.4K Dilihat</span>
+                <a href="artikel.html?id=eko-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red leading-snug mt-0.5 news-headline">
+                  BI Catat Surplus Neraca Dagang dan Penguatan Kurs Rupiah
+                </a>
+              </div>
+            </article>
+
+            <!-- Item 5 -->
+            <article class="py-3 flex items-start space-x-3.5 group">
+              <span class="text-3xl font-black text-buser-red leading-none flex-shrink-0 w-8 text-center pt-0.5">5</span>
+              <div class="flex-1">
+                <span class="text-[10px] font-bold uppercase text-gray-500">DAERAH &bull; 38.1K Dilihat</span>
+                <a href="artikel.html?id=dae-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red leading-snug mt-0.5 news-headline">
+                  Proyek Konektivitas LRT dan Jalan Tol Lintas Sumatera Dikebut
+                </a>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- REDAKSI & INFO BANNER -->
+        <div class="bg-[#0B0B0B] text-white p-4 rounded-sm border-l-4 border-buser-red">
+          <div class="flex items-center space-x-2 mb-2">
+            <span class="text-xs font-black uppercase tracking-wider text-buser-red">EDITORIAL BUSER INFO</span>
+          </div>
+          <h3 class="font-bold text-sm mb-2">Independen, Tajam, & Terverifikasi</h3>
+          <p class="text-xs text-gray-300 leading-relaxed mb-3">
+            BUSER INFO berkomitmen menyajikan karya jurnalistik sesuai Pedoman Pemberitaan Media Siber Dewan Pers Republik Indonesia.
+          </p>
+          <a href="tentang.html" class="inline-block bg-white text-black hover:bg-buser-red hover:text-white text-xs font-bold px-3 py-1.5 rounded-sm transition-colors">
+            Profil Redaksi & Legalitas &rarr;
+          </a>
+        </div>
+
+        <!-- WHATSAPP LAPORAN PENGADUAN WARGA -->
+        <div class="bg-gradient-to-r from-emerald-800 to-green-900 text-white p-4 rounded-sm shadow">
+          <div class="flex items-center space-x-2 mb-2">
+            <span class="p-1.5 bg-emerald-600 rounded-full">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+              </svg>
+            </span>
+            <span class="font-bold text-xs uppercase tracking-wider">Hotline Pengaduan Warga</span>
+          </div>
+          <p class="text-xs text-emerald-100 leading-relaxed mb-3">
+            Punya informasi peristiwa penting atau dugaan ketidakadilan di sekitar Anda? Kirimkan bukti awal ke Redaksi BUSER INFO.
+          </p>
+          <a href="https://wa.me/6283172988502" target="_blank" class="block w-full text-center bg-white text-emerald-800 hover:bg-emerald-100 text-xs font-bold py-2 rounded-sm transition-colors">
+            Kirim Informasi (0831-7298-8502)
+          </a>
+        </div>
+
+      </aside>
+
+    </section>
+
+    <!-- ========================================================================
+         CATEGORY BLOCKS:
+         1. NASIONAL
+         2. DAERAH
+         3. KRIMINAL
+         4. POLITIK
+         5. EKONOMI
+         6. INTERNASIONAL
+         ======================================================================== -->
+
+    <!-- 1. CATEGORY: NASIONAL -->
+    <section class="space-y-4">
+      <div class="section-heading-bar justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-lg sm:text-xl font-black uppercase tracking-tight text-gray-900">
+            Nasional
+          </h2>
+        </div>
+        <a href="internasional.html?cat=nasional" class="text-xs font-bold text-buser-red hover:text-buser-redHover flex items-center">
+          Lihat Semua Nasional
+          <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Card 1 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=nas-01" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/nasional/konferensi-pers-istana.jpg" alt="Kebijakan Digital" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">NASIONAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 14:15 WIB</span>
+              <a href="artikel.html?id=nas-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Pemerintah Terbitkan Kebijakan Strategis Percepatan Akselerasi Digital Layanan Publik
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Integrasi satu data terpadu kementerian ditargetkan tuntas tahun ini guna memangkas birokrasi.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Wahyu Hidayat</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=nas-02" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/nasional/pembangunan-ikn-nusantara.jpg" alt="Pembangunan IKN" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">NASIONAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 12:30 WIB</span>
+              <a href="artikel.html?id=nas-02" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Pembangunan IKN Nusantara Masuki Tahap Fasilitas Sosial, Rumah Sakit dan Kampus Beroperasi
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Otorita IKN memastikan kesiapan hunian ASN dan fasilitas publik dengan standar keberlanjutan.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Siti Rahmawati</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=nas-03" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/nasional/kebijakan-subsidi-bbm.jpg" alt="Subsidi Energi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">NASIONAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 10:05 WIB</span>
+              <a href="artikel.html?id=nas-03" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Optimalisasi Subsidi Energi Tepat Sasaran Gunakan Registrasi Digital Berbasis NIK
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Kementerian ESDM dan Pertamina perketat pengawasan distribusi bahan bakar bersubsidi.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Wahyu Hidayat</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=nas-04" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/nasional/reformasi-birokrasi-kementerian.jpg" alt="Mafia Tanah" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">NASIONAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">8 Sep 2026 &bull; 17:40 WIB</span>
+              <a href="artikel.html?id=nas-04" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Pemberantasan Mafia Tanah, Satgas Gabungan Kembalikan Ratusan Hektar Hak Warga Adat
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Operasi terpadu lintas institusi menegakkan kepastian hukum agraria dan perlindungan warga.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Siti Rahmawati</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 2. CATEGORY: DAERAH -->
+    <section class="space-y-4">
+      <div class="section-heading-bar justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-lg sm:text-xl font-black uppercase tracking-tight text-gray-900">
+            Daerah
+          </h2>
+        </div>
+        <a href="internasional.html?cat=daerah" class="text-xs font-bold text-buser-red hover:text-buser-redHover flex items-center">
+          Lihat Semua Daerah
+          <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Card 1 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=dae-01" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/daerah/infrastruktur-lrt-sumsel.jpg" alt="LRT Sumsel" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">DAERAH</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 12:55 WIB</span>
+              <a href="artikel.html?id=dae-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Proyek Konektivitas LRT dan Jalan Tol Lintas Sumatera Dikebut untuk Dongkrak Logistik
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Pemprov Sumsel dan kementerian PUPR resmikan seksi jalur penghubung antar-kabupaten.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Hendra Saputra</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=dae-02" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/daerah/revitalisasi-pelabuhan-banyuasin.jpg" alt="Dermaga Banyuasin" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">DAERAH</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 10:15 WIB</span>
+              <a href="artikel.html?id=dae-02" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Pemkab Banyuasin Revitalisasi Dermaga Sungai dan Fasilitasi Nelayan Sentra Ikan
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Dukungan cold-storage tenaga surya di Talang Kelapa membuka peluang ekspor langsung.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Hendra Saputra</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=dae-03" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/daerah/festival-budaya-palembang.jpg" alt="Festival Budaya Sriwijaya" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">DAERAH</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">8 Sep 2026 &bull; 18:15 WIB</span>
+              <a href="artikel.html?id=dae-03" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Festival Budaya Sriwijaya Hadirkan Ribuan Wisatawan, Angkat Seni Songket dan Dulmuluk
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Pekan perayaan seni tradisi di Palembang sukses menggerakkan sektor perhotelan dan UMKM.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Dewi Lestari</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=dae-04" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/daerah/penanganan-banjir-sumatera.jpg" alt="Sensor Banjir BPBD" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">DAERAH</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">7 Sep 2026 &bull; 16:00 WIB</span>
+              <a href="artikel.html?id=dae-04" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Kesiapsiagaan Tanggap Bencana: BPBD Pasang Sensor Dini Peringatan Banjir di Das Sungai
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Sistem peringatan dini otomatis berbasis telemetri disebar di 15 titik rawan luapan air.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Hendra Saputra</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 3. CATEGORY: KRIMINAL -->
+    <section class="space-y-4">
+      <div class="section-heading-bar justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-lg sm:text-xl font-black uppercase tracking-tight text-gray-900">
+            Kriminal & Hukum
+          </h2>
+        </div>
+        <a href="internasional.html?cat=kriminal" class="text-xs font-bold text-buser-red hover:text-buser-redHover flex items-center">
+          Lihat Semua Kriminal
+          <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Card 1 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=krim-01" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/kriminal/rilis-mabes-polri.jpg" alt="Rilis Mabes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">KRIMINAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 13:50 WIB</span>
+              <a href="artikel.html?id=krim-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Rilis Mabes Polri Ungkap Jaringan Sindikat Penipuan Digital Antarprovinsi Senilai Puluhan Miliar
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Bareskrim Polri mengamankan belasan tersangka pembobol rekening bank dan investasi ilegal.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Bripka Chandra (Purn.)</span>
+              <span>5 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=krim-02" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/kriminal/sidang-tipikor-pn.jpg" alt="Sidang Tipikor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">KRIMINAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 11:20 WIB</span>
+              <a href="artikel.html?id=krim-02" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Sidang Tipikor di Pengadilan Negeri: Jaksa Tuntut Mantan Pejabat 12 Tahun Penjara
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Terdakwa dugaan korupsi pengadaan proyek revitalisasi dituntut ganti rugi kerugian negara.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Aditya Perkasa</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=krim-03" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/kriminal/penangkapan-sindikat-narkoba.jpg" alt="Narkotika Selat Malaka" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">KRIMINAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 08:45 WIB</span>
+              <a href="artikel.html?id=krim-03" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                BNN dan Bea Cukai Gagalkan Penyelundupan Ratusan Kilogram Narkotika Jalur Selat Malaka
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Operasi gabungan intercept kapal cepat di perairan lepas berhasil sita sabu dan ekstasi.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Bripka Chandra (Purn.)</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=krim-04" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/kriminal/razia-cyber-crime.jpg" alt="Curanmor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">KRIMINAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">8 Sep 2026 &bull; 19:30 WIB</span>
+              <a href="artikel.html?id=krim-04" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Polda Metro Jaya Bekuk Pelaku Curanmor Modus Kunci Duplikat dan Magnet Canggih
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Komplotan residivis di wilayah permukiman dibekuk beserta puluhan unit sepeda motor.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Aditya Perkasa</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 4. CATEGORY: POLITIK -->
+    <section class="space-y-4">
+      <div class="section-heading-bar justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-lg sm:text-xl font-black uppercase tracking-tight text-gray-900">
+            Politik
+          </h2>
+        </div>
+        <a href="internasional.html?cat=politik" class="text-xs font-bold text-buser-red hover:text-buser-redHover flex items-center">
+          Lihat Semua Politik
+          <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Card 1 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=pol-01" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/politik/sidang-paripurna-dpr.jpg" alt="Sidang DPR" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">POLITIK</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 14:00 WIB</span>
+              <a href="artikel.html?id=pol-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Sidang Paripurna DPR Bahas Penyesuaian Anggaran Belanja Negara dan Pengawasan APBN
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Fraksi di Senayan sepakat perkuat alokasi belanja produktif pada sektor ketahanan pangan.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Fajar Nugroho</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=pol-02" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/politik/koalisi-partai-politik.jpg" alt="Koalisi Partai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">POLITIK</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 10:45 WIB</span>
+              <a href="artikel.html?id=pol-02" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Konsolidasi Koalisi Partai Jelang Pilkada Serentak Perkuat Strategi Pemenangan Daerah
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Pimpinan partai politik menggelar silaturahmi kebangsaan untuk mematangkan figur calon bersih.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Fajar Nugroho</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=pol-03" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/politik/revisi-uu-pilkada.jpg" alt="Sirekap KPU" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">POLITIK</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">8 Sep 2026 &bull; 16:20 WIB</span>
+              <a href="artikel.html?id=pol-03" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                KPU Pastikan Sistem Sirekap Versi Terbaru Lebih Transparan dan Tahan Serangan Siber
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                KPU melibatkan akademisi dan BSSN dalam audit keamanan sistem tabulasi data pemilu.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Dina Kusuma</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=pol-04" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/politik/pertemuan-petinggi-partai.jpg" alt="Bawaslu Gakkumdu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">POLITIK</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">7 Sep 2026 &bull; 15:10 WIB</span>
+              <a href="artikel.html?id=pol-04" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Bawaslu Siagakan Sentra Gakkumdu untuk Tindak Cepat Pelanggaran Netralitas ASN
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Mekanisme pelaporan cepat berbasis ponsel disiapkan bagi masyarakat pemilih.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Fajar Nugroho</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 5. CATEGORY: EKONOMI -->
+    <section class="space-y-4">
+      <div class="section-heading-bar justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-lg sm:text-xl font-black uppercase tracking-tight text-gray-900">
+            Ekonomi & Bisnis
+          </h2>
+        </div>
+        <a href="internasional.html?cat=ekonomi" class="text-xs font-bold text-buser-red hover:text-buser-redHover flex items-center">
+          Lihat Semua Ekonomi
+          <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Card 1 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=eko-01" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/ekonomi/bursa-efek-perdagangan.jpg" alt="Surplus BI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">EKONOMI</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 13:30 WIB</span>
+              <a href="artikel.html?id=eko-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                BI Catat Surplus Neraca Dagang dan Penguatan Kurs Rupiah Ditopang Kinerja Ekspor
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Kinerja manufaktur dan komoditas unggulan dorong ketahanan moneter nasional.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>M. Rizky Saputra</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=eko-02" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/ekonomi/pertumbuhan-umkm-digital.jpg" alt="QRIS UMKM" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">EKONOMI</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 11:00 WIB</span>
+              <a href="artikel.html?id=eko-02" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Digitalisasi UMKM Catat Lonjakan Omzet: Pemanfaatan QRIS Antarnegara Terus Diperluas
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Pelaku usaha mikro rasakan kemudahan transaksi tanpa tunai dengan turis mancanegara.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Siti Rahmawati</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=eko-03" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/ekonomi/ekspor-komoditas-sawit.jpg" alt="Hilirisasi Tambang" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">EKONOMI</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">8 Sep 2026 &bull; 14:40 WIB</span>
+              <a href="artikel.html?id=eko-03" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Hilirisasi Industri Pertambangan Dongkrak Nilai Tambah Ekspor dan Lapangan Kerja
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Pengoperasian fasilitas smelter baru berkontribusi langsung pada penerimaan pajak daerah.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>M. Rizky Saputra</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=eko-04" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/ekonomi/inflasi-bank-indonesia.jpg" alt="OJK Regulasi Pinjol" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">EKONOMI</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">7 Sep 2026 &bull; 09:15 WIB</span>
+              <a href="artikel.html?id=eko-04" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                OJK Luncurkan Regulasi Perlindungan Konsumen Terhadap Praktik Pinjaman Ilegal
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Penyedia jasa keuangan fintech diwajibkan penuhi etika penagihan ketat dan transparansi bunga.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>M. Rizky Saputra</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 6. CATEGORY: INTERNASIONAL -->
+    <section class="space-y-4">
+      <div class="section-heading-bar justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-lg sm:text-xl font-black uppercase tracking-tight text-gray-900">
+            Internasional
+          </h2>
+        </div>
+        <a href="internasional.html" class="text-xs font-bold text-buser-red hover:text-buser-redHover flex items-center">
+          Lihat Semua Internasional
+          <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- Card 1 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=int-01" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/internasional/diplomasi-ktt-global.jpg" alt="Diplomasi Global" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">INTERNASIONAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 14:35 WIB</span>
+              <a href="artikel.html?id=int-01" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Perkembangan Dunia Internasional Menjadi Sorotan Utama Hari Ini
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Dinamika diplomasi global mencapai babak krusial mitigasi stabilitas geopolitik.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Ahmad Fauzi</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=int-02" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/internasional/krisis-energi-eropa.jpg" alt="Perjanjian Iklim" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">INTERNASIONAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 13:10 WIB</span>
+              <a href="artikel.html?id=int-02" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Negosiasi Perjanjian Iklim Global Hasilkan Komitmen Dana Hijau bagi Negara Berkembang
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Konferensi transisi energi dunia sepakati dana iklim multilateral guna dekarbonisasi.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Dina Kusuma</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=int-03" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/internasional/pemilu-amerika-serikat.jpg" alt="Pemilu Parlemen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">INTERNASIONAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 11:45 WIB</span>
+              <a href="artikel.html?id=int-03" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Dinamika Pemilu Parlemen Negara Maju: Polarisasi Isu Ekonomi dan Keamanan
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Survei elektoral menunjukkan pergeseran suara pemilih muda menuntut transparansi fiskal.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Rian Pratama</span>
+              <span>4 mnt</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article class="bg-white border border-gray-200 rounded-sm overflow-hidden news-card-hover group flex flex-col justify-between">
+          <a href="artikel.html?id=int-04" class="aspect-[16/10] relative overflow-hidden block">
+            <img src="assets/images/berita/internasional/konflik-timur-tengah.jpg" alt="Koridor Kemanusiaan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <span class="absolute top-2 left-2 bg-buser-red text-white text-[10px] font-bold px-2 py-0.5 uppercase">INTERNASIONAL</span>
+          </a>
+          <div class="p-3.5 flex flex-col flex-1 justify-between">
+            <div>
+              <span class="text-[11px] text-gray-500 block mb-1">9 Sep 2026 &bull; 09:20 WIB</span>
+              <a href="artikel.html?id=int-04" class="block font-bold text-sm text-gray-900 group-hover:text-buser-red line-clamp-2 leading-snug mb-2 news-headline">
+                Upaya De-eskalasi Konflik Regional: Koridor Kemanusiaan Internasional Resmi Dibuka
+              </a>
+              <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                Palang Merah dan PBB konfirmasi konvoi bantuan logistik medis berhasil tembus zona terdampak.
+              </p>
+            </div>
+            <div class="pt-2 mt-3 border-t border-gray-100 flex items-center justify-between text-[11px] text-gray-500">
+              <span>Ahmad Fauzi</span>
+              <span>3 mnt</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (Black #0B0B0B with Red accents) -->
+  <footer class="bg-[#0B0B0B] text-white border-t-4 border-buser-red pt-10 sm:pt-14 pb-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 border-b border-gray-800">
+        
+        <!-- BRAND & TAGLINE (4 cols) -->
+        <div class="lg:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block" aria-label="BUSER INFO Beranda">
+            <img src="assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="h-12 w-auto object-contain" />
+          </a>
+          <p class="text-xs sm:text-sm text-gray-300 font-semibold tracking-wide">
+            "Berita Terkini, Fakta Tanpa Batas"
+          </p>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Portal berita independen menyajikan laporan investigasi, fakta hukum, kabar daerah, dinamika politik, perekonomian, dan geopolitik internasional secara akurat, tajam, dan berintegritas.
+          </p>
+          <div class="flex items-center space-x-3 pt-1">
+            <a href="#" class="w-8 h-8 rounded-full bg-[#1F1F1F] hover:bg-buser-red flex items-center justify-center text-gray-300 hover:text-white transition-colors" aria-label="Facebook">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-[#1F1F1F] hover:bg-buser-red flex items-center justify-center text-gray-300 hover:text-white transition-colors" aria-label="X (Twitter)">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-[#1F1F1F] hover:bg-buser-red flex items-center justify-center text-gray-300 hover:text-white transition-colors" aria-label="YouTube">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full bg-[#1F1F1F] hover:bg-buser-red flex items-center justify-center text-gray-300 hover:text-white transition-colors" aria-label="Instagram">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- INFORMASI PERUSAHAAN & LEGALITAS (3 cols) -->
+        <div class="lg:col-span-3 space-y-3 text-xs text-gray-300">
+          <h3 class="text-sm font-black text-white uppercase tracking-wider border-b border-gray-800 pb-2 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Informasi Perusahaan
+          </h3>
+          <div class="space-y-1.5">
+            <p class="font-bold text-white text-sm">PT. GOLDENMIX MEDIA BUSERINFO</p>
+            <p><span class="text-gray-400">Keputusan Menkumham:</span><br/><strong class="text-white font-mono text-[11px]">AHU.008226.AH.01.31.TAHUN.2023</strong></p>
+            <p><span class="text-gray-400">Nomor Induk Berusaha (NIB):</span><br/><strong class="text-white font-mono text-[11px]">0208230150016</strong></p>
+            <p class="text-[11px] text-gray-400 pt-1">Terdaftar resmi di KBLI Aktivitas Portal Web dan Penerbitan Berita Daring.</p>
+          </div>
+        </div>
+
+        <!-- ALAMAT KANTOR REDAKSI (3 cols) -->
+        <div class="lg:col-span-3 space-y-3 text-xs text-gray-300">
+          <h3 class="text-sm font-black text-white uppercase tracking-wider border-b border-gray-800 pb-2 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Kantor Redaksi
+          </h3>
+          <address class="not-italic space-y-1.5 leading-relaxed text-gray-300">
+            <p class="font-semibold text-white">Komplek Griya Asri Blok G2 No15</p>
+            <p>RT 31 RW 05, Kel. Tanah Mas</p>
+            <p>Kec. Talang Kelapa, Kab. Banyuasin</p>
+            <p>Provinsi Sumatera Selatan</p>
+            <div class="pt-2 border-t border-gray-800 space-y-1">
+              <p class="flex items-center">
+                <span class="text-gray-400 w-16">WhatsApp:</span>
+                <a href="https://wa.me/6283172988502" class="text-emerald-400 font-mono hover:underline">083172988502</a>
+              </p>
+              <p class="flex items-center">
+                <span class="text-gray-400 w-16">Email:</span>
+                <a href="mailto:hendyyustana@gmail.com" class="text-buser-red font-mono hover:underline">hendyyustana@gmail.com</a>
+              </p>
+            </div>
+          </address>
+        </div>
+
+        <!-- FOOTER NAVIGATION (2 cols) -->
+        <div class="lg:col-span-2 space-y-3 text-xs">
+          <h3 class="text-sm font-black text-white uppercase tracking-wider border-b border-gray-800 pb-2 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Navigasi
+          </h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="tentang.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+            <li><a href="tentang.html#redaksi" class="hover:text-white transition-colors">Susunan Redaksi</a></li>
+            <li><a href="tentang.html#kontak" class="hover:text-white transition-colors">Kontak & Hotline</a></li>
+            <li><a href="tentang.html#privasi" class="hover:text-white transition-colors">Kebijakan Privasi</a></li>
+            <li><a href="tentang.html#pedoman" class="hover:text-white transition-colors">Pedoman Media Siber</a></li>
+            <li><a href="tentang.html#disclaimer" class="hover:text-white transition-colors">Disclaimer</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- BOTTOM FOOTER -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
+        <p>&copy; 2026 BUSER INFO. All Rights Reserved. Dikelola oleh PT. GOLDENMIX MEDIA BUSERINFO.</p>
+        <p class="text-[11px] text-gray-500">
+          Dirancang dengan arsitektur mobile-first dan visual editorial modern.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       MODALS & DRAWERS (SHARED ACROSS PAGES)
+       ======================================================================== -->
+
+  <!-- 1. MOBILE HAMBURGER MENU DRAWER -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+    <!-- Backdrop -->
+    <div id="drawer-backdrop" class="drawer-backdrop fixed inset-0 bg-black/70 backdrop-blur-sm"></div>
+    <!-- Side Panel -->
+    <div id="drawer-panel" class="drawer-panel fixed top-0 left-0 bottom-0 w-4/5 max-w-sm bg-[#0B0B0B] text-white z-10 flex flex-col shadow-2xl border-r border-gray-800">
+      
+      <!-- Drawer Header -->
+      <div class="p-4 border-b border-gray-800 flex items-center justify-between">
+        <a href="index.html" class="block">
+          <img src="assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="h-9 w-auto object-contain" />
+        </a>
+        <button class="close-drawer-btn text-gray-400 hover:text-white p-1 rounded" aria-label="Tutup Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Quick Search Input inside Drawer -->
+      <div class="p-3 border-b border-gray-800">
+        <form action="cari.html" method="GET" class="relative">
+          <input type="text" name="q" placeholder="Cari berita..." class="w-full bg-[#1A1A1A] text-xs text-white placeholder-gray-400 pl-3 pr-8 py-2 rounded-sm border border-gray-700 focus:border-buser-red focus:outline-none" />
+          <button type="submit" class="absolute right-0 top-0 h-full px-2 text-gray-400 hover:text-white">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Drawer Nav List -->
+      <div class="flex-1 overflow-y-auto py-3 px-3 space-y-1 text-sm font-semibold divide-y divide-gray-800/60">
+        <div class="space-y-1 pb-2">
+          <span class="text-[10px] font-bold text-gray-400 tracking-wider uppercase px-2">Kanal Berita</span>
+          <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded hover:bg-[#222] text-white">
+            <span>Beranda</span>
+            <span class="text-[10px] bg-buser-red px-1.5 py-0.5 rounded">UTAMA</span>
+          </a>
+          <a href="internasional.html?cat=nasional" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Nasional</a>
+          <a href="internasional.html?cat=daerah" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Daerah</a>
+          <a href="internasional.html?cat=politik" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Politik</a>
+          <a href="internasional.html?cat=kriminal" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Kriminal</a>
+          <a href="internasional.html?cat=ekonomi" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Ekonomi</a>
+          <a href="internasional.html?cat=pendidikan" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Pendidikan</a>
+          <a href="internasional.html?cat=teknologi" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Teknologi</a>
+          <a href="internasional.html?cat=olahraga" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Olahraga</a>
+          <a href="internasional.html" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Internasional</a>
+          <a href="internasional.html?cat=lifestyle" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Lifestyle</a>
+        </div>
+
+        <div class="pt-2 space-y-1 text-xs">
+          <span class="text-[10px] font-bold text-gray-400 tracking-wider uppercase px-2">Informasi & Redaksi</span>
+          <a href="tentang.html" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Tentang BUSER INFO</a>
+          <a href="tentang.html#redaksi" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Susunan Redaksi</a>
+          <a href="tentang.html#pedoman" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Pedoman Media Siber</a>
+          <a href="cari.html" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Pencarian Arsip</a>
+        </div>
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="p-4 border-t border-gray-800 bg-[#121212] space-y-2">
+        <a href="https://wa.me/6283172988502" target="_blank" class="flex items-center justify-center space-x-2 w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs font-bold transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+          </svg>
+          <span>WhatsApp Redaksi</span>
+        </a>
+        <div class="text-[10px] text-gray-500 text-center">
+          &copy; 2026 PT. GOLDENMIX MEDIA BUSERINFO
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. BOOKMARK / READING LIST DRAWER MODAL -->
+  <div id="bookmark-modal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+    <div id="bookmark-backdrop" class="drawer-backdrop fixed inset-0 bg-black/70 backdrop-blur-sm"></div>
+    <div id="bookmark-panel" class="bookmark-panel fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#F5F5F5] z-10 flex flex-col shadow-2xl border-l border-gray-300">
+      
+      <!-- Header -->
+      <div class="p-4 bg-[#0B0B0B] text-white flex items-center justify-between border-b-2 border-buser-red">
+        <div class="flex items-center space-x-2">
+          <svg class="w-5 h-5 text-buser-red" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/>
+          </svg>
+          <h2 class="font-black text-sm uppercase tracking-wider">Berita Tersimpan (Offline Read)</h2>
+        </div>
+        <button class="close-bookmark-btn text-gray-400 hover:text-white p-1" aria-label="Tutup Daftar Baca">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- List Container -->
+      <div id="bookmark-modal-list" class="flex-1 overflow-y-auto p-4 space-y-3">
+        <!-- Rendered by main.js -->
+      </div>
+
+      <!-- Footer Info -->
+      <div class="p-3 bg-white border-t border-gray-200 text-center text-xs text-gray-500">
+        Berita tersimpan otomatis di perangkat browser Anda.
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. QUICK SEARCH MODAL OVERLAY (MOBILE / HOTKEY) -->
+  <div id="quick-search-modal" class="fixed inset-0 z-50 hidden flex items-start justify-center pt-20 px-4">
+    <div id="search-modal-backdrop" class="fixed inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="relative bg-white w-full max-w-lg rounded-sm shadow-2xl p-5 z-10 border-t-4 border-buser-red">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="font-black text-base text-gray-900 uppercase tracking-tight">Cari Berita BUSER INFO</h3>
+        <button id="close-search-modal-btn" class="text-gray-400 hover:text-black" aria-label="Tutup Pencarian">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <form id="quick-search-form" class="space-y-3">
+        <div class="relative">
+          <input type="text" id="quick-search-input" placeholder="Ketik kata kunci berita..." class="w-full text-sm border-2 border-gray-300 focus:border-buser-red p-2.5 rounded-sm focus:outline-none" />
+        </div>
+        <div class="flex justify-between items-center text-xs text-gray-500">
+          <span>Tekan <kbd class="px-1.5 py-0.5 bg-gray-100 rounded font-mono border">Enter</kbd> untuk mencari</span>
+          <button type="submit" class="bg-buser-red hover:bg-buser-redHover text-white px-4 py-1.5 font-bold rounded-sm transition-colors">
+            Cari
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="assets/js/news-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

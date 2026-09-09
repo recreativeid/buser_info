@@ -1,0 +1,232 @@
+/* ==========================================================================
+   BUSER INFO - Modern Indonesian News Portal Stylesheet
+   Brand Colors:
+   - BUSER Black: #0B0B0B
+   - BUSER Red:   #D71920
+   - BUSER Dark:  #222222
+   - BUSER Light: #F5F5F5
+   - BUSER White: #FFFFFF
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+
+:root {
+  --buser-black: #0B0B0B;
+  --buser-red: #D71920;
+  --buser-red-hover: #B80F15;
+  --buser-dark: #222222;
+  --buser-light: #F5F5F5;
+  --buser-gray-border: #E5E7EB;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Merriweather', Georgia, Cambria, serif;
+}
+
+/* Base resets & typography */
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--buser-light);
+  color: var(--buser-black);
+  overflow-x: hidden;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F1F1;
+}
+::-webkit-scrollbar-thumb {
+  background: #C1C1C1;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--buser-red);
+}
+
+/* Horizontal Category Navigation Scrollbar (Hidden for clean mobile UX) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Headline clamps */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Breaking News Ticker Animation */
+.ticker-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: tickerSlide 35s linear infinite;
+}
+.ticker-wrapper:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes tickerSlide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Flashing Pulse for Breaking Badge */
+@keyframes pulseDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.3);
+  }
+}
+.pulse-badge {
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+/* Reading Progress Bar on Article Details */
+#reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background-color: var(--buser-red);
+  width: 0%;
+  z-index: 100;
+  transition: width 0.1s ease-out;
+}
+
+/* Article Body Typography Variations */
+.article-text-sm {
+  font-size: 1.0rem !important;
+  line-height: 1.8 !important;
+}
+.article-text-md {
+  font-size: 1.15rem !important;
+  line-height: 1.95 !important;
+}
+.article-text-lg {
+  font-size: 1.3rem !important;
+  line-height: 2.1 !important;
+}
+
+/* Editorial Blockquote */
+.editorial-quote {
+  position: relative;
+  padding: 1.25rem 1.5rem;
+  border-left: 4px solid var(--buser-red);
+  background: #FAF8F8;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+/* Card Hover Shadows & Micro-interactions */
+.news-card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.news-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+}
+.news-card-hover:hover .news-headline {
+  color: var(--buser-red);
+}
+
+/* Drawer Transitions */
+.drawer-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.drawer-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-panel {
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.drawer-panel.active {
+  transform: translateX(0);
+}
+
+/* Right-side Modal/Drawer for Bookmarks */
+.bookmark-panel {
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bookmark-panel.active {
+  transform: translateX(0);
+}
+
+/* Category Tab Active Indicator */
+.category-tab.active {
+  color: #FFFFFF;
+  background-color: var(--buser-red);
+  font-weight: 700;
+}
+
+/* Red Bar Heading Accent */
+.section-heading-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #E5E7EB;
+  padding-bottom: 0.5rem;
+}
+.section-heading-bar::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 64px;
+  height: 3px;
+  background-color: var(--buser-red);
+}
+
+/* Print styles */
+@media print {
+  header, footer, .ticker-wrapper, .share-box, #reading-progress-bar, #mobile-drawer, #bookmark-modal {
+    display: none !important;
+  }
+  body {
+    background: #FFF;
+    color: #000;
+  }
+}

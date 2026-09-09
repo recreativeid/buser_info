@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Tentang Kami & Susunan Redaksi — BUSER INFO</title>
+  <meta name="description" content="Profil resmi, susunan dewan redaksi, legalitas badan hukum PT. GOLDENMIX MEDIA BUSERINFO, visi, misi, dan pedoman pemberitaan media siber BUSER INFO.">
+  <meta name="author" content="PT. GOLDENMIX MEDIA BUSERINFO">
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo/favicon.svg">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            buser: {
+              black: '#0B0B0B',
+              red: '#D71920',
+              redHover: '#B80F15',
+              dark: '#222222',
+              light: '#F5F5F5',
+              border: '#E5E7EB'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts & Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-[#F5F5F5] text-[#0B0B0B] antialiased flex flex-col min-h-screen">
+
+  <!-- TOP BAR -->
+  <div class="bg-[#151515] text-gray-400 text-xs py-1.5 px-4 border-b border-gray-800 hidden sm:block">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center text-gray-300">
+          <svg class="w-3.5 h-3.5 mr-1.5 text-buser-red" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+          </svg>
+          <span class="live-date-text">Memuat waktu...</span>
+        </span>
+      </div>
+      <div class="flex items-center space-x-4 text-[11px]">
+        <a href="tentang.html" class="text-white font-semibold">Tentang Kami</a>
+        <span class="text-gray-600">|</span>
+        <a href="#redaksi" class="hover:text-white transition-colors">Redaksi</a>
+        <span class="text-gray-600">|</span>
+        <a href="#pedoman" class="hover:text-white transition-colors">Pedoman Media Siber</a>
+        <span class="text-gray-600">|</span>
+        <a href="https://wa.me/6283172988502" target="_blank" class="text-emerald-400 hover:text-emerald-300 flex items-center">
+          Hotline: 0831-7298-8502
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="bg-[#0B0B0B] text-white sticky top-0 z-40 shadow-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <div class="flex items-center space-x-2">
+          <button type="button" class="mobile-menu-btn lg:hidden p-2 rounded text-white hover:bg-gray-800 focus:outline-none" aria-label="Buka Menu Navigasi">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+
+          <a href="index.html" class="flex items-center" aria-label="BUSER INFO Beranda">
+            <img src="assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO Logo" class="h-10 sm:h-12 w-auto object-contain" />
+          </a>
+        </div>
+
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <button type="button" class="open-bookmark-btn relative p-2 rounded text-gray-300 hover:text-white hover:bg-gray-800 flex items-center" title="Berita Tersimpan">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+            </svg>
+            <span class="bookmark-count-badge hidden absolute -top-1 -right-1 bg-buser-red text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+          </button>
+
+          <a href="index.html" class="inline-flex items-center bg-buser-red hover:bg-buser-redHover text-white text-xs font-semibold px-3 py-1.5 rounded-sm transition-colors">
+            &larr; Ke Halaman Berita
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- HORIZONTAL CATEGORY NAVIGATION BAR -->
+    <div class="bg-[#121212] border-t border-gray-800 relative">
+      <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6 relative flex items-center">
+        <button id="scroll-nav-left" class="hidden lg:flex items-center justify-center w-6 h-9 bg-black/70 hover:bg-buser-red text-white z-10" aria-label="Geser Kiri">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+
+        <nav id="category-scroll-nav" class="flex items-center space-x-1 sm:space-x-1.5 overflow-x-auto no-scrollbar py-2 text-xs sm:text-sm font-semibold uppercase tracking-wider flex-1 scroll-smooth">
+          <a href="index.html" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Home</a>
+          <a href="internasional.html?cat=nasional" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Nasional</a>
+          <a href="internasional.html?cat=daerah" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Daerah</a>
+          <a href="internasional.html?cat=politik" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Politik</a>
+          <a href="internasional.html?cat=kriminal" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Kriminal</a>
+          <a href="internasional.html?cat=ekonomi" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Ekonomi</a>
+          <a href="internasional.html?cat=pendidikan" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Pendidikan</a>
+          <a href="internasional.html?cat=teknologi" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Teknologi</a>
+          <a href="internasional.html?cat=olahraga" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Olahraga</a>
+          <a href="internasional.html" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Internasional</a>
+          <a href="internasional.html?cat=lifestyle" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Lifestyle</a>
+        </nav>
+
+        <button id="scroll-nav-right" class="hidden lg:flex items-center justify-center w-6 h-9 bg-black/70 hover:bg-buser-red text-white z-10" aria-label="Geser Kanan">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="h-[3px] bg-[#D71920] w-full"></div>
+  </header>
+
+  <!-- ABOUT HERO BANNER -->
+  <section class="bg-[#0B0B0B] text-white py-10 sm:py-14 px-4 border-b-4 border-buser-red relative overflow-hidden">
+    <div class="max-w-4xl mx-auto relative z-10">
+      <nav class="flex items-center space-x-2 text-xs text-gray-400 mb-3">
+        <a href="index.html" class="hover:text-white">Home</a>
+        <span>/</span>
+        <span class="text-buser-red font-bold">Tentang Kami & Legalitas</span>
+      </nav>
+      <span class="text-xs font-black uppercase tracking-widest text-buser-red block mb-1">PROFIL REDAKSI</span>
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-white mb-2">
+        Tentang BUSER INFO
+      </h1>
+      <p class="text-base sm:text-lg text-gray-300 font-medium italic">
+        "Berita Terkini, Fakta Tanpa Batas"
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN ABOUT CONTENT -->
+  <main class="max-w-4xl mx-auto px-4 py-8 sm:py-12 flex-1 w-full space-y-10">
+
+    <!-- 1. TENTANG BUSER INFO -->
+    <section class="bg-white border border-gray-200 rounded-sm p-6 sm:p-8 shadow-sm">
+      <div class="section-heading-bar mb-5 justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-xl font-black uppercase text-gray-900">Tentang Buser Info</h2>
+        </div>
+        <span class="text-xs text-gray-500">Profil Media Daring</span>
+      </div>
+      <div class="prose max-w-none text-xs sm:text-sm text-gray-700 leading-relaxed space-y-4">
+        <p>
+          <strong>BUSER INFO</strong> adalah portal media digital independen Indonesia yang didirikan dengan komitmen teguh menghadirkan karya jurnalistik yang lugas, tajam, faktual, dan mendalam. Mengusung moto <em>"Berita Terkini, Fakta Tanpa Batas"</em>, redaksi kami memprioritaskan akurasi verifikasi fakta lapangan di atas sekadar kecepatan spekulatif.
+        </p>
+        <p>
+          BUSER INFO beroperasi secara profesional di bawah naungan badan hukum pers resmi <strong>PT. GOLDENMIX MEDIA BUSERINFO</strong>. Kami menjangkau ribuan pembaca setia dari berbagai penjuru tanah air melalui rubrikasi lengkap meliputi peristiwa Nasional, Dinamika Daerah, Liputan Investigasi Hukum & Kriminal, Pergolakan Politik, Indikator Ekonomi & Bisnis, serta Kajian Strategis Geopolitik Internasional.
+        </p>
+        <p>
+          Seluruh produk berita yang dipublikasikan di BUSER INFO diproduksi oleh jurnalis profesional yang senantiasa mematuhi Kode Etik Jurnalistik (KEJ) serta Pedoman Pemberitaan Media Siber sebagaimana digariskan oleh Dewan Pers Republik Indonesia.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. VISI & MISI -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      
+      <!-- VISI -->
+      <div class="bg-white border-t-4 border-buser-red border-x border-b border-gray-200 rounded-sm p-6 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center space-x-2 mb-3">
+            <span class="p-2 bg-red-50 text-buser-red rounded">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </span>
+            <h3 class="text-lg font-black uppercase text-gray-900">Visi Kami</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
+            Menjadi portal media digital terdepan di Indonesia yang terpercaya, mencerdaskan kehidupan berbangsa, independen dari tekanan kepentingan sempit, serta menjadi rujukan utama masyarakat dalam mencari kebenaran fakta tanpa batas.
+          </p>
+        </div>
+      </div>
+
+      <!-- MISI -->
+      <div class="bg-white border-t-4 border-black border-x border-b border-gray-200 rounded-sm p-6 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="flex items-center space-x-2 mb-3">
+            <span class="p-2 bg-gray-100 text-black rounded">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </span>
+            <h3 class="text-lg font-black uppercase text-gray-900">Misi Kami</h3>
+          </div>
+          <ul class="text-xs sm:text-sm text-gray-700 space-y-2 leading-relaxed list-disc list-inside">
+            <li>Menyajikan informasi cepat, berimbang, dan diverifikasi secara ketat.</li>
+            <li>Mengawal supremasi hukum, keadilan publik, dan transparansi tata kelola.</li>
+            <li>Mengangkat potensi dan aspirasi masyarakat daerah ke panggung nasional.</li>
+            <li>Memanfaatkan teknologi media siber modern berkecepatan tinggi yang ramah pembaca mobile.</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 3. STRUKTUR REDAKSI -->
+    <section id="redaksi" class="bg-white border border-gray-200 rounded-sm p-6 sm:p-8 shadow-sm">
+      <div class="section-heading-bar mb-6 justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-xl font-black uppercase text-gray-900">Susunan Redaksi</h2>
+        </div>
+        <span class="text-xs text-gray-500">SK Dewan Pengurus 2026</span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+        
+        <div class="p-3.5 bg-gray-50 border-l-2 border-buser-red rounded-sm">
+          <span class="text-[10px] text-gray-500 uppercase block font-bold">Penasihat Hukum</span>
+          <p class="font-bold text-gray-900 text-sm mt-0.5">Drs. M. Taufik Hidayat, S.H., M.H.</p>
+          <span class="text-[11px] text-gray-500">Advokat & Konsultan Hukum Media</span>
+        </div>
+
+        <div class="p-3.5 bg-gray-50 border-l-2 border-buser-red rounded-sm">
+          <span class="text-[10px] text-gray-500 uppercase block font-bold">Pemimpin Umum / Perusahaan</span>
+          <p class="font-bold text-gray-900 text-sm mt-0.5">Hendy Yustana</p>
+          <span class="text-[11px] text-gray-500">PT. Goldenmix Media Buserinfo</span>
+        </div>
+
+        <div class="p-3.5 bg-gray-50 border-l-2 border-buser-red rounded-sm">
+          <span class="text-[10px] text-gray-500 uppercase block font-bold">Pemimpin Redaksi / Penanggung Jawab</span>
+          <p class="font-bold text-gray-900 text-sm mt-0.5">Bambang Sudiro, S.I.Kom.</p>
+          <span class="text-[11px] text-gray-500">Uji Kompetensi Wartawan Utama</span>
+        </div>
+
+        <div class="p-3.5 bg-gray-50 border-l-2 border-black rounded-sm">
+          <span class="text-[10px] text-gray-500 uppercase block font-bold">Redaktur Pelaksana</span>
+          <p class="font-bold text-gray-900 text-sm mt-0.5">Ahmad Fauzi Ramadhan</p>
+          <span class="text-[11px] text-gray-500">Koordinator Meja Redaksi</span>
+        </div>
+
+        <div class="p-3.5 bg-gray-50 border-l-2 border-black rounded-sm">
+          <span class="text-[10px] text-gray-500 uppercase block font-bold">Redaktur Kriminal & Investigasi</span>
+          <p class="font-bold text-gray-900 text-sm mt-0.5">Bripka Chandra Wijaya (Purn.)</p>
+          <span class="text-[11px] text-gray-500">Biro Investigasi Mabes</span>
+        </div>
+
+        <div class="p-3.5 bg-gray-50 border-l-2 border-black rounded-sm">
+          <span class="text-[10px] text-gray-500 uppercase block font-bold">Redaktur Politik & Parlemen</span>
+          <p class="font-bold text-gray-900 text-sm mt-0.5">Fajar Nugroho, S.Sos.</p>
+          <span class="text-[11px] text-gray-500">Koresponden Senayan</span>
+        </div>
+
+        <div class="p-3.5 bg-gray-50 border-l-2 border-gray-400 rounded-sm">
+          <span class="text-[10px] text-gray-500 uppercase block font-bold">Biro Sumatera Selatan & Banyuasin</span>
+          <p class="font-bold text-gray-900 text-sm mt-0.5">Hendra Saputra</p>
+          <span class="text-[11px] text-gray-500">Kepala Perwakilan Daerah</span>
+        </div>
+
+        <div class="p-3.5 bg-gray-50 border-l-2 border-gray-400 rounded-sm">
+          <span class="text-[10px] text-gray-500 uppercase block font-bold">Redaktur Ekonomi & Bisnis</span>
+          <p class="font-bold text-gray-900 text-sm mt-0.5">M. Rizky Saputra, S.E.</p>
+          <span class="text-[11px] text-gray-500">Analis Pasar & Perbankan</span>
+        </div>
+
+        <div class="p-3.5 bg-gray-50 border-l-2 border-gray-400 rounded-sm">
+          <span class="text-[10px] text-gray-500 uppercase block font-bold">Teknologi & Multimedia</span>
+          <p class="font-bold text-gray-900 text-sm mt-0.5">Kevin Adityawarman</p>
+          <span class="text-[11px] text-gray-500">Infrastruktur Web & Keamanan</span>
+        </div>
+
+      </div>
+
+      <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 text-[11px] text-yellow-800 rounded-sm">
+        <strong>PEMBERITAHUAN RESMI:</strong> Seluruh wartawan BUSER INFO dibekali Kartu Tanda Anggota (KTA) Pers resmi yang masih berlaku dan namanya tercantum dalam Boks Redaksi ini. Dilarang keras menerima atau meminta imbalan dalam bentuk apa pun kepada narasumber.
+      </div>
+    </section>
+
+    <!-- 4. INFORMASI PERUSAHAAN & LEGALITAS -->
+    <section class="bg-white border border-gray-200 rounded-sm p-6 sm:p-8 shadow-sm">
+      <div class="section-heading-bar mb-5 justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-xl font-black uppercase text-gray-900">Legalitas Perusahaan</h2>
+        </div>
+        <span class="text-xs text-gray-500">Kemenkumham & BKPM</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm">
+        <div class="space-y-3">
+          <div class="border-b border-gray-100 pb-2">
+            <span class="text-gray-500 block text-xs">Nama Badan Hukum:</span>
+            <strong class="text-gray-900 text-base font-bold">PT. GOLDENMIX MEDIA BUSERINFO</strong>
+          </div>
+          <div class="border-b border-gray-100 pb-2">
+            <span class="text-gray-500 block text-xs">Keputusan Pengesahan Kemenkumham RI:</span>
+            <strong class="font-mono text-gray-900 text-sm font-bold bg-gray-100 px-2 py-0.5 rounded inline-block mt-0.5">AHU.008226.AH.01.31.TAHUN.2023</strong>
+          </div>
+          <div class="border-b border-gray-100 pb-2">
+            <span class="text-gray-500 block text-xs">Nomor Induk Berusaha (NIB OSS RBA):</span>
+            <strong class="font-mono text-gray-900 text-sm font-bold bg-gray-100 px-2 py-0.5 rounded inline-block mt-0.5">0208230150016</strong>
+          </div>
+        </div>
+
+        <div class="space-y-3 bg-gray-50 p-4 rounded-sm border border-gray-200">
+          <span class="text-xs font-bold text-gray-900 uppercase tracking-wider block">Klasifikasi Baku Lapangan Usaha (KBLI):</span>
+          <ul class="space-y-1.5 text-xs text-gray-700">
+            <li class="flex items-start">
+              <span class="font-bold text-buser-red mr-2 font-mono">63122</span>
+              <span>Aktivitas Portal Web dan/atau Platform Digital dengan Tujuan Komersial</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold text-buser-red mr-2 font-mono">58130</span>
+              <span>Penerbitan Surat Kabar, Jurnal, Buletin atau Majalah Berita</span>
+            </li>
+            <li class="flex items-start">
+              <span class="font-bold text-buser-red mr-2 font-mono">73100</span>
+              <span>Aktivitas Periklanan dan Promosi Media Daring</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. KONTAK & ALAMAT KANTOR REDAKSI -->
+    <section id="kontak" class="bg-white border border-gray-200 rounded-sm p-6 sm:p-8 shadow-sm">
+      <div class="section-heading-bar mb-5 justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-xl font-black uppercase text-gray-900">Alamat Kantor & Kontak</h2>
+        </div>
+        <span class="text-xs text-gray-500">Hubungi Kami</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm">
+        
+        <!-- Alamat Kantor -->
+        <div class="space-y-2">
+          <h3 class="font-black text-gray-900 text-sm uppercase">Kantor Pusat Redaksi</h3>
+          <address class="not-italic text-gray-700 leading-relaxed space-y-1">
+            <p class="font-bold text-base text-gray-900">Komplek Griya Asri Blok G2 No15</p>
+            <p>RT 31 RW 05, Kelurahan Tanah Mas</p>
+            <p>Kecamatan Talang Kelapa</p>
+            <p>Kabupaten Banyuasin</p>
+            <p>Provinsi Sumatera Selatan</p>
+          </address>
+        </div>
+
+        <!-- Kontak Langsung -->
+        <div class="space-y-3 bg-gray-50 p-4 rounded-sm border border-gray-200">
+          <h3 class="font-black text-gray-900 text-sm uppercase">Layanan Kontak Resmi</h3>
+          <div class="space-y-2.5">
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              </span>
+              <div>
+                <span class="text-[10px] text-gray-500 uppercase block font-semibold">WhatsApp Pengaduan / Redaksi:</span>
+                <a href="https://wa.me/6283172988502" target="_blank" class="font-mono font-bold text-emerald-700 text-sm hover:underline">083172988502</a>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <span class="w-8 h-8 rounded-full bg-buser-red text-white flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </span>
+              <div>
+                <span class="text-[10px] text-gray-500 uppercase block font-semibold">Email Korespondensi:</span>
+                <a href="mailto:hendyyustana@gmail.com" class="font-mono font-bold text-buser-red text-sm hover:underline">hendyyustana@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. PEDOMAN PEMBERITAAN MEDIA SIBER & HAK JAWAB -->
+    <section id="pedoman" class="bg-white border border-gray-200 rounded-sm p-6 sm:p-8 shadow-sm">
+      <div class="section-heading-bar mb-5 justify-between">
+        <div class="flex items-center space-x-2">
+          <span class="w-3 h-3 bg-buser-red inline-block"></span>
+          <h2 class="text-xl font-black uppercase text-gray-900">Pedoman Media Siber & Hak Jawab</h2>
+        </div>
+        <span class="text-xs text-gray-500">Dewan Pers RI</span>
+      </div>
+
+      <div class="text-xs sm:text-sm text-gray-700 space-y-3 leading-relaxed">
+        <p>
+          BUSER INFO tunduk pada <strong>Pedoman Pemberitaan Media Siber</strong> yang ditetapkan oleh Dewan Pers Republik Indonesia. Prinsip akurasi, keberimbangan, dan hak jawab merupakan pilar mutlak dalam setiap peliputan kami.
+        </p>
+        <p>
+          <strong>Hak Jawab dan Koreksi Berita:</strong> Setiap pihak atau subjek pemberitaan yang merasa dirugikan atau menemukan ketidakakuratan data memiliki hak penuh mengajukan Hak Jawab, Hak Koreksi, atau Hak Klarifikasi. Permohonan dapat dikirimkan secara tertulis melalui pos ke alamat kantor redaksi atau via email resmi ke <a href="mailto:hendyyustana@gmail.com" class="text-buser-red font-semibold hover:underline">hendyyustana@gmail.com</a> dengan menyertakan bukti pendukung dan identitas yang valid.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#0B0B0B] text-white border-t-4 border-buser-red pt-10 pb-8 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 pb-10 border-b border-gray-800">
+        <div class="lg:col-span-4 space-y-4">
+          <a href="index.html" class="inline-block" aria-label="BUSER INFO Beranda">
+            <img src="assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="h-12 w-auto object-contain" />
+          </a>
+          <p class="text-xs sm:text-sm text-gray-300 font-semibold">
+            "Berita Terkini, Fakta Tanpa Batas"
+          </p>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Portal berita independen menyajikan laporan investigasi, fakta hukum, kabar daerah, dinamika politik, perekonomian, dan geopolitik internasional secara akurat, tajam, dan berintegritas.
+          </p>
+        </div>
+
+        <div class="lg:col-span-3 space-y-3 text-xs text-gray-300">
+          <h3 class="text-sm font-black text-white uppercase tracking-wider border-b border-gray-800 pb-2 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Informasi Perusahaan
+          </h3>
+          <div class="space-y-1.5">
+            <p class="font-bold text-white text-sm">PT. GOLDENMIX MEDIA BUSERINFO</p>
+            <p><span class="text-gray-400">Keputusan Menkumham:</span><br/><strong class="text-white font-mono text-[11px]">AHU.008226.AH.01.31.TAHUN.2023</strong></p>
+            <p><span class="text-gray-400">Nomor Induk Berusaha (NIB):</span><br/><strong class="text-white font-mono text-[11px]">0208230150016</strong></p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-3 space-y-3 text-xs text-gray-300">
+          <h3 class="text-sm font-black text-white uppercase tracking-wider border-b border-gray-800 pb-2 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Kantor Redaksi
+          </h3>
+          <address class="not-italic space-y-1 text-gray-300">
+            <p class="font-semibold text-white">Komplek Griya Asri Blok G2 No15</p>
+            <p>RT 31 RW 05, Kel. Tanah Mas, Kec. Talang Kelapa</p>
+            <p>Kab. Banyuasin, Prov. Sumatera Selatan</p>
+            <p class="pt-1 text-emerald-400 font-mono">WhatsApp: 083172988502</p>
+            <p class="text-buser-red font-mono">Email: hendyyustana@gmail.com</p>
+          </address>
+        </div>
+
+        <div class="lg:col-span-2 space-y-3 text-xs">
+          <h3 class="text-sm font-black text-white uppercase tracking-wider border-b border-gray-800 pb-2 flex items-center">
+            <span class="w-2 h-2 bg-buser-red mr-2"></span>
+            Navigasi
+          </h3>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="tentang.html" class="hover:text-white transition-colors">Tentang Kami</a></li>
+            <li><a href="#redaksi" class="hover:text-white transition-colors">Susunan Redaksi</a></li>
+            <li><a href="#kontak" class="hover:text-white transition-colors">Kontak & Hotline</a></li>
+            <li><a href="#pedoman" class="hover:text-white transition-colors">Pedoman Media Siber</a></li>
+            <li><a href="index.html" class="hover:text-white transition-colors">Beranda Berita</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
+        <p>&copy; 2026 BUSER INFO. All Rights Reserved.</p>
+        <p class="text-[11px] text-gray-500">PT. GOLDENMIX MEDIA BUSERINFO</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE DRAWER & BOOKMARK MODAL -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+    <div id="drawer-backdrop" class="drawer-backdrop fixed inset-0 bg-black/70 backdrop-blur-sm"></div>
+    <div id="drawer-panel" class="drawer-panel fixed top-0 left-0 bottom-0 w-4/5 max-w-sm bg-[#0B0B0B] text-white z-10 flex flex-col shadow-2xl border-r border-gray-800">
+      <div class="p-4 border-b border-gray-800 flex items-center justify-between">
+        <a href="index.html" class="block">
+          <img src="assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="h-9 w-auto object-contain" />
+        </a>
+        <button class="close-drawer-btn text-gray-400 hover:text-white p-1 rounded" aria-label="Tutup Menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto py-3 px-3 space-y-1 text-sm font-semibold divide-y divide-gray-800/60">
+        <div class="space-y-1 pb-2">
+          <span class="text-[10px] font-bold text-gray-400 tracking-wider uppercase px-2">Kanal Berita</span>
+          <a href="index.html" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Beranda</a>
+          <a href="internasional.html?cat=nasional" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Nasional</a>
+          <a href="internasional.html?cat=daerah" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Daerah</a>
+          <a href="internasional.html?cat=politik" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Politik</a>
+          <a href="internasional.html?cat=kriminal" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Kriminal</a>
+          <a href="internasional.html?cat=ekonomi" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Ekonomi</a>
+          <a href="internasional.html" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">Internasional</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bookmark-modal" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true">
+    <div id="bookmark-backdrop" class="drawer-backdrop fixed inset-0 bg-black/70 backdrop-blur-sm"></div>
+    <div id="bookmark-panel" class="bookmark-panel fixed top-0 right-0 bottom-0 w-full max-w-md bg-[#F5F5F5] z-10 flex flex-col shadow-2xl border-l border-gray-300">
+      <div class="p-4 bg-[#0B0B0B] text-white flex items-center justify-between border-b-2 border-buser-red">
+        <div class="flex items-center space-x-2">
+          <svg class="w-5 h-5 text-buser-red" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z"/></svg>
+          <h2 class="font-black text-sm uppercase tracking-wider">Berita Tersimpan</h2>
+        </div>
+        <button class="close-bookmark-btn text-gray-400 hover:text-white p-1" aria-label="Tutup">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="bookmark-modal-list" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="assets/js/news-data.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

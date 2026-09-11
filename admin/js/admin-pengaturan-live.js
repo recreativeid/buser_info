@@ -42,13 +42,17 @@ function initSettingsTabs() {
 
   settingTabs.forEach(tab => {
     tab.addEventListener('click', () => {
+      // 1. Reset seluruh tab ke kondisi idle
       settingTabs.forEach(t => {
-        t.classList.remove('active', 'bg-buser-black', 'text-white', 'font-bold');
-        t.classList.add('text-gray-600', 'font-medium');
+        t.classList.remove('active', 'bg-[#0B0B0B]', 'bg-buser-black', 'text-white', 'font-bold');
+        t.classList.add('text-gray-600', 'font-medium', 'hover:bg-gray-100');
       });
-      tab.classList.add('active', 'bg-buser-black', 'text-white', 'font-bold');
-      tab.classList.remove('text-gray-600', 'font-medium');
 
+      // 2. Aktifkan tab yang dipilih
+      tab.classList.add('active', 'bg-[#0B0B0B]', 'text-white', 'font-bold');
+      tab.classList.remove('text-gray-600', 'font-medium', 'hover:bg-gray-100');
+
+      // 3. Tampilkan panel konten tab
       const targetId = tab.getAttribute('data-target');
       settingPanes.forEach(pane => {
         if (pane.id === targetId) {

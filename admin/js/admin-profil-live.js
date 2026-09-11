@@ -40,12 +40,12 @@ function initTabNavigation() {
       const targetId = btn.getAttribute('data-target');
 
       tabBtns.forEach(b => {
-        b.classList.remove('active', 'border-buser-red', 'text-buser-red', 'font-bold');
-        b.classList.add('border-transparent', 'text-gray-500', 'font-medium');
+        b.classList.remove('active', 'border-buser-red', 'text-buser-red', 'font-bold', 'bg-white', 'shadow-xs');
+        b.classList.add('border-transparent', 'text-gray-500', 'font-medium', 'bg-transparent');
       });
 
-      btn.classList.add('active', 'border-buser-red', 'text-buser-red', 'font-bold');
-      btn.classList.remove('border-transparent', 'text-gray-500', 'font-medium');
+      btn.classList.add('active', 'border-buser-red', 'text-buser-red', 'font-bold', 'bg-white', 'shadow-xs');
+      btn.classList.remove('border-transparent', 'text-gray-500', 'font-medium', 'bg-transparent');
 
       tabPanes.forEach(pane => {
         if (pane.id === targetId) {
@@ -63,14 +63,20 @@ function initTabNavigation() {
  */
 function initRedaksiCrud() {
   const btnAdd = document.getElementById('btn-add-redaksi');
+  const fabAdd = document.getElementById('fab-add-redaksi');
   const form = document.getElementById('redaksi-form');
   const searchInput = document.getElementById('search-redaksi-input');
+  const searchClear = document.getElementById('search-redaksi-clear');
   const categorySelect = document.getElementById('filter-redaksi-kategori');
   const statusSelect = document.getElementById('filter-redaksi-status');
   const fotoInput = document.getElementById('redaksi-foto-file');
+  const btnResetFilter = document.getElementById('btn-reset-redaksi-filter');
 
   if (btnAdd) {
     btnAdd.addEventListener('click', () => openRedaksiModal(null));
+  }
+  if (fabAdd) {
+    fabAdd.addEventListener('click', () => openRedaksiModal(null));
   }
 
   const btnReset = document.getElementById('btn-reset-default-redaksi');
@@ -121,11 +127,39 @@ function initRedaksiCrud() {
   if (searchInput) {
     let debounceTimer;
     searchInput.addEventListener('input', (e) => {
+      const val = e.target.value;
+      if (searchClear) {
+        if (val.trim()) searchClear.classList.remove('hidden');
+        else searchClear.classList.add('hidden');
+      }
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(() => {
-        currentSearchQuery = e.target.value.trim();
+        currentSearchQuery = val.trim();
         filterAndRenderProfiles();
-      }, 250);
+      }, 200);
+    });
+  }
+
+  if (searchClear && searchInput) {
+    searchClear.addEventListener('click', () => {
+      searchInput.value = '';
+      searchClear.classList.add('hidden');
+      currentSearchQuery = '';
+      filterAndRenderProfiles();
+      searchInput.focus();
+    });
+  }
+
+  if (btnResetFilter) {
+    btnResetFilter.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      if (searchClear) searchClear.classList.add('hidden');
+      if (categorySelect) categorySelect.value = '';
+      if (statusSelect) statusSelect.value = '';
+      currentSearchQuery = '';
+      currentFilterCategory = '';
+      currentFilterStatus = '';
+      filterAndRenderProfiles();
     });
   }
 
@@ -183,16 +217,34 @@ function initRedaksiCrud() {
  */
 async function loadLiveRedaksi() {
   const tbody = document.getElementById('redaksi-table-body');
-  if (!tbody) return;
+  const mobileCards = document.getElementById('redaksi-mobile-cards');
+  const emptyState = document.getElementById('redaksi-empty-state');
 
-  tbody.innerHTML = `
-    <tr>
-      <td colspan="7" class="py-10 text-center text-gray-500">
-        <div class="inline-block animate-spin w-5 h-5 border-2 border-buser-red border-t-transparent rounded-full mb-2"></div>
-        <p class="text-xs">Memuat data susunan dewan redaksi...</p>
-      </td>
-    </tr>
-  `;
+  if (emptyState) emptyState.classList.add('hidden');
+
+  if (tbody) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="7" class="py-10 text-center text-gray-500">
+          <div class="inline-flex items-center space-x-2">
+            <svg class="animate-spin h-5 w-5 text-buser-red" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+            <span class="text-xs">Memuat data susunan dewan redaksi...</span>
+          </div>
+        </td>
+      </tr>
+    `;
+  }
+
+  if (mobileCards) {
+    mobileCards.innerHTML = `
+      <div class="p-6 text-center text-gray-400 text-xs">
+        <div class="inline-flex items-center space-x-2">
+          <svg class="animate-spin h-5 w-5 text-buser-red" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+          <span>Memuat data susunan dewan redaksi...</span>
+        </div>
+      </div>
+    `;
+  }
 
   try {
     if (!window.BuserInfoAPI || !window.BuserInfoAPI.getRedaksi) {
@@ -211,24 +263,25 @@ async function loadLiveRedaksi() {
     filterAndRenderProfiles();
   } catch (err) {
     console.error('[Profil Redaksi] Gagal memuat data:', err);
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="7" class="py-10 text-center text-red-500">
-          <p class="text-xs font-semibold">Gagal memuat data profil redaksi</p>
-          <p class="text-[11px] text-gray-500 mt-1">${escapeHtml(err.message || 'Terjadi kesalahan koneksi server')}</p>
-          <button type="button" onclick="loadLiveRedaksi()" class="mt-3 btn btn-outline btn-sm">Coba Lagi</button>
-        </td>
-      </tr>
+    const errHtml = `
+      <div class="p-6 text-center text-red-500">
+        <p class="text-xs font-semibold">Gagal memuat data profil redaksi</p>
+        <p class="text-[11px] text-gray-500 mt-1">${escapeHtml(err.message || 'Terjadi kesalahan koneksi server')}</p>
+        <button type="button" onclick="loadLiveRedaksi()" class="mt-3 btn btn-outline btn-sm">Coba Lagi</button>
+      </div>
     `;
+    if (tbody) tbody.innerHTML = `<tr><td colspan="7">${errHtml}</td></tr>`;
+    if (mobileCards) mobileCards.innerHTML = errHtml;
   }
 }
 
 /**
- * Filter data di memori dan render ke tabel
+ * Filter data di memori dan render ke tabel & mobile cards
  */
 function filterAndRenderProfiles() {
   const tbody = document.getElementById('redaksi-table-body');
-  if (!tbody) return;
+  const mobileCards = document.getElementById('redaksi-mobile-cards');
+  const emptyState = document.getElementById('redaksi-empty-state');
 
   let filtered = [...allProfiles];
 
@@ -260,26 +313,24 @@ function filterAndRenderProfiles() {
   }
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="7" class="py-12 text-center text-gray-400">
-          <svg class="w-10 h-10 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-          <p class="text-xs font-semibold text-gray-600">Tidak ada profil redaksi yang cocok</p>
-          <p class="text-[11px] text-gray-400 mt-1">Coba sesuaikan kata kunci pencarian atau reset filter.</p>
-        </td>
-      </tr>
-    `;
+    if (tbody) tbody.innerHTML = '';
+    if (mobileCards) mobileCards.innerHTML = '';
+    if (emptyState) emptyState.classList.remove('hidden');
     return;
   }
 
-  renderProfileRows(filtered, tbody);
+  if (emptyState) emptyState.classList.add('hidden');
+  renderProfileRows(filtered, tbody, mobileCards);
 }
 
 /**
- * Render baris tabel profil redaksi
+ * Render baris tabel profil redaksi & kartu mobile
  */
-function renderProfileRows(profiles, tbody) {
-  tbody.innerHTML = '';
+function renderProfileRows(profiles, tbody, mobileCardsContainer = null) {
+  const mobileCards = mobileCardsContainer || document.getElementById('redaksi-mobile-cards');
+
+  if (tbody) tbody.innerHTML = '';
+  if (mobileCards) mobileCards.innerHTML = '';
 
   const categoryBadges = {
     'Pimpinan Perusahaan': 'bg-purple-100 text-purple-800 border-purple-200',
@@ -291,18 +342,15 @@ function renderProfileRows(profiles, tbody) {
   };
 
   profiles.forEach((item, index) => {
-    const tr = document.createElement('tr');
-    tr.className = 'hover:bg-gray-50/80 transition-colors group';
-
     const isActive = (item.status || 'active').toLowerCase() === 'active';
     const initials = getInitials(item.nama);
     const catBadge = categoryBadges[item.kategori] || 'bg-gray-100 text-gray-700 border-gray-200';
 
     const statusBadge = isActive
-      ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+      ? `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5"></span> Aktif
          </span>`
-      : `<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-gray-100 text-gray-600 border border-gray-200">
+      : `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-gray-100 text-gray-600 border border-gray-200">
            <span class="w-1.5 h-1.5 rounded-full bg-gray-400 mr-1.5"></span> Nonaktif
          </span>`;
 
@@ -311,84 +359,170 @@ function renderProfileRows(profiles, tbody) {
       ? 'text-amber-700 hover:text-amber-900 hover:bg-amber-50'
       : 'text-emerald-700 hover:text-emerald-900 hover:bg-emerald-50';
     const toggleIcon = isActive
-      ? `<svg class="w-3 h-3 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>`
-      : `<svg class="w-3 h-3 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+      ? `<svg class="w-3.5 h-3.5 text-amber-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>`
+      : `<svg class="w-3.5 h-3.5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
 
     // Avatar preview
-    let avatarMarkup = '';
+    let avatarMarkupMobile = '';
+    let avatarMarkupDesktop = '';
     if (item.foto && item.foto.trim() !== '') {
       const src = item.foto.startsWith('http') ? item.foto : '../' + item.foto;
-      avatarMarkup = `<img src="${escapeHtml(src)}" alt="${escapeHtml(item.nama)}" class="w-9 h-9 rounded-full object-cover ring-2 ring-gray-200 shrink-0">`;
+      avatarMarkupMobile = `<img src="${escapeHtml(src)}" alt="${escapeHtml(item.nama)}" class="w-11 h-11 rounded-full object-cover ring-2 ring-gray-200 shrink-0">`;
+      avatarMarkupDesktop = `<img src="${escapeHtml(src)}" alt="${escapeHtml(item.nama)}" class="w-9 h-9 rounded-full object-cover ring-2 ring-gray-200 shrink-0">`;
     } else {
       const bgColors = ['bg-neutral-900 text-white ring-red-500/30', 'bg-red-700 text-white', 'bg-blue-700 text-white', 'bg-emerald-700 text-white'];
       const bg = bgColors[index % bgColors.length];
-      avatarMarkup = `<div class="w-9 h-9 rounded-full ${bg} font-black text-xs flex items-center justify-center shrink-0 ring-2">${escapeHtml(initials)}</div>`;
+      avatarMarkupMobile = `<div class="w-11 h-11 rounded-full ${bg} font-black text-xs flex items-center justify-center shrink-0 ring-2">${escapeHtml(initials)}</div>`;
+      avatarMarkupDesktop = `<div class="w-9 h-9 rounded-full ${bg} font-black text-xs flex items-center justify-center shrink-0 ring-2">${escapeHtml(initials)}</div>`;
     }
 
-    tr.innerHTML = `
-      <td class="py-3.5 px-4">
-        <span class="font-mono text-[11px] font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded">#${item.urutan || (index + 1)}</span>
-      </td>
-      <td class="py-3.5 px-4">
-        <div class="flex items-center space-x-3">
-          ${avatarMarkup}
-          <div class="min-w-0">
-            <div class="font-bold text-gray-900 text-xs truncate group-hover:text-buser-red transition-colors">${escapeHtml(item.nama)}</div>
-            <div class="text-[10px] text-gray-500 truncate">${escapeHtml(item.email || 'Email redaksi belum diatur')}</div>
+    // 1. RENDER MOBILE CARD (< 768px)
+    if (mobileCards) {
+      const card = document.createElement('div');
+      card.className = 'p-4 bg-white border-b border-gray-100 last:border-0 transition-colors';
+      card.innerHTML = `
+        <div class="flex items-start justify-between gap-2.5">
+          <div class="flex items-center space-x-3 min-w-0">
+            <div class="relative shrink-0">
+              ${avatarMarkupMobile}
+              <span class="absolute -bottom-1 -right-1 font-mono text-[9px] font-black bg-gray-900 text-white px-1 py-0.2 rounded shadow-xs ring-1 ring-white">#${item.urutan || (index + 1)}</span>
+            </div>
+            <div class="min-w-0 flex-1">
+              <span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-bold border ${catBadge} mb-0.5">
+                ${escapeHtml(item.kategori || 'Redaksi')}
+              </span>
+              <h4 class="font-bold text-gray-900 text-sm truncate leading-snug">${escapeHtml(item.nama)}</h4>
+              <p class="text-xs font-semibold text-gray-600 truncate">${escapeHtml(item.jabatan)}</p>
+            </div>
+          </div>
+          <div class="shrink-0">
+            ${statusBadge}
           </div>
         </div>
-      </td>
-      <td class="py-3.5 px-4">
-        <div class="font-bold text-xs text-gray-900">${escapeHtml(item.jabatan)}</div>
-        <div class="text-[10px] text-gray-500">${escapeHtml(item.keterangan || '-')}</div>
-      </td>
-      <td class="py-3.5 px-4">
-        <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold border ${catBadge}">
-          ${escapeHtml(item.kategori || 'Redaksi')}
-        </span>
-      </td>
-      <td class="py-3.5 px-4 text-gray-600 text-xs font-mono">
-        ${escapeHtml(item.telepon || '-')}
-      </td>
-      <td class="py-3.5 px-4">
-        ${statusBadge}
-      </td>
-      <td class="py-2.5 px-4 text-right">
-        <!-- Layout Tombol Aksi: Kotak 4 Bagian (Kiri Atas: Lihat, Kanan Atas: Edit, Kiri Bawah: Nonaktifkan, Kanan Bawah: Hapus) -->
-        <div class="inline-block w-full sm:w-48 border border-gray-200 rounded-lg overflow-hidden bg-white shadow-2xs text-left">
-          <!-- Baris Atas: Kiri = Lihat, Kanan = Edit -->
-          <div class="grid grid-cols-2 divide-x divide-gray-200 border-b border-gray-200">
-            <button type="button" class="btn-view py-1.5 px-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 text-[11px] font-semibold flex items-center justify-center gap-1 transition-colors" title="Lihat Profil Lengkap">
-              <svg class="w-3 h-3 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-              <span>Lihat</span>
+
+        ${item.keterangan ? `
+          <div class="mt-2.5 p-2 bg-gray-50/90 rounded-lg border border-gray-100 text-[11px] text-gray-600 leading-relaxed flex items-start gap-1.5">
+            <svg class="w-3.5 h-3.5 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="line-clamp-2">${escapeHtml(item.keterangan)}</span>
+          </div>
+        ` : ''}
+
+        <div class="mt-2.5 flex flex-wrap items-center gap-2">
+          ${item.email ? `
+            <span class="inline-flex items-center gap-1 font-mono text-[11px] text-gray-600 bg-gray-100 px-2 py-0.5 rounded truncate max-w-[200px]">
+              <svg class="w-3 h-3 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              ${escapeHtml(item.email)}
+            </span>
+          ` : ''}
+          ${item.telepon ? `
+            <a href="https://wa.me/${escapeHtml(item.telepon.replace(/[^0-9]/g, ''))}" target="_blank" class="inline-flex items-center gap-1 font-mono text-[11px] font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-2 py-0.5 rounded transition-colors" title="Hubungi via WhatsApp">
+              <svg class="w-3 h-3 text-emerald-600 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              ${escapeHtml(item.telepon)}
+            </a>
+          ` : ''}
+        </div>
+
+        <!-- Mobile 2x2 Sejajar Action Buttons -->
+        <div class="pt-3 mt-3 border-t border-gray-100 space-y-2">
+          <!-- Row 1: Lihat & Edit -->
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-card-view flex-1 min-h-[38px] py-2 px-2.5 rounded-lg text-xs font-semibold bg-gray-100 text-gray-700 hover:bg-gray-200 active:scale-98 flex items-center justify-center gap-1.5 transition-all">
+              <svg class="w-3.5 h-3.5 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              <span>Lihat Profil</span>
             </button>
-            <button type="button" class="btn-edit py-1.5 px-2 text-blue-700 hover:text-blue-900 hover:bg-blue-50 text-[11px] font-semibold flex items-center justify-center gap-1 transition-colors" title="Edit Profil Redaksi">
-              <svg class="w-3 h-3 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-              <span>Edit</span>
+            <button type="button" class="btn-card-edit flex-1 min-h-[38px] py-2 px-2.5 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200/60 active:scale-98 flex items-center justify-center gap-1.5 transition-all">
+              <svg class="w-3.5 h-3.5 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              <span>Edit Data</span>
             </button>
           </div>
-          <!-- Baris Bawah: Kiri = Nonaktifkan/Aktifkan, Kanan = Hapus -->
-          <div class="grid grid-cols-2 divide-x divide-gray-200">
-            <button type="button" class="btn-toggle py-1.5 px-1.5 ${toggleHover} text-[11px] font-semibold flex items-center justify-center gap-1 transition-colors" title="${toggleText}">
+          <!-- Row 2: Status Toggle & Hapus -->
+          <div class="flex items-center gap-2">
+            <button type="button" class="btn-card-toggle flex-1 min-h-[38px] py-2 px-2 rounded-lg text-xs font-semibold ${isActive ? 'bg-amber-50 text-amber-800 hover:bg-amber-100 border border-amber-200/60' : 'bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200/60'} active:scale-98 flex items-center justify-center gap-1.5 transition-all">
               ${toggleIcon}
-              <span class="truncate">${toggleText}</span>
+              <span>${toggleText}</span>
             </button>
-            <button type="button" class="btn-delete py-1.5 px-2 text-red-600 hover:text-white hover:bg-red-600 text-[11px] font-semibold flex items-center justify-center gap-1 transition-all" title="Hapus Profil Redaksi">
-              <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            <button type="button" class="btn-card-delete flex-1 min-h-[38px] py-2 px-2.5 rounded-lg text-xs font-semibold bg-red-50 text-red-700 hover:bg-red-100 border border-red-200/60 active:scale-98 flex items-center justify-center gap-1.5 transition-all">
+              <svg class="w-3.5 h-3.5 text-red-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
               <span>Hapus</span>
             </button>
           </div>
         </div>
-      </td>
-    `;
+      `;
 
-    // Event Listeners pada Tombol Aksi
-    tr.querySelector('.btn-view').addEventListener('click', () => viewRedaksiDetail(item.id));
-    tr.querySelector('.btn-edit').addEventListener('click', () => openRedaksiModal(item));
-    tr.querySelector('.btn-toggle').addEventListener('click', () => toggleRedaksiStatus(item.id, item.nama, item.status));
-    tr.querySelector('.btn-delete').addEventListener('click', () => deleteRedaksi(item.id, item.nama));
+      card.querySelector('.btn-card-view').addEventListener('click', () => viewRedaksiDetail(item.id));
+      card.querySelector('.btn-card-edit').addEventListener('click', () => openRedaksiModal(item));
+      card.querySelector('.btn-card-toggle').addEventListener('click', () => toggleRedaksiStatus(item.id, item.nama, item.status));
+      card.querySelector('.btn-card-delete').addEventListener('click', () => deleteRedaksi(item.id, item.nama));
 
-    tbody.appendChild(tr);
+      mobileCards.appendChild(card);
+    }
+
+    // 2. RENDER DESKTOP TABLE ROW (>= 768px)
+    if (tbody) {
+      const tr = document.createElement('tr');
+      tr.className = 'hover:bg-gray-50/80 transition-colors group';
+      tr.innerHTML = `
+        <td class="py-3.5 px-4">
+          <span class="font-mono text-[11px] font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded">#${item.urutan || (index + 1)}</span>
+        </td>
+        <td class="py-3.5 px-4">
+          <div class="flex items-center space-x-3">
+            ${avatarMarkupDesktop}
+            <div class="min-w-0">
+              <div class="font-bold text-gray-900 text-xs truncate group-hover:text-buser-red transition-colors">${escapeHtml(item.nama)}</div>
+              <div class="text-[10px] text-gray-500 truncate">${escapeHtml(item.email || 'Email redaksi belum diatur')}</div>
+            </div>
+          </div>
+        </td>
+        <td class="py-3.5 px-4">
+          <div class="font-bold text-xs text-gray-900">${escapeHtml(item.jabatan)}</div>
+          <div class="text-[10px] text-gray-500">${escapeHtml(item.keterangan || '-')}</div>
+        </td>
+        <td class="py-3.5 px-4">
+          <span class="inline-block px-2 py-0.5 rounded text-[10px] font-semibold border ${catBadge}">
+            ${escapeHtml(item.kategori || 'Redaksi')}
+          </span>
+        </td>
+        <td class="py-3.5 px-4 text-gray-600 text-xs font-mono">
+          ${escapeHtml(item.telepon || '-')}
+        </td>
+        <td class="py-3.5 px-4">
+          ${statusBadge}
+        </td>
+        <td class="py-2.5 px-4 text-right">
+          <!-- Desktop Action Box -->
+          <div class="inline-block w-48 border border-gray-200 rounded-lg overflow-hidden bg-white shadow-2xs text-left">
+            <div class="grid grid-cols-2 divide-x divide-gray-200 border-b border-gray-200">
+              <button type="button" class="btn-table-view py-1.5 px-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 text-[11px] font-semibold flex items-center justify-center gap-1 transition-colors" title="Lihat Profil Lengkap">
+                <svg class="w-3 h-3 text-gray-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                <span>Lihat</span>
+              </button>
+              <button type="button" class="btn-table-edit py-1.5 px-2 text-blue-700 hover:text-blue-900 hover:bg-blue-50 text-[11px] font-semibold flex items-center justify-center gap-1 transition-colors" title="Edit Profil Redaksi">
+                <svg class="w-3 h-3 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                <span>Edit</span>
+              </button>
+            </div>
+            <div class="grid grid-cols-2 divide-x divide-gray-200">
+              <button type="button" class="btn-table-toggle py-1.5 px-1.5 ${toggleHover} text-[11px] font-semibold flex items-center justify-center gap-1 transition-colors" title="${toggleText}">
+                ${toggleIcon}
+                <span class="truncate">${toggleText}</span>
+              </button>
+              <button type="button" class="btn-table-delete py-1.5 px-2 text-red-600 hover:text-white hover:bg-red-600 text-[11px] font-semibold flex items-center justify-center gap-1 transition-all" title="Hapus Profil Redaksi">
+                <svg class="w-3.5 h-3.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                <span>Hapus</span>
+              </button>
+            </div>
+          </div>
+        </td>
+      `;
+
+      tr.querySelector('.btn-table-view').addEventListener('click', () => viewRedaksiDetail(item.id));
+      tr.querySelector('.btn-table-edit').addEventListener('click', () => openRedaksiModal(item));
+      tr.querySelector('.btn-table-toggle').addEventListener('click', () => toggleRedaksiStatus(item.id, item.nama, item.status));
+      tr.querySelector('.btn-table-delete').addEventListener('click', () => deleteRedaksi(item.id, item.nama));
+
+      tbody.appendChild(tr);
+    }
   });
 }
 

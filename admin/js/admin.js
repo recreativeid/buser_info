@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initUserDropdown();
   initGlobalShortcuts();
   initModals();
+  initSidebarCommentBadge();
 });
 
 /* ==========================================
@@ -312,3 +313,50 @@ function copyToClipboard(text, successMsg = 'Tautan berhasil disalin!') {
     showToast('success', 'Berhasil Disalin', successMsg);
   }
 }
+
+/* ==========================================
+   8. REAL-TIME SIDEBAR COMMENT COUNTER
+   ========================================== */
+function updateSidebarCommentBadge(count) {
+  const badge = document.querySelector('a[href="komentar.html"] span.rounded')
+             || document.querySelector('.sidebar-comment-badge')
+             || document.getElementById('sidebar-comment-count');
+  if (!badge) return;
+
+  const validCount = Number.isInteger(Number(count)) ? Number(count) : 0;
+  badge.textContent = validCount;
+  try {
+    sessionStorage.setItem('buser_comment_count', validCount);
+  } catch (e) {}
+}
+
+async function initSidebarCommentBadge() {
+  const badge = document.querySelector('a[href="komentar.html"] span.rounded')
+             || document.querySelector('.sidebar-comment-badge')
+             || document.getElementById('sidebar-comment-count');
+  if (!badge) return;
+
+  // Render instan dari cache jika tersedia
+  try {
+    const cached = sessionStorage.getItem('buser_comment_count');
+    if (cached !== null) {
+      badge.textContent = cached;
+    }
+  } catch (e) {}
+
+  // Tarik data akurat dari server untuk seluruh halaman admin
+  if (window.BuserInfoAPI && typeof window.BuserInfoAPI.getCommentStats === 'function') {
+    try {
+      const stats = await window.BuserInfoAPI.getCommentStats();
+      if (stats) {
+        const total = stats.all !== undefined ? stats.all : (stats.pending || 0);
+        updateSidebarCommentBadge(total);
+      }
+    } catch (err) {
+      console.warn('[CMS] Gagal sinkronisasi counter komentar sidebar:', err);
+    }
+  }
+}
+
+window.updateSidebarCommentBadge = updateSidebarCommentBadge;
+

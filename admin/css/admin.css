@@ -237,6 +237,17 @@ header.h-16::after {
   border-color: #D1D5DB;
 }
 
+.btn-dark-outline {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border-color: #374151;
+}
+.btn-dark-outline:hover {
+  background-color: #1F2937;
+  border-color: #4B5563;
+  color: #FFFFFF;
+}
+
 .btn-danger-outline {
   background-color: #FFFFFF;
   color: var(--buser-red);
@@ -369,4 +380,61 @@ header.h-16::after {
     padding: 0.5rem 0;
     border: none;
   }
+  .table-responsive-cards td:last-child {
+    border-top: 1px solid #F3F4F6;
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+  }
 }
+
+/* ==========================================================================
+   Settings Navigation Pill Tabs & Brand Utilities
+   ========================================================================== */
+.settings-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #4B5563;
+  background-color: transparent;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  border: none;
+}
+
+.settings-tab-btn:hover {
+  background-color: #F3F4F6;
+  color: #111827;
+}
+
+.settings-tab-btn.active,
+.settings-tab-btn.active:hover {
+  background-color: #0B0B0B !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+.settings-tab-btn.active svg {
+  color: #FFFFFF !important;
+  stroke: #FFFFFF !important;
+}
+
+/* Brand Color Utility Fallbacks */
+.bg-buser-black {
+  background-color: #0B0B0B !important;
+}
+.text-buser-black {
+  color: #0B0B0B !important;
+}
+.bg-buser-red {
+  background-color: #D71920 !important;
+}
+.text-buser-red {
+  color: #D71920 !important;
+}
+

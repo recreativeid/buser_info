@@ -85,10 +85,15 @@ function updateTabBadgeCounts(counts) {
     headerBadge.textContent = `${counts.pending || 0} Menunggu Verifikasi`;
   }
 
-  // Sidebar badge
-  const sidebarNavKomentar = document.querySelector('a[href="komentar.html"] span.rounded');
-  if (sidebarNavKomentar) {
-    sidebarNavKomentar.textContent = counts.pending || 0;
+  // Sidebar badge (jumlah data komentar riil yang ada)
+  const totalComments = counts.all !== undefined ? counts.all : (counts.total || 0);
+  if (typeof window.updateSidebarCommentBadge === 'function') {
+    window.updateSidebarCommentBadge(totalComments);
+  } else {
+    const sidebarNavKomentar = document.querySelector('a[href="komentar.html"] span.rounded');
+    if (sidebarNavKomentar) {
+      sidebarNavKomentar.textContent = totalComments || 0;
+    }
   }
 }
 

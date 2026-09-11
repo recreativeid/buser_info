@@ -338,7 +338,7 @@ function initQuickSearch() {
 }
 
 /* --------------------------------------------------------------------------
-   6. Horizontal Category Navigation Scroll Controls
+   6. Horizontal Category Navigation Scroll Controls & Dynamic Sync
    -------------------------------------------------------------------------- */
 function initCategoryScroller() {
   const navContainer = document.getElementById('category-scroll-nav');
@@ -357,6 +357,58 @@ function initCategoryScroller() {
       navContainer.scrollBy({ left: 160, behavior: 'smooth' });
     });
   }
+
+  // Sinkronisasi kategori secara dinamis dari Database/API ke Navbar & Mobile Drawer
+  syncDynamicCategories(navContainer);
+}
+
+async function syncDynamicCategories(navContainer) {
+  if (!window.BuserInfoAPI || !navContainer) return;
+
+  try {
+    const categories = await window.BuserInfoAPI.getCategories();
+    if (!Array.isArray(categories) || categories.length === 0) return;
+
+    // 1. Render navbar horizontal kategori
+    let navHtml = `<a href="index.html" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">Home</a>`;
+    categories.forEach(cat => {
+      const slug = cat.slug || (cat.name_kategori || '').toLowerCase().replace(/[^a-z0-9]/g, '-');
+      navHtml += `\n          <a href="internasional.html?cat=${encodeURIComponent(slug)}" class="cat-nav-link whitespace-nowrap px-3 py-1.5 rounded-sm text-gray-200 hover:bg-[#222] hover:text-white transition-colors">${escapeMainHtml(cat.name_kategori)}</a>`;
+    });
+    navContainer.innerHTML = navHtml;
+
+    // 2. Render kanal berita di Mobile Drawer
+    const drawerChannelContainer = document.querySelector('#mobile-drawer .space-y-1.pb-2');
+    if (drawerChannelContainer) {
+      let drawerHtml = `
+        <span class="text-[10px] font-bold text-gray-400 tracking-wider uppercase px-2">Kanal Berita</span>
+        <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded hover:bg-[#222] text-white">
+          <span>Beranda</span>
+          <span class="text-[10px] bg-buser-red px-1.5 py-0.5 rounded">UTAMA</span>
+        </a>
+      `;
+      categories.forEach(cat => {
+        const slug = cat.slug || (cat.name_kategori || '').toLowerCase().replace(/[^a-z0-9]/g, '-');
+        drawerHtml += `\n        <a href="internasional.html?cat=${encodeURIComponent(slug)}" class="block px-3 py-2 rounded hover:bg-[#222] text-gray-300 hover:text-white">${escapeMainHtml(cat.name_kategori)}</a>`;
+      });
+      drawerChannelContainer.innerHTML = drawerHtml;
+    }
+
+    // Sorot tautan kategori yang sedang aktif
+    highlightActiveNav();
+  } catch (err) {
+    console.warn('[main.js] Gagal sinkronisasi kategori dinamis:', err);
+  }
+}
+
+function escapeMainHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 /* --------------------------------------------------------------------------
@@ -365,18 +417,18 @@ function initCategoryScroller() {
 function highlightActiveNav() {
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const searchParams = new URLSearchParams(window.location.search);
-  const currentCat = searchParams.get('cat');
+  const currentCat = (searchParams.get('cat') || '').toLowerCase();
 
   const navLinks = document.querySelectorAll('.cat-nav-link');
   navLinks.forEach(link => {
-    const href = link.getAttribute('href');
-    if (!href) return;
+    const href = link.getAttribute('href') || '';
+    link.classList.remove('bg-buser-red', 'text-white', 'font-bold');
 
     if (currentPath === 'index.html' && (href === 'index.html' || href === './')) {
       link.classList.add('bg-buser-red', 'text-white', 'font-bold');
     } else if (currentPath === 'internasional.html' && !currentCat && href.startsWith('internasional.html') && !href.includes('?cat=')) {
       link.classList.add('bg-buser-red', 'text-white', 'font-bold');
-    } else if (currentCat && href.includes(`cat=${currentCat}`)) {
+    } else if (currentCat && href.toLowerCase().includes(`cat=${currentCat}`)) {
       link.classList.add('bg-buser-red', 'text-white', 'font-bold');
     }
   });

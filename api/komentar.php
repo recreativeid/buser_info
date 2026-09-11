@@ -10,6 +10,29 @@ require_once __DIR__ . '/config/database.php';
 setCorsHeaders();
 
 $db = Database::getConnection();
+
+// Pastikan tabel komentar sudah ada
+try {
+    $db->exec("
+        CREATE TABLE IF NOT EXISTS `komentar` (
+          `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+          `artikel_id` INT UNSIGNED NOT NULL,
+          `name` VARCHAR(150) NOT NULL,
+          `email` VARCHAR(150) NOT NULL,
+          `comment` TEXT NOT NULL,
+          `status` ENUM('pending', 'approved', 'rejected', 'spam') NOT NULL DEFAULT 'pending',
+          `ip_address` VARCHAR(45) DEFAULT NULL,
+          `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+          `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+          PRIMARY KEY (`id`),
+          KEY `idx_komentar_artikel` (`artikel_id`),
+          KEY `idx_komentar_status` (`status`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+    ");
+} catch (Exception $e) {
+    // Abaikan jika tabel sudah dibuat
+}
+
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
 switch ($method) {
@@ -87,6 +110,18 @@ function handleGetKomentar(PDO $db): void {
         FROM komentar
     ";
     $counts = $db->query($countSql)->fetch(PDO::FETCH_ASSOC);
+
+    // Jika hanya meminta hitungan / statistik komentar untuk badge sidebar & header
+    if (isset($_GET['stats_only']) || (isset($_GET['action']) && $_GET['action'] === 'stats')) {
+        sendResponse(true, 'Statistik komentar berhasil dimuat', [
+            'all'      => (int)($counts['total_all'] ?? 0),
+            'pending'  => (int)($counts['total_pending'] ?? 0),
+            'approved' => (int)($counts['total_approved'] ?? 0),
+            'rejected' => (int)($counts['total_rejected'] ?? 0),
+            'spam'     => (int)($counts['total_spam'] ?? 0),
+        ]);
+        return;
+    }
 
     $where = [];
     $params = [];

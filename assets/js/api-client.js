@@ -544,6 +544,20 @@ const BuserInfoAPI = {
     }
   },
 
+  // Ambil counter / statistik komentar (ringkas & cepat untuk badge sidebar)
+  async getCommentStats() {
+    try {
+      const res = await fetch(`${API_BASE_URL}/komentar.php?action=stats`, {
+        credentials: 'include',
+        headers: this.getAuthHeaders()
+      });
+      const json = await res.json();
+      return json.status === 'success' ? json.data : { all: 0, pending: 0, approved: 0, rejected: 0, spam: 0 };
+    } catch (err) {
+      return { all: 0, pending: 0, approved: 0, rejected: 0, spam: 0 };
+    }
+  },
+
   // Kirim komentar pembaca baru (Publik / Guest)
   async submitComment(data) {
     try {

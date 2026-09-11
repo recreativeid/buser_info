@@ -102,8 +102,8 @@
                   type="text" 
                   id="email" 
                   name="email" 
-                  value="redaksi@buserinfo.com" 
                   required 
+                  autocomplete="username"
                   class="w-full pl-9 pr-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-buser-red focus:border-buser-red focus:bg-white transition-all"
                   placeholder="nama@buserinfo.com">
               </div>
@@ -129,8 +129,8 @@
                   type="password" 
                   id="password" 
                   name="password" 
-                  value="BuserInfo#2026" 
                   required 
+                  autocomplete="current-password"
                   class="w-full pl-9 pr-10 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-buser-red focus:border-buser-red focus:bg-white transition-all"
                   placeholder="Masukkan kata sandi">
                 <button 
@@ -170,13 +170,6 @@
               </button>
             </div>
           </form>
-
-          <!-- Quick Test Credentials helper -->
-          <div class="mt-6 pt-4 border-t border-gray-100 bg-gray-50 -mx-6 -mb-6 p-4 text-center rounded-b-xl">
-            <p class="text-[11px] text-gray-500 font-medium">
-              Akses Cepat: <span class="font-bold text-gray-800">redaksi@buserinfo.com</span> &bull; Sandi: <span class="font-mono font-semibold text-buser-red">BuserInfo#2026</span> (Klik "Masuk ke Dashboard" untuk langsung masuk)
-            </p>
-          </div>
         </div>
       </div>
 
@@ -308,13 +301,15 @@
     // Forgot password handler
     document.getElementById('btn-forgot-password').addEventListener('click', (e) => {
       e.preventDefault();
+      const currentEmail = (document.getElementById('email').value || '').trim();
+      const targetText = currentEmail ? ` ke ${currentEmail}` : ' ke email terdaftar Anda';
       confirmAction({
         title: 'Pemulihan Akun Redaksi',
-        message: 'Tautan reset password akan dikirimkan ke email terdaftar Anda. Lanjutkan?',
+        message: `Tautan reset password akan dikirimkan${targetText}. Lanjutkan?`,
         confirmText: 'Kirim Tautan',
         type: 'primary',
         onConfirm: () => {
-          showToast('info', 'Email Terkirim', 'Instruksi reset password telah dikirim ke redaksi@buserinfo.com.');
+          showToast('info', 'Email Terkirim', `Instruksi reset password telah dikirim${targetText}.`);
         }
       });
     });

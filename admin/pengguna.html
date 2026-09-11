@@ -71,7 +71,7 @@
         <a href="komentar.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
           <span class="flex-1">Komentar</span>
-          <span class="px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-400 rounded">5</span>
+          <span class="px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-400 rounded sidebar-comment-badge">0</span>
         </a>
 
         <div class="px-3 pt-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-gray-400">Sistem</div>
@@ -120,24 +120,104 @@
         </div>
       </div>
 
-      <div class="flex items-center space-x-3">
+      <div class="flex items-center space-x-2 sm:space-x-3">
         <button type="button" id="btn-add-user" class="btn btn-primary btn-sm">
-          <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-          <span>Tambah Pengguna</span>
+          <svg class="w-3.5 h-3.5 sm:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+          <span class="hidden sm:inline">Tambah Pengguna</span>
+          <span class="sm:hidden">Tambah</span>
         </button>
       </div>
     </header>
 
     <!-- CONTENT BODY -->
-    <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-5">
+    <main class="flex-1 overflow-y-auto p-3 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
       
-      <div class="cms-card overflow-hidden">
-        <div class="p-4 border-b border-gray-200 flex items-center justify-between">
-          <h2 class="text-xs font-bold uppercase tracking-wider text-gray-700">Daftar Akun CMS BUSER INFO</h2>
-          <span id="user-count-header" class="text-xs text-gray-500">Memuat Akun...</span>
+      <!-- STATS CARDS -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        <div class="cms-card p-3 sm:p-4 flex items-center space-x-2.5 sm:space-x-3.5">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-red-50 text-buser-red flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <div class="text-[10px] sm:text-[11px] font-semibold text-gray-500 uppercase tracking-tight truncate">Total Pengguna</div>
+            <div id="stat-user-total" class="text-lg sm:text-xl font-black text-gray-900 leading-tight">0</div>
+          </div>
         </div>
 
-        <div class="overflow-x-auto">
+        <div class="cms-card p-3 sm:p-4 flex items-center space-x-2.5 sm:space-x-3.5">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <div class="text-[10px] sm:text-[11px] font-semibold text-gray-500 uppercase tracking-tight truncate">Administrator</div>
+            <div id="stat-user-admin" class="text-lg sm:text-xl font-black text-gray-900 leading-tight">0</div>
+          </div>
+        </div>
+
+        <div class="cms-card p-3 sm:p-4 flex items-center space-x-2.5 sm:space-x-3.5">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <div class="text-[10px] sm:text-[11px] font-semibold text-gray-500 uppercase tracking-tight truncate">Editor</div>
+            <div id="stat-user-editor" class="text-lg sm:text-xl font-black text-gray-900 leading-tight">0</div>
+          </div>
+        </div>
+
+        <div class="cms-card p-3 sm:p-4 flex items-center space-x-2.5 sm:space-x-3.5">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+          </div>
+          <div class="min-w-0">
+            <div class="text-[10px] sm:text-[11px] font-semibold text-gray-500 uppercase tracking-tight truncate">Reporter</div>
+            <div id="stat-user-reporter" class="text-lg sm:text-xl font-black text-gray-900 leading-tight">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEARCH & FILTER BAR -->
+      <div class="cms-card p-3 sm:p-4 flex flex-col md:flex-row items-center justify-between gap-2.5 sm:gap-3">
+        <div class="w-full md:w-80 relative">
+          <input type="text" id="search-user-input" placeholder="Cari nama, email, ID..." class="w-full pl-9 pr-8 py-2 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red focus:bg-white transition-all">
+          <svg class="w-4 h-4 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <button type="button" id="search-user-clear" class="absolute right-2.5 top-2.5 text-gray-400 hover:text-gray-600 hidden" title="Hapus pencarian">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 w-full md:w-auto md:flex md:items-center">
+          <select id="filter-user-role" class="w-full md:w-auto py-2 px-2.5 sm:px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs text-gray-700 focus:ring-buser-red">
+            <option value="">Semua Peran (Role)</option>
+            <option value="Administrator">Administrator</option>
+            <option value="Editor">Editor</option>
+            <option value="Reporter">Reporter</option>
+          </select>
+
+          <select id="filter-user-status" class="w-full md:w-auto py-2 px-2.5 sm:px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs text-gray-700 focus:ring-buser-red">
+            <option value="">Semua Status</option>
+            <option value="active">Aktif</option>
+            <option value="inactive">Nonaktif</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- USERS CONTAINER: MOBILE CARDS & DESKTOP TABLE -->
+      <div class="cms-card overflow-hidden">
+        <div class="p-3 sm:p-4 border-b border-gray-200 flex items-center justify-between bg-gray-50/50 gap-2">
+          <div>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-700">Daftar Akun CMS BUSER INFO</h2>
+            <p class="text-[10px] sm:text-[11px] text-gray-400">Pengelolaan hak akses dan kredensial staf redaksi</p>
+          </div>
+          <span id="user-count-header" class="text-xs font-bold text-gray-600 bg-gray-200/60 px-2 py-0.5 rounded-full shrink-0">Memuat...</span>
+        </div>
+
+        <!-- MOBILE CARDS VIEW (md:hidden) -->
+        <div id="user-mobile-cards" class="md:hidden divide-y divide-gray-100 bg-white">
+          <!-- Rendered dynamically by admin-pengguna-live.js -->
+        </div>
+
+        <!-- DESKTOP TABLE VIEW (hidden md:block) -->
+        <div class="hidden md:block overflow-x-auto">
           <table class="w-full text-left border-collapse table-responsive-cards">
             <thead>
               <tr class="bg-gray-50 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
@@ -146,7 +226,7 @@
                 <th class="py-3 px-4">Peran (Role)</th>
                 <th class="py-3 px-4">Status</th>
                 <th class="py-3 px-4">Terakhir Masuk</th>
-                <th class="py-3 px-4 text-right">Aksi</th>
+                <th class="py-3 px-4 text-right w-64">Aksi</th>
               </tr>
             </thead>
             <tbody id="user-table-body" class="divide-y divide-gray-100 text-xs">
@@ -154,9 +234,24 @@
             </tbody>
           </table>
         </div>
+
+        <!-- EMPTY STATE VIEW -->
+        <div id="user-empty-state" class="hidden p-8 text-center bg-white">
+          <div class="w-12 h-12 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          </div>
+          <h4 class="text-sm font-bold text-gray-800 mb-1">Tidak ada pengguna ditemukan</h4>
+          <p class="text-xs text-gray-500 max-w-sm mx-auto mb-3">Tidak ada akun staf atau pengguna yang cocok dengan pencarian atau filter yang Anda pilih.</p>
+          <button type="button" id="btn-reset-user-filter" class="btn btn-outline btn-sm text-xs">Reset Pencarian & Filter</button>
+        </div>
       </div>
 
     </main>
+
+    <!-- MOBILE FLOATING ACTION BUTTON (FAB) -->
+    <button type="button" id="fab-add-user" class="md:hidden fixed bottom-5 right-5 z-40 bg-buser-red hover:bg-red-700 text-white p-3.5 rounded-full shadow-xl focus:outline-none focus:ring-4 focus:ring-red-200 active:scale-95 transition-all flex items-center justify-center" aria-label="Tambah Pengguna">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+    </button>
 
     <!-- Corporate Footer -->
     <footer class="bg-white border-t border-gray-200 py-3 px-6 text-xs text-gray-500 shrink-0">
@@ -168,24 +263,30 @@
 
   </div>
 
-  <!-- ADD / EDIT USER MODAL -->
-  <div id="user-modal" class="modal-container fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
-    <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl border border-gray-200">
-      <div class="flex items-center justify-between pb-3 border-b border-gray-200">
-        <h3 id="user-modal-title" class="text-sm font-bold text-gray-900">Tambah Pengguna Baru</h3>
-        <button type="button" class="text-gray-400 hover:text-gray-600" data-modal-close>
+  <!-- ADD / EDIT USER MODAL (BOTTOM SHEET ON MOBILE) -->
+  <div id="user-modal" class="modal-container fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop hidden">
+    <div class="bg-white rounded-t-2xl sm:rounded-xl max-w-md w-full p-4 sm:p-6 shadow-2xl border border-gray-200 max-h-[92vh] flex flex-col">
+      <!-- Drag handle indicator on mobile -->
+      <div class="w-10 h-1 bg-gray-300 rounded-full mx-auto sm:hidden -mt-1 mb-2.5 shrink-0"></div>
+
+      <div class="flex items-center justify-between pb-3 border-b border-gray-200 shrink-0">
+        <div class="flex items-center space-x-2">
+          <span class="w-2.5 h-2.5 bg-buser-red rounded-full"></span>
+          <h3 id="user-modal-title" class="text-sm font-bold text-gray-900">Tambah Pengguna Baru</h3>
+        </div>
+        <button type="button" class="text-gray-400 hover:text-gray-600 p-1" data-modal-close>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
-      <form id="user-form" class="mt-4 space-y-3 text-xs">
+      <form id="user-form" class="mt-3 sm:mt-4 space-y-3 sm:space-y-3.5 text-xs overflow-y-auto pr-0.5 flex-1">
         <input type="hidden" id="user-id-input" value="">
         <div>
-          <label class="block font-semibold text-gray-700 mb-1">Nama Lengkap</label>
+          <label class="block font-semibold text-gray-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
           <input type="text" id="user-name-input" required placeholder="misal: Hendra Saputra" class="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-buser-red">
         </div>
         <div>
-          <label class="block font-semibold text-gray-700 mb-1">Email Kredensial</label>
+          <label class="block font-semibold text-gray-700 mb-1">Email Kredensial <span class="text-red-500">*</span></label>
           <input type="email" id="user-email-input" required placeholder="hendra@buserinfo.com" class="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-buser-red">
         </div>
         <div>
@@ -200,13 +301,13 @@
           <label id="user-pass-label" class="block font-semibold text-gray-700 mb-1">Password Sementara</label>
           <div class="flex gap-1.5">
             <input type="text" id="user-pass-input" value="BuserInfo#2026" class="w-full py-2 px-3 border border-gray-300 rounded-lg font-mono focus:ring-buser-red">
-            <button type="button" id="btn-generate-pass" class="btn btn-outline btn-sm">Acak</button>
+            <button type="button" id="btn-generate-pass" class="btn btn-outline btn-sm shrink-0 px-3">Acak</button>
           </div>
         </div>
 
-        <div class="mt-6 pt-3 border-t border-gray-100 flex justify-end gap-2">
-          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Batal</button>
-          <button type="submit" class="btn btn-primary btn-sm">Simpan Pengguna</button>
+        <div class="mt-4 pt-3 border-t border-gray-100 flex flex-col-reverse sm:flex-row sm:items-center justify-end gap-2 shrink-0">
+          <button type="button" class="btn btn-outline btn-sm w-full sm:w-auto py-2" data-modal-close>Batal</button>
+          <button type="submit" class="btn btn-primary btn-sm w-full sm:w-auto py-2">Simpan Pengguna</button>
         </div>
       </form>
     </div>

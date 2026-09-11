@@ -41,9 +41,18 @@ try {
     $userStmt = $db->query("SELECT COUNT(*) FROM users");
     $totalAuthors = (int)$userStmt->fetchColumn();
 
-    // Komentar Menunggu Verifikasi
-    $pendingCommentsStmt = $db->query("SELECT COUNT(*) FROM komentar WHERE status = 'pending'");
-    $pendingCommentsCount = (int)$pendingCommentsStmt->fetchColumn();
+    // Komentar Menunggu Verifikasi & Total Komentar
+    $pendingCommentsCount = 0;
+    $totalCommentsCount   = 0;
+    try {
+        $pendingCommentsStmt = $db->query("SELECT COUNT(*) FROM komentar WHERE status = 'pending'");
+        if ($pendingCommentsStmt) $pendingCommentsCount = (int)$pendingCommentsStmt->fetchColumn();
+
+        $totalCommentsStmt = $db->query("SELECT COUNT(*) FROM komentar");
+        if ($totalCommentsStmt) $totalCommentsCount = (int)$totalCommentsStmt->fetchColumn();
+    } catch (Exception $e) {
+        // Abaikan jika tabel belum ada atau error
+    }
 
     // 2. DISTRIBUSI KATEGORI RIIL
     $catStmt = $db->query("
@@ -239,7 +248,8 @@ try {
             'this_month'           => $thisMonthCount,
             'published_percentage' => $publishedPercentage,
             'authors'              => $totalAuthors,
-            'pending_comments'     => $pendingCommentsCount
+            'pending_comments'     => $pendingCommentsCount,
+            'total_comments'       => $totalCommentsCount
         ],
         'categories'   => $categoriesList,
         'chart_stats'  => [

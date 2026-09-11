@@ -85,10 +85,22 @@ function updateNotificationDropdown(counts) {
     }
   }
 
-  // Update badge sidebar komentar
-  const komentarSidebarBadge = document.querySelector('a[href="komentar.html"] span.rounded');
-  if (komentarSidebarBadge && counts.pending_comments !== undefined) {
-    komentarSidebarBadge.textContent = counts.pending_comments;
+  // Update badge sidebar komentar sesuai total data komentar yang ada
+  const totalComments = counts.total_comments !== undefined ? counts.total_comments : (counts.pending_comments || 0);
+  if (typeof window.updateSidebarCommentBadge === 'function') {
+    window.updateSidebarCommentBadge(totalComments);
+  } else {
+    const komentarSidebarBadge = document.querySelector('a[href="komentar.html"] span.rounded');
+    if (komentarSidebarBadge) {
+      komentarSidebarBadge.textContent = totalComments || 0;
+    }
+  }
+
+  // Update teks notifikasi komentar baru jika elemen ada
+  const notifKomentarText = document.getElementById('notif-komentar-text');
+  if (notifKomentarText) {
+    const pendingCount = counts.pending_comments || 0;
+    notifKomentarText.textContent = `${pendingCount} Komentar baru menunggu moderasi`;
   }
 }
 

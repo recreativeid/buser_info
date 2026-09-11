@@ -103,7 +103,7 @@ function handleGetArtikel(PDO $db): void {
     $kategoriId   = isset($_GET['kategori_id']) ? (int)$_GET['kategori_id'] : null;
     $status       = trim($_GET['status'] ?? '');
     $search       = trim($_GET['search'] ?? '');
-    $limit        = isset($_GET['limit']) ? max(1, min(200, (int)$_GET['limit'])) : 10;
+    $limit        = isset($_GET['limit']) ? max(1, min(500, (int)$_GET['limit'])) : 10;
     $page         = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
     $offset       = ($page - 1) * $limit;
 
@@ -213,7 +213,7 @@ function handleCreateArtikel(PDO $db): void {
     $kategoriId  = (int)($data['kategori_id'] ?? 1);
     $authorId    = (int)($data['author_id'] ?? $currentUser['id']);
     $content     = trim($data['content'] ?? '');
-    $status      = in_array($data['status'] ?? '', ['draft', 'published']) ? $data['status'] : 'published';
+    $status      = in_array($data['status'] ?? '', ['draft', 'published', 'review', 'scheduled']) ? $data['status'] : 'published';
     $thumbnail   = trim($data['thumbnail'] ?? '');
 
     if (empty($title)) {
@@ -223,8 +223,9 @@ function handleCreateArtikel(PDO $db): void {
         sendResponse(false, 'Konten artikel wajib diisi', null, 400);
     }
 
-    // Buat slug unik
-    $slug = createSlug($title);
+    // Buat slug unik (gunakan manual slug jika diisi)
+    $manualSlug = trim($data['slug'] ?? '');
+    $slug = !empty($manualSlug) ? createSlug($manualSlug) : createSlug($title);
     $chkStmt = $db->prepare("SELECT COUNT(*) FROM artikel WHERE slug = :slug");
     $chkStmt->execute([':slug' => $slug]);
     if ($chkStmt->fetchColumn() > 0) {
@@ -237,6 +238,20 @@ function handleCreateArtikel(PDO $db): void {
     }
 
     try {
+        // Cegah submit ganda (idempotency check: jika judul & author sama persis dalam 5 detik terakhir)
+        $chkDup = $db->prepare("
+            SELECT id_artikel, title, slug, status, published_at 
+            FROM artikel 
+            WHERE title = :title AND author_id = :author_id AND updated_at >= NOW() - INTERVAL 5 SECOND
+            LIMIT 1
+        ");
+        $chkDup->execute([':title' => $title, ':author_id' => $authorId]);
+        $existingRecent = $chkDup->fetch();
+        if ($existingRecent) {
+            sendResponse(true, 'Artikel berhasil diterbitkan', $existingRecent, 200);
+            return;
+        }
+
         $stmt = $db->prepare("
             INSERT INTO artikel (kategori_id, author_id, title, slug, content, thumbnail, status, published_at, updated_at)
             VALUES (:kategori_id, :author_id, :title, :slug, :content, :thumbnail, :status, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)

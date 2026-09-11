@@ -71,7 +71,7 @@
         <a href="komentar.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
           <span class="flex-1">Komentar</span>
-          <span class="px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-400 rounded">5</span>
+          <span class="px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-400 rounded sidebar-comment-badge">0</span>
         </a>
 
         <div class="px-3 pt-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-gray-400">Sistem</div>
@@ -120,26 +120,84 @@
         </div>
       </div>
 
-      <div class="flex items-center space-x-3">
-        <button type="button" id="btn-add-category" class="btn btn-primary btn-sm">
-          <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-          <span>Tambah Kategori</span>
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        <button type="button" id="btn-add-category" class="btn btn-primary btn-sm flex items-center gap-1.5 shadow-sm active:scale-95 transition-transform">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+          <span class="hidden sm:inline">Tambah Kategori</span>
+          <span class="inline sm:hidden font-medium">Tambah</span>
         </button>
       </div>
     </header>
 
     <!-- CONTENT BODY -->
-    <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-5">
+    <main class="flex-1 overflow-y-auto p-3.5 sm:p-6 lg:p-8 space-y-4 sm:space-y-5">
       
-      <!-- CATEGORIES TABLE -->
-      <div class="cms-card overflow-hidden">
-        <div class="p-4 border-b border-gray-200 flex items-center justify-between">
-          <h2 class="text-xs font-bold uppercase tracking-wider text-gray-700" id="cat-count-header">Daftar Rubrikasi Resmi (10 Kategori)</h2>
-          <span class="text-xs text-gray-500" id="cat-total-articles">Total: 8 Artikel Terpetakan</span>
+      <!-- MOBILE-FIRST METRICS / STATS BAR -->
+      <div class="grid grid-cols-2 gap-3 sm:gap-4">
+        <div class="cms-card p-3.5 sm:p-4 flex items-center gap-3 border border-gray-200/80">
+          <div class="w-10 h-10 rounded-xl bg-red-50 text-buser-red flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="text-[10px] sm:text-[11px] font-semibold text-gray-500 uppercase tracking-wider truncate">Total Rubrik</div>
+            <div id="stat-total-categories" class="text-base sm:text-xl font-extrabold text-gray-900 leading-tight">...</div>
+          </div>
         </div>
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse table-responsive-cards">
+        <div class="cms-card p-3.5 sm:p-4 flex items-center gap-3 border border-gray-200/80">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+          </div>
+          <div class="min-w-0 flex-1">
+            <div class="text-[10px] sm:text-[11px] font-semibold text-gray-500 uppercase tracking-wider truncate">Total Artikel</div>
+            <div id="stat-total-articles" class="text-base sm:text-xl font-extrabold text-gray-900 leading-tight">...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEARCH & FILTER TOOLBAR (Mobile-First) -->
+      <div class="cms-card p-3 sm:p-4 border border-gray-200/80">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3">
+          <div class="relative flex-1">
+            <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="search" id="cat-search-input" placeholder="Cari nama rubrik atau slug permalink..." class="w-full pl-9 pr-8 py-2.5 sm:py-2 text-xs border border-gray-200 rounded-lg bg-gray-50/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-buser-red/20 focus:border-buser-red transition-all">
+            <button id="cat-search-clear" type="button" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 rounded-md" title="Hapus pencarian">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="flex items-center justify-between sm:justify-end text-[11px] text-gray-500 px-1 sm:px-0">
+            <span id="cat-search-feedback">Memuat rubrikasi...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABLE & MOBILE CARDS DATA KATEGORI -->
+      <div class="cms-card overflow-hidden">
+        <div class="p-3 sm:p-4 border-b border-gray-200 flex items-center justify-between bg-gray-50/50">
+          <div>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-700" id="cat-count-header">Daftar Rubrikasi Resmi</h2>
+            <p class="text-[11px] text-gray-400 mt-0.5 hidden sm:block" id="cat-total-articles-sub">Rubrik aktif yang muncul pada portal berita</p>
+          </div>
+          <span class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-red-50 text-buser-red border border-red-100 hidden sm:inline-flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-buser-red animate-pulse"></span>
+            CMS Terhubung
+          </span>
+        </div>
+
+        <!-- 1. MOBILE CARD VIEW (< 768px) -->
+        <div id="category-mobile-cards" class="md:hidden divide-y divide-gray-100 bg-gray-50/40">
+          <!-- Loading skeleton for mobile -->
+          <div class="p-4 text-center text-gray-400 text-xs">
+            <div class="inline-flex items-center space-x-2">
+              <svg class="animate-spin h-5 w-5 text-buser-red" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+              <span>Memuat data rubrikasi...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. DESKTOP TABLE VIEW (>= 768px) -->
+        <div class="hidden md:block overflow-x-auto">
+          <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-gray-50 text-[11px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-200">
                 <th class="py-3 px-4">Nama Kategori</th>
@@ -150,163 +208,39 @@
               </tr>
             </thead>
             <tbody id="category-table-body" class="divide-y divide-gray-100 text-xs">
-              
-              <!-- 1. Nasional -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-red-600"></span>
-                  <span>Nasional</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/nasional</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">8 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(1, 'Nasional', 'nasional', 'Kabar berita peristiwa, regulasi, dan pembangunan nasional Indonesia.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(1, 'Nasional')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+              <!-- Loading skeleton for desktop table -->
+              <tr>
+                <td colspan="5" class="text-center py-8 text-gray-400">
+                  <div class="inline-flex items-center space-x-2">
+                    <svg class="animate-spin h-5 w-5 text-buser-red" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                    <span>Memuat data rubrikasi...</span>
+                  </div>
                 </td>
               </tr>
-
-              <!-- 2. Daerah -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-gray-700"></span>
-                  <span>Daerah</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/daerah</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(2, 'Daerah', 'daerah', 'Laporan eksklusif peristiwa dan perkembangan di berbagai daerah nusantara.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(2, 'Daerah')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-                </td>
-              </tr>
-
-              <!-- 3. Politik -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
-                  <span>Politik</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/politik</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(3, 'Politik', 'politik', 'Dinamika parlemen, kebijakan publik, dan kontestasi politik terkini.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(3, 'Politik')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-                </td>
-              </tr>
-
-              <!-- 4. Kriminal -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-black"></span>
-                  <span>Kriminal</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/kriminal</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(4, 'Kriminal', 'kriminal', 'Investigasi hukum, penegakan keadilan, dan laporan kriminalitas faktual.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(4, 'Kriminal')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-                </td>
-              </tr>
-
-              <!-- 5. Ekonomi -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
-                  <span>Ekonomi</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/ekonomi</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(5, 'Ekonomi', 'ekonomi', 'Pasar keuangan, perbankan, industri makro, dan bisnis strategis.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(5, 'Ekonomi')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-                </td>
-              </tr>
-
-              <!-- 6. Pendidikan -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
-                  <span>Pendidikan</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/pendidikan</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(6, 'Pendidikan', 'pendidikan', 'Dunia akademik, inovasi belajar, riset kampus, dan kurikulum.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(6, 'Pendidikan')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-                </td>
-              </tr>
-
-              <!-- 7. Teknologi -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
-                  <span>Teknologi</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/teknologi</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(7, 'Teknologi', 'teknologi', 'Transformasi digital, AI, keamanan siber, dan gawai terkini.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(7, 'Teknologi')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-                </td>
-              </tr>
-
-              <!-- 8. Olahraga -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-amber-600"></span>
-                  <span>Olahraga</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/olahraga</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(8, 'Olahraga', 'olahraga', 'Kompetisi sepak bola, bulutangkis, dan prestasi atlet tanah air & dunia.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(8, 'Olahraga')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-                </td>
-              </tr>
-
-              <!-- 9. Internasional -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span>
-                  <span>Internasional</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/internasional</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(9, 'Internasional', 'internasional', 'Sorotan diplomasi global, geopolitik, dan peristiwa mancanegara.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(9, 'Internasional')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-                </td>
-              </tr>
-
-              <!-- 10. Lifestyle -->
-              <tr class="hover:bg-gray-50 transition-colors">
-                <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-                  <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
-                  <span>Lifestyle</span>
-                </td>
-                <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/lifestyle</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
-                <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-                <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal(10, 'Lifestyle', 'lifestyle', 'Gaya hidup sehat, budaya populer, kuliner, dan hiburan edukatif.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal(10, 'Lifestyle')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-                </td>
-              </tr>
-
             </tbody>
           </table>
         </div>
+
+        <!-- 3. EMPTY STATE (When search/filter produces 0 results) -->
+        <div id="cat-empty-state" class="hidden p-8 sm:p-12 text-center bg-white">
+          <div class="w-14 h-14 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center mx-auto mb-3">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
+          </div>
+          <h3 class="text-sm font-bold text-gray-900 mb-1">Kategori Tidak Ditemukan</h3>
+          <p class="text-xs text-gray-500 max-w-xs mx-auto mb-4" id="cat-empty-message">Tidak ada rubrikasi berita yang cocok dengan kriteria pencarian Anda.</p>
+          <button type="button" id="btn-reset-search" class="btn btn-outline btn-sm">
+            <span>Reset Pencarian</span>
+          </button>
+        </div>
+
       </div>
 
     </main>
+
+    <!-- FLOATING ACTION BUTTON (FAB) FOR MOBILE -->
+    <button type="button" id="fab-add-category" class="md:hidden fixed bottom-6 right-5 z-40 w-13 h-13 rounded-full bg-buser-red text-white shadow-xl shadow-red-900/30 flex items-center justify-center active:scale-95 transition-transform" title="Tambah Kategori Baru">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+    </button>
 
     <!-- Corporate Footer -->
     <footer class="bg-white border-t border-gray-200 py-3 px-6 text-xs text-gray-500 shrink-0">
@@ -318,41 +252,78 @@
 
   </div>
 
-  <!-- CATEGORY MODAL (Add / Edit) -->
-  <div id="category-modal" class="modal-container fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop hidden">
-    <div class="bg-white rounded-xl max-w-md w-full p-6 shadow-2xl border border-gray-200">
-      <div class="flex items-center justify-between pb-3 border-b border-gray-200">
-        <h3 id="cat-modal-title" class="text-sm font-bold text-gray-900">Tambah Kategori Baru</h3>
-        <button type="button" class="text-gray-400 hover:text-gray-600" data-modal-close>
+  <!-- CATEGORY MODAL (Mobile Bottom-Sheet / Desktop Centered) -->
+  <div id="category-modal" class="modal-container fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 modal-backdrop hidden">
+    <div class="bg-white rounded-t-2xl sm:rounded-xl max-w-md w-full shadow-2xl border border-gray-200 overflow-hidden max-h-[92vh] flex flex-col transition-all">
+      
+      <!-- Mobile drag handle indicator -->
+      <div class="w-10 h-1 bg-gray-300 rounded-full mx-auto sm:hidden mt-2.5 mb-1"></div>
+
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-5 py-3.5 border-b border-gray-200 bg-white shrink-0">
+        <div class="flex items-center space-x-2">
+          <div class="w-2.5 h-2.5 rounded-full bg-buser-red"></div>
+          <h3 id="cat-modal-title" class="text-sm font-bold text-gray-900">Tambah Kategori Baru</h3>
+        </div>
+        <button type="button" class="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors" data-modal-close>
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
 
-      <form id="cat-form" class="mt-4 space-y-3 text-xs">
+      <!-- Modal Form Body -->
+      <form id="cat-form" class="flex-1 overflow-y-auto p-5 space-y-4 text-xs">
         <input type="hidden" id="cat-id-input" value="">
-        <div>
-          <label for="cat-name-input" class="block font-semibold text-gray-700 mb-1">Nama Kategori</label>
-          <input type="text" id="cat-name-input" required placeholder="misal: Otomotif" class="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-buser-red">
+
+        <!-- Quota info banner -->
+        <div id="cat-modal-quota-alert" class="hidden p-2.5 rounded-lg text-xs font-medium bg-amber-50 border border-amber-200 text-amber-800 flex items-center gap-2">
+          <svg class="w-4 h-4 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span id="cat-modal-quota-text">Kategori dibatasi maksimal 10 rubrikasi.</span>
         </div>
+        
         <div>
-          <label for="cat-slug-input" class="block font-semibold text-gray-700 mb-1">Slug</label>
-          <input type="text" id="cat-slug-input" required placeholder="otomotif" class="w-full py-2 px-3 border border-gray-300 rounded-lg font-mono focus:ring-buser-red">
+          <label for="cat-name-input" class="block font-semibold text-gray-700 mb-1.5">
+            Nama Kategori <span class="text-red-500">*</span>
+          </label>
+          <input type="text" id="cat-name-input" required placeholder="misal: Otomotif & Wisata" class="w-full py-2.5 px-3.5 border border-gray-300 rounded-lg text-sm sm:text-xs focus:ring-2 focus:ring-buser-red/20 focus:border-buser-red transition-all">
         </div>
+
         <div>
-          <label for="cat-desc-input" class="block font-semibold text-gray-700 mb-1">Deskripsi Rubrik</label>
-          <textarea id="cat-desc-input" rows="2" placeholder="Deskripsi singkat rubrik berita..." class="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-buser-red"></textarea>
+          <div class="flex items-center justify-between mb-1.5">
+            <label for="cat-slug-input" class="block font-semibold text-gray-700">
+              Slug Permalink <span class="text-red-500">*</span>
+            </label>
+            <span class="text-[10px] text-gray-400">Otomatis dari nama</span>
+          </div>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 font-mono text-[11px] text-gray-400">/kategori/</span>
+            <input type="text" id="cat-slug-input" required placeholder="otomotif" class="w-full pl-20 pr-3 py-2.5 sm:py-2 border border-gray-300 rounded-lg font-mono text-xs focus:ring-2 focus:ring-buser-red/20 focus:border-buser-red transition-all">
+          </div>
+          <div class="mt-1 flex items-center gap-1.5 text-[10px] text-gray-500">
+            <span>URL:</span>
+            <span id="cat-slug-preview" class="font-mono text-gray-600 truncate">buser.info/kategori/...</span>
+          </div>
         </div>
+
         <div>
-          <label class="block font-semibold text-gray-700 mb-1">Status Publikasi</label>
-          <select id="cat-status-select" class="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-buser-red">
-            <option value="active">Aktif</option>
-            <option value="inactive">Nonaktif</option>
+          <label for="cat-desc-input" class="block font-semibold text-gray-700 mb-1.5">Deskripsi Rubrik</label>
+          <textarea id="cat-desc-input" rows="3" placeholder="Jelaskan cakupan topik dan rubrikasi berita ini..." class="w-full py-2.5 px-3.5 border border-gray-300 rounded-lg text-sm sm:text-xs focus:ring-2 focus:ring-buser-red/20 focus:border-buser-red transition-all"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-semibold text-gray-700 mb-1.5">Status Publikasi</label>
+          <select id="cat-status-select" class="w-full py-2.5 px-3.5 border border-gray-300 rounded-lg text-sm sm:text-xs focus:ring-2 focus:ring-buser-red/20 focus:border-buser-red transition-all bg-white">
+            <option value="active">Aktif (Tampil di Portal & Navigasi)</option>
+            <option value="inactive">Nonaktif (Disembunyikan)</option>
           </select>
         </div>
 
-        <div class="mt-6 pt-3 border-t border-gray-100 flex justify-end gap-2">
-          <button type="button" class="btn btn-outline btn-sm" data-modal-close>Batal</button>
-          <button type="submit" class="btn btn-primary btn-sm">Simpan Kategori</button>
+        <!-- Modal Footer: Mobile-first Stack / Desktop Horizontal -->
+        <div class="mt-6 pt-3.5 border-t border-gray-100 flex flex-col-reverse sm:flex-row justify-end gap-2.5 sm:gap-2">
+          <button type="button" class="btn btn-outline w-full sm:w-auto py-2.5 sm:py-2 text-xs" data-modal-close>Batal</button>
+          <button type="submit" id="btn-save-cat" class="btn btn-primary w-full sm:w-auto py-2.5 sm:py-2 text-xs flex items-center justify-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <span>Simpan Kategori</span>
+          </button>
         </div>
       </form>
     </div>
@@ -361,92 +332,358 @@
   <script src="../assets/js/api-client.js"></script>
   <script src="js/admin.js"></script>
   <script>
+    // State management
+    const MAX_CATEGORIES = 10;
+    let liveCategories = [];
+    let isSlugManual = false;
+
+    // Elements
     const catModal = document.getElementById('category-modal');
     const catModalTitle = document.getElementById('cat-modal-title');
     const catIdInput = document.getElementById('cat-id-input');
     const catNameInput = document.getElementById('cat-name-input');
     const catSlugInput = document.getElementById('cat-slug-input');
     const catDescInput = document.getElementById('cat-desc-input');
+    const catSlugPreview = document.getElementById('cat-slug-preview');
+    const catStatusSelect = document.getElementById('cat-status-select');
+    const catModalQuotaAlert = document.getElementById('cat-modal-quota-alert');
+    const catModalQuotaText = document.getElementById('cat-modal-quota-text');
+    const mobileCardsContainer = document.getElementById('category-mobile-cards');
     const tableBody = document.getElementById('category-table-body');
     const catCountHeader = document.getElementById('cat-count-header');
-    const catTotalArticles = document.getElementById('cat-total-articles');
+    const catTotalArticlesSub = document.getElementById('cat-total-articles-sub');
+    const statTotalCategories = document.getElementById('stat-total-categories');
+    const statTotalArticles = document.getElementById('stat-total-articles');
+    const catSearchInput = document.getElementById('cat-search-input');
+    const catSearchClear = document.getElementById('cat-search-clear');
+    const catSearchFeedback = document.getElementById('cat-search-feedback');
+    const catEmptyState = document.getElementById('cat-empty-state');
+    const btnResetSearch = document.getElementById('btn-reset-search');
 
     const colorMap = {
-      'nasional': 'bg-red-600',
-      'daerah': 'bg-gray-700',
-      'politik': 'bg-red-500',
-      'kriminal': 'bg-black',
-      'ekonomi': 'bg-emerald-600',
-      'pendidikan': 'bg-indigo-600',
-      'teknologi': 'bg-blue-600',
-      'olahraga': 'bg-amber-600',
-      'internasional': 'bg-teal-600',
-      'lifestyle': 'bg-rose-500'
+      'nasional': 'bg-red-600 text-white',
+      'daerah': 'bg-gray-700 text-white',
+      'politik': 'bg-red-500 text-white',
+      'kriminal': 'bg-zinc-900 text-white',
+      'ekonomi': 'bg-emerald-600 text-white',
+      'pendidikan': 'bg-indigo-600 text-white',
+      'teknologi': 'bg-blue-600 text-white',
+      'olahraga': 'bg-amber-600 text-white',
+      'internasional': 'bg-teal-600 text-white',
+      'lifestyle': 'bg-rose-500 text-white'
     };
+
+    const fallbackColors = [
+      'bg-red-600 text-white',
+      'bg-blue-600 text-white',
+      'bg-emerald-600 text-white',
+      'bg-indigo-600 text-white',
+      'bg-amber-600 text-white',
+      'bg-purple-600 text-white',
+      'bg-rose-600 text-white',
+      'bg-cyan-600 text-white'
+    ];
+
+    function getCatColorClass(slug, id) {
+      if (colorMap[slug]) return colorMap[slug];
+      const index = (id || slug.length || 0) % fallbackColors.length;
+      return fallbackColors[index];
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
       loadLiveCategories();
+      setupEventListeners();
     });
+
+    function updateAddButtonState() {
+      const btnAdd = document.getElementById('btn-add-category');
+      const fabAdd = document.getElementById('fab-add-category');
+      const isMax = liveCategories.length >= MAX_CATEGORIES;
+
+      if (btnAdd) {
+        if (isMax) {
+          btnAdd.className = 'btn btn-sm flex items-center gap-1.5 shadow-sm bg-gray-100 text-gray-400 border border-gray-200 cursor-not-allowed';
+          btnAdd.title = `Batas kuota maksimal ${MAX_CATEGORIES} kategori telah tercapai`;
+          btnAdd.innerHTML = `
+            <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <span class="hidden sm:inline font-semibold text-gray-500">Maksimal (${MAX_CATEGORIES}/${MAX_CATEGORIES})</span>
+            <span class="inline sm:hidden font-semibold">${MAX_CATEGORIES}/${MAX_CATEGORIES}</span>
+          `;
+        } else {
+          btnAdd.className = 'btn btn-primary btn-sm flex items-center gap-1.5 shadow-sm active:scale-95 transition-transform';
+          btnAdd.title = '';
+          btnAdd.innerHTML = `
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+            <span class="hidden sm:inline">Tambah Kategori (${liveCategories.length}/${MAX_CATEGORIES})</span>
+            <span class="inline sm:hidden font-medium">Tambah</span>
+          `;
+        }
+      }
+
+      if (fabAdd) {
+        if (isMax) {
+          fabAdd.className = 'md:hidden fixed bottom-6 right-5 z-40 w-13 h-13 rounded-full bg-gray-400 text-white shadow-lg flex items-center justify-center cursor-not-allowed';
+          fabAdd.title = `Batas kuota maksimal ${MAX_CATEGORIES} kategori telah tercapai`;
+        } else {
+          fabAdd.className = 'md:hidden fixed bottom-6 right-5 z-40 w-13 h-13 rounded-full bg-buser-red text-white shadow-xl shadow-red-900/30 flex items-center justify-center active:scale-95 transition-transform';
+          fabAdd.title = 'Tambah Kategori Baru';
+        }
+      }
+    }
+
+    function setupEventListeners() {
+      // Add buttons (Desktop navbar & Mobile FAB)
+      const openAddModal = () => {
+        if (liveCategories.length >= MAX_CATEGORIES) {
+          showToast('error', 'Batas Maksimal Tercapai', `Portal BUSER INFO dibatasi maksimal ${MAX_CATEGORIES} kategori rubrikasi. Silakan edit atau hapus kategori yang sudah ada.`);
+          return;
+        }
+
+        catModalTitle.textContent = 'Tambah Kategori Baru';
+        catIdInput.value = '';
+        catNameInput.value = '';
+        catSlugInput.value = '';
+        catDescInput.value = '';
+        catStatusSelect.value = 'active';
+        isSlugManual = false;
+        updateSlugPreview('');
+
+        if (catModalQuotaAlert && catModalQuotaText) {
+          catModalQuotaAlert.classList.remove('hidden');
+          catModalQuotaText.textContent = `Rubrikasi aktif saat ini: ${liveCategories.length} dari maksimal ${MAX_CATEGORIES} kategori.`;
+        }
+
+        openModal('category-modal');
+        setTimeout(() => catNameInput.focus(), 100);
+      };
+
+      document.getElementById('btn-add-category')?.addEventListener('click', openAddModal);
+      document.getElementById('fab-add-category')?.addEventListener('click', openAddModal);
+
+      // Auto slug sync
+      catNameInput.addEventListener('input', () => {
+        if (!isSlugManual) {
+          const generatedSlug = catNameInput.value
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+          catSlugInput.value = generatedSlug;
+          updateSlugPreview(generatedSlug);
+        }
+      });
+
+      catSlugInput.addEventListener('input', () => {
+        isSlugManual = true;
+        catSlugInput.value = catSlugInput.value
+          .toLowerCase()
+          .replace(/[^a-z0-9-]/g, '')
+          .replace(/-+/g, '-');
+        updateSlugPreview(catSlugInput.value);
+      });
+
+      // Search input live filtering
+      catSearchInput.addEventListener('input', () => {
+        const query = catSearchInput.value.trim().toLowerCase();
+        if (query) {
+          catSearchClear.classList.remove('hidden');
+        } else {
+          catSearchClear.classList.add('hidden');
+        }
+        filterCategories(query);
+      });
+
+      catSearchClear.addEventListener('click', () => {
+        catSearchInput.value = '';
+        catSearchClear.classList.add('hidden');
+        filterCategories('');
+        catSearchInput.focus();
+      });
+
+      btnResetSearch.addEventListener('click', () => {
+        catSearchInput.value = '';
+        catSearchClear.classList.add('hidden');
+        filterCategories('');
+      });
+    }
+
+    function updateSlugPreview(slug) {
+      if (catSlugPreview) {
+        catSlugPreview.textContent = slug ? `buser.info/kategori/${slug}` : 'buser.info/kategori/...';
+      }
+    }
 
     async function loadLiveCategories() {
       if (!window.BuserInfoAPI) return;
       try {
         const categories = await window.BuserInfoAPI.getCategories();
-        if (!categories || categories.length === 0) return;
+        liveCategories = Array.isArray(categories) ? categories : [];
 
-        const totalArts = categories.reduce((sum, c) => sum + parseInt(c.total_artikel || 0), 0);
-        if (catCountHeader) catCountHeader.textContent = `Daftar Rubrikasi Resmi (${categories.length} Kategori)`;
-        if (catTotalArticles) catTotalArticles.textContent = `Total: ${totalArts} Artikel Terpetakan`;
+        // Calculate metrics
+        const totalCats = liveCategories.length;
+        const totalArts = liveCategories.reduce((sum, c) => sum + parseInt(c.total_artikel || 0), 0);
 
-        tableBody.innerHTML = '';
-        categories.forEach(cat => {
-          const slug = cat.slug || cat.name_kategori.toLowerCase().replace(/[^a-z0-9]/g, '-');
-          const colorClass = colorMap[slug] || 'bg-buser-red';
-          const total = parseInt(cat.total_artikel || 0);
+        if (statTotalCategories) {
+          statTotalCategories.innerHTML = `${totalCats} <span class="text-xs font-semibold ${totalCats >= MAX_CATEGORIES ? 'text-amber-600 font-bold' : 'text-gray-400'}">/ ${MAX_CATEGORIES} max</span>`;
+        }
+        if (statTotalArticles) statTotalArticles.textContent = totalArts;
+        if (catCountHeader) {
+          catCountHeader.textContent = `Daftar Rubrikasi Resmi (${totalCats}/${MAX_CATEGORIES} Kategori${totalCats >= MAX_CATEGORIES ? ' — Kuota Penuh' : ''})`;
+        }
+        if (catTotalArticlesSub) {
+          catTotalArticlesSub.textContent = `Total ${totalArts} artikel terpetakan dalam ${totalCats} rubrik (Maksimal ${MAX_CATEGORIES} rubrik)`;
+        }
 
-          const tr = document.createElement('tr');
-          tr.className = 'hover:bg-gray-50 transition-colors';
-          tr.innerHTML = `
-            <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
-              <span class="w-2.5 h-2.5 rounded-full ${colorClass}"></span>
-              <span>${cat.name_kategori}</span>
-            </td>
-            <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/${slug}</td>
-            <td class="py-3.5 px-4 font-semibold text-gray-900">${total} artikel</td>
-            <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
-            <td class="py-3.5 px-4 text-right space-x-1">
-              <button type="button" class="btn-edit p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-              <button type="button" class="btn-del p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
-            </td>
-          `;
-
-          tr.querySelector('.btn-edit').addEventListener('click', () => {
-            editCatModal(cat.id_kategori, cat.name_kategori, slug, cat.deskripsi || '');
-          });
-
-          tr.querySelector('.btn-del').addEventListener('click', () => {
-            deleteCatModal(cat.id_kategori, cat.name_kategori);
-          });
-
-          tableBody.appendChild(tr);
-        });
+        updateAddButtonState();
+        renderCategories(liveCategories);
       } catch (e) {
         console.error('Gagal memuat kategori:', e);
+        if (catSearchFeedback) catSearchFeedback.textContent = 'Gagal memuat data rubrikasi';
       }
     }
 
-    document.getElementById('btn-add-category').addEventListener('click', () => {
-      catModalTitle.textContent = 'Tambah Kategori Baru';
-      catIdInput.value = '';
-      catNameInput.value = '';
-      catSlugInput.value = '';
-      catDescInput.value = '';
-      openModal('category-modal');
-    });
+    function filterCategories(query) {
+      if (!query) {
+        renderCategories(liveCategories);
+        return;
+      }
 
-    catNameInput.addEventListener('input', () => {
-      catSlugInput.value = catNameInput.value.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
-    });
+      const filtered = liveCategories.filter(cat => {
+        const name = (cat.name_kategori || '').toLowerCase();
+        const slug = (cat.slug || '').toLowerCase();
+        const desc = (cat.deskripsi || '').toLowerCase();
+        return name.includes(query) || slug.includes(query) || desc.includes(query);
+      });
+
+      renderCategories(filtered, query);
+    }
+
+    function renderCategories(categories, query = '') {
+      const count = categories.length;
+      const totalCount = liveCategories.length;
+
+      if (catSearchFeedback) {
+        if (query) {
+          catSearchFeedback.textContent = `Menampilkan ${count} dari ${totalCount} rubrik`;
+        } else {
+          catSearchFeedback.textContent = `Total ${totalCount} rubrik aktif`;
+        }
+      }
+
+      // Empty State handling
+      if (count === 0) {
+        mobileCardsContainer.innerHTML = '';
+        tableBody.innerHTML = '';
+        catEmptyState.classList.remove('hidden');
+        return;
+      }
+
+      catEmptyState.classList.add('hidden');
+      mobileCardsContainer.innerHTML = '';
+      tableBody.innerHTML = '';
+
+      categories.forEach((cat, index) => {
+        const slug = cat.slug || cat.name_kategori.toLowerCase().replace(/[^a-z0-9]/g, '-');
+        const colorClass = getCatColorClass(slug, cat.id_kategori || index);
+        const bgDotColor = colorClass.split(' ')[0] || 'bg-red-600';
+        const totalArticles = parseInt(cat.total_artikel || 0);
+        const desc = cat.deskripsi || '';
+
+        // 1. Render Mobile-First Card (< 768px)
+        const card = document.createElement('div');
+        card.className = 'p-4 bg-white border-b border-gray-100 last:border-0 transition-colors';
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-2.5">
+            <div class="flex items-center space-x-2.5 min-w-0">
+              <span class="w-3 h-3 rounded-full ${bgDotColor} shrink-0 ring-2 ring-gray-100"></span>
+              <h4 class="font-bold text-gray-900 text-sm truncate">${cat.name_kategori}</h4>
+            </div>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+              Aktif
+            </span>
+          </div>
+
+          <div class="mt-2 flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center gap-1 font-mono text-[11px] text-gray-600 bg-gray-100 px-2 py-0.5 rounded">
+              <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+              /kategori/${slug}
+            </span>
+            <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">
+              <svg class="w-3 h-3 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+              ${totalArticles} artikel
+            </span>
+          </div>
+
+          ${desc ? `<p class="mt-2 text-xs text-gray-500 line-clamp-2 leading-relaxed">${desc}</p>` : ''}
+
+          <!-- Sejajar Action Buttons for Mobile -->
+          <div class="pt-3 mt-3 border-t border-gray-100 flex items-center gap-2">
+            <button type="button" class="btn-card-edit flex-1 min-h-[38px] py-2 px-3 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 active:scale-98 flex items-center justify-center gap-1.5 transition-all">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              <span>Edit Rubrik</span>
+            </button>
+            <button type="button" class="btn-card-del flex-1 min-h-[38px] py-2 px-3 rounded-lg text-xs font-semibold bg-red-50 text-red-700 hover:bg-red-100 active:scale-98 flex items-center justify-center gap-1.5 transition-all">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              <span>Hapus</span>
+            </button>
+          </div>
+        `;
+
+        card.querySelector('.btn-card-edit').addEventListener('click', () => {
+          editCatModal(cat.id_kategori, cat.name_kategori, slug, desc);
+        });
+
+        card.querySelector('.btn-card-del').addEventListener('click', () => {
+          deleteCatModal(cat.id_kategori, cat.name_kategori);
+        });
+
+        mobileCardsContainer.appendChild(card);
+
+        // 2. Render Desktop Table Row (>= 768px)
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-gray-50/80 transition-colors';
+        tr.innerHTML = `
+          <td class="py-3.5 px-4 font-bold text-gray-900">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-2.5 h-2.5 rounded-full ${bgDotColor} shrink-0 ring-2 ring-gray-100"></span>
+              <span>${cat.name_kategori}</span>
+            </div>
+            ${desc ? `<div class="text-[11px] font-normal text-gray-400 line-clamp-1 mt-0.5">${desc}</div>` : ''}
+          </td>
+          <td class="py-3.5 px-4 font-mono text-gray-500 whitespace-nowrap">/kategori/${slug}</td>
+          <td class="py-3.5 px-4 font-semibold text-gray-900 whitespace-nowrap">
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-[11px]">
+              ${totalArticles} artikel
+            </span>
+          </td>
+          <td class="py-3.5 px-4 whitespace-nowrap">
+            <span class="badge-status badge-published">Aktif</span>
+          </td>
+          <td class="py-3.5 px-4 text-right whitespace-nowrap">
+            <!-- Sejajar Action Buttons for Desktop -->
+            <div class="flex items-center justify-end gap-1.5 w-full">
+              <button type="button" class="btn-table-edit w-8 h-8 rounded-lg flex items-center justify-center text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 transition-colors shrink-0 shadow-xs" title="Edit Kategori">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              </button>
+              <button type="button" class="btn-table-del w-8 h-8 rounded-lg flex items-center justify-center text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 transition-colors shrink-0 shadow-xs" title="Hapus Kategori">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+            </div>
+          </td>
+        `;
+
+        tr.querySelector('.btn-table-edit').addEventListener('click', () => {
+          editCatModal(cat.id_kategori, cat.name_kategori, slug, desc);
+        });
+
+        tr.querySelector('.btn-table-del').addEventListener('click', () => {
+          deleteCatModal(cat.id_kategori, cat.name_kategori);
+        });
+
+        tableBody.appendChild(tr);
+      });
+    }
 
     function editCatModal(id, name, slug, desc) {
       catModalTitle.textContent = 'Edit Kategori: ' + name;
@@ -454,26 +691,36 @@
       catNameInput.value = name;
       catSlugInput.value = slug;
       catDescInput.value = desc || '';
+      catStatusSelect.value = 'active';
+      isSlugManual = true;
+      updateSlugPreview(slug);
+
+      if (catModalQuotaAlert) {
+        catModalQuotaAlert.classList.add('hidden');
+      }
+
       openModal('category-modal');
+      setTimeout(() => catNameInput.focus(), 100);
     }
 
     function deleteCatModal(id, name) {
       confirmAction({
-        title: 'Hapus Kategori?',
-        message: `Apakah Anda yakin ingin menghapus kategori "${name}"?`,
-        confirmText: 'Hapus',
+        title: 'Hapus Rubrik Kategori?',
+        message: `Apakah Anda yakin ingin menghapus kategori "${name}"? Artikel yang berasosiasi dengan kategori ini mungkin perlu dipindahkan.`,
+        confirmText: 'Hapus Kategori',
+        cancelText: 'Batal',
         type: 'danger',
         onConfirm: async () => {
           if (window.BuserInfoAPI && id) {
             const res = await window.BuserInfoAPI.deleteCategory(id);
             if (res && res.status === 'success') {
-              showToast('success', 'Berhasil', `Kategori ${name} berhasil dihapus.`);
+              showToast('success', 'Berhasil', `Kategori "${name}" berhasil dihapus.`);
               loadLiveCategories();
             } else {
               showToast('error', 'Gagal', (res && res.message) ? res.message : 'Gagal menghapus kategori.');
             }
           } else {
-            showToast('success', 'Berhasil', `Kategori ${name} berhasil dihapus.`);
+            showToast('success', 'Berhasil', `Kategori "${name}" berhasil dihapus.`);
           }
         }
       });
@@ -485,27 +732,51 @@
       const name = catNameInput.value.trim();
       const slug = catSlugInput.value.trim();
       const desc = catDescInput.value.trim();
+      const btnSave = document.getElementById('btn-save-cat');
 
-      if (!name) return;
+      if (!name || !slug) {
+        showToast('error', 'Peringatan', 'Nama dan slug kategori wajib diisi.');
+        return;
+      }
+
+      // Validasi batas kuota maksimal 10 kategori saat tambah baru
+      if (!id && liveCategories.length >= MAX_CATEGORIES) {
+        showToast('error', 'Batas Maksimal', `Batas maksimal ${MAX_CATEGORIES} kategori telah tercapai. Hapus atau edit rubrikasi yang ada terlebih dahulu.`);
+        return;
+      }
+
+      if (btnSave) {
+        btnSave.disabled = true;
+        btnSave.classList.add('opacity-75');
+      }
 
       closeModal('category-modal');
 
-      if (window.BuserInfoAPI) {
-        let res;
-        if (id) {
-          res = await window.BuserInfoAPI.updateCategory(id, { name_kategori: name, slug, deskripsi: desc });
-        } else {
-          res = await window.BuserInfoAPI.createCategory({ name_kategori: name, slug, deskripsi: desc });
-        }
+      try {
+        if (window.BuserInfoAPI) {
+          let res;
+          if (id) {
+            res = await window.BuserInfoAPI.updateCategory(id, { name_kategori: name, slug, deskripsi: desc });
+          } else {
+            res = await window.BuserInfoAPI.createCategory({ name_kategori: name, slug, deskripsi: desc });
+          }
 
-        if (res && res.status === 'success') {
-          showToast('success', 'Berhasil', id ? 'Berhasil diperbarui' : 'Kategori baru berhasil ditambahkan');
-          loadLiveCategories();
+          if (res && res.status === 'success') {
+            showToast('success', 'Berhasil', id ? `Kategori "${name}" berhasil diperbarui.` : `Kategori baru "${name}" berhasil dibuat.`);
+            loadLiveCategories();
+          } else {
+            showToast('error', 'Gagal', (res && res.message) ? res.message : 'Gagal menyimpan kategori.');
+          }
         } else {
-          showToast('error', 'Gagal', (res && res.message) ? res.message : 'Gagal menyimpan kategori');
+          showToast('success', 'Berhasil', `Kategori "${name}" berhasil disimpan.`);
         }
-      } else {
-        showToast('success', 'Berhasil', `Kategori "${name}" berhasil disimpan.`);
+      } catch (err) {
+        showToast('error', 'Kesalahan', 'Terjadi kesalahan saat memproses permintaan.');
+      } finally {
+        if (btnSave) {
+          btnSave.disabled = false;
+          btnSave.classList.remove('opacity-75');
+        }
       }
     });
   </script>

@@ -3,21 +3,30 @@
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
-# 1. Environment & Sensitive Credentials
+# 1. Environment & Sensitive Credentials / Secrets
 # ------------------------------------------------------------------------------
 .env
 .env.*
 *.env
 backend_ci4/.env
 backend_ci4/env
+*.local.php
+*.key
+*.pem
+*.cer
+*.crt
+*.pfx
+*.p12
+id_rsa*
 !.env.example
 !backend_ci4/.env.example
 
 # ------------------------------------------------------------------------------
-# 2. User Uploaded Files (Dynamic Media)
+# 2. User Uploaded Files & Dynamic Media
 # ------------------------------------------------------------------------------
 /assets/images/berita/uploads/*
 !/assets/images/berita/uploads/.gitkeep
+/assets/images/redaksi/redaksi_*
 /uploads/*
 !/uploads/.gitkeep
 
@@ -48,17 +57,31 @@ error_log
 backend_ci4/writable/logs/
 
 # ------------------------------------------------------------------------------
-# 6. Database Backups & Dumps
+# 6. Database Backups & Dumps (PENTING: Jangan di-push ke repository)
 # ------------------------------------------------------------------------------
 *.sql
 *.sql.gz
 *.sqlite
 *.sqlite3
 *.db
-!database_mysql.sql
+*.dump
+data.sql
+database_mysql.sql
+!database_dummy.sql
 
 # ------------------------------------------------------------------------------
-# 7. Operating System Files
+# 7. Archives & Backups
+# ------------------------------------------------------------------------------
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+*.bak
+*.backup
+
+# ------------------------------------------------------------------------------
+# 8. Operating System Files
 # ------------------------------------------------------------------------------
 # Windows
 Thumbs.db
@@ -76,7 +99,7 @@ $RECYCLE.BIN/
 *~
 
 # ------------------------------------------------------------------------------
-# 8. IDE & Code Editors
+# 9. IDE & Code Editors
 # ------------------------------------------------------------------------------
 .idea/
 *.suo
@@ -84,7 +107,6 @@ $RECYCLE.BIN/
 *.njsproj
 *.sln
 *.sw?
-*.bak
 *.tmp
 *.temp
 
@@ -94,3 +116,4 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+

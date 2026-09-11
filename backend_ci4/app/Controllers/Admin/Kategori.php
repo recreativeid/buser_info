@@ -26,6 +26,10 @@ class Kategori extends BaseController
 
     public function store()
     {
+        if ($this->kategoriModel->countAllResults() >= 10) {
+            return redirect()->to('/admin/kategori')->with('error', 'Batas maksimal 10 kategori telah tercapai. Hapus atau edit kategori yang ada terlebih dahulu.');
+        }
+
         $name = $this->request->getPost('name');
         $slug = url_title($name, '-', true);
 

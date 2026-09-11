@@ -63,6 +63,19 @@ function handleGetCategories(PDO $db): void {
 function handleCreateCategory(PDO $db): void {
     requireAuth();
 
+    // Validasi batas kuota maksimal 10 kategori rubrikasi
+    try {
+        $stmtCount = $db->query("SELECT COUNT(*) AS total FROM kategori");
+        $totalCount = (int)$stmtCount->fetchColumn();
+        if ($totalCount >= 10) {
+            sendResponse(false, 'Batas maksimal 10 kategori telah tercapai. Hapus atau edit kategori yang ada terlebih dahulu untuk menambahkan kategori baru.', null, 400);
+            return;
+        }
+    } catch (PDOException $e) {
+        sendResponse(false, 'Gagal memeriksa kuota kategori: ' . $e->getMessage(), null, 500);
+        return;
+    }
+
     $input = json_decode(file_get_contents('php://input'), true) ?? $_POST;
     $nama = trim($input['name_kategori'] ?? '');
     $deskripsi = trim($input['deskripsi'] ?? '');

@@ -9,28 +9,10 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            buser: {
-              black: '#0B0B0B',
-              red: '#D71920',
-              redHover: '#B80F15',
-              dark: '#222222',
-              light: '#F5F5F5',
-              border: '#E5E7EB'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <script src="../assets/js/tailwind-config.js"></script>
   <link rel="stylesheet" href="css/admin.css">
+  <script src="../assets/js/api-client.js"></script>
+  <script src="js/auth-guard.js"></script>
 </head>
 <body class="bg-[#F5F5F5] text-gray-900 antialiased flex h-screen overflow-hidden">
 
@@ -41,8 +23,15 @@
   <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-[#0B0B0B] text-gray-300 flex flex-col justify-between transition-transform duration-200 ease-in-out -translate-x-full lg:translate-x-0 lg:static border-r border-gray-800">
     <div>
       <div class="h-16 flex items-center justify-between px-5 border-b border-gray-800">
-        <a href="index.html" class="flex items-center space-x-2">
-          <img src="../assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="h-8 w-auto">
+        <a href="index.html" class="flex items-center space-x-2.5">
+          <img src="../assets/images/logo/Logo_BuserInfo.png" alt="BUSER INFO" class="h-9 w-auto object-contain shrink-0">
+          <div class="flex flex-col justify-center">
+            <div class="flex items-center space-x-1 leading-none">
+              <span class="text-white font-black text-base tracking-wider uppercase">BUSER<span class="text-buser-red">.</span></span>
+              <span class="bg-buser-red text-white text-[9px] font-black px-1.5 py-0.5 rounded-sm tracking-wider uppercase">INFO</span>
+            </div>
+            <span class="text-[7.5px] text-gray-400 font-semibold tracking-wider uppercase mt-0.5 whitespace-nowrap">PANEL REDAKSI</span>
+          </div>
         </a>
         <button id="sidebar-close-btn" class="lg:hidden p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -59,10 +48,6 @@
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
           <span>Berita</span>
         </a>
-        <a href="tulis-berita.html" class="nav-item">
-          <svg class="w-4 h-4 mr-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-          <span>Tulis Berita</span>
-        </a>
         <a href="kategori.html" class="nav-item active">
           <svg class="w-4 h-4 mr-3 text-buser-red" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
           <span>Kategori</span>
@@ -71,9 +56,17 @@
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
           <span>Penulis</span>
         </a>
+        <a href="profil.html" class="nav-item">
+          <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span>Profil Redaksi</span>
+        </a>
         <a href="media.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           <span>Media</span>
+        </a>
+        <a href="video.html" class="nav-item">
+          <svg class="w-4 h-4 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>Video</span>
         </a>
         <a href="komentar.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
@@ -81,11 +74,7 @@
           <span class="px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-400 rounded">5</span>
         </a>
 
-        <div class="px-3 pt-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-gray-400">Sistem & Analitik</div>
-        <a href="statistik.html" class="nav-item">
-          <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-          <span>Statistik</span>
-        </a>
+        <div class="px-3 pt-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-gray-400">Sistem</div>
         <a href="pengguna.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
           <span>Pengguna</span>
@@ -101,12 +90,12 @@
     <div class="p-3 border-t border-gray-800 bg-[#111111]">
       <div class="flex items-center justify-between p-2 rounded-lg bg-gray-900/60 border border-gray-800">
         <a href="profil.html" class="flex items-center space-x-2.5 min-w-0 flex-1 hover:opacity-80 transition-opacity">
-          <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-xs shrink-0 ring-2 ring-red-500/30">
-            AR
+          <div class="user-display-avatar w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-xs shrink-0 ring-2 ring-red-500/30">
+            RD
           </div>
           <div class="min-w-0 flex-1">
-            <div class="text-xs font-semibold text-white truncate">Agus Riyadi</div>
-            <div class="text-[10px] text-gray-400 truncate">Pemimpin Redaksi</div>
+            <div class="user-display-name text-xs font-semibold text-white truncate">Pemimpin Redaksi</div>
+            <div class="user-display-role text-[10px] text-gray-400 truncate">Administrator</div>
           </div>
         </a>
         <a href="login.html" title="Keluar" class="p-1.5 text-gray-400 hover:text-red-400 hover:bg-gray-800 rounded transition-colors">
@@ -134,7 +123,7 @@
       <div class="flex items-center space-x-3">
         <button type="button" id="btn-add-category" class="btn btn-primary btn-sm">
           <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-          <span>+ Tambah Kategori</span>
+          <span>Tambah Kategori</span>
         </button>
       </div>
     </header>
@@ -145,8 +134,8 @@
       <!-- CATEGORIES TABLE -->
       <div class="cms-card overflow-hidden">
         <div class="p-4 border-b border-gray-200 flex items-center justify-between">
-          <h2 class="text-xs font-bold uppercase tracking-wider text-gray-700">Daftar Rubrikasi Resmi (10 Kategori)</h2>
-          <span class="text-xs text-gray-500">Total: 248 Artikel Terpetakan</span>
+          <h2 class="text-xs font-bold uppercase tracking-wider text-gray-700" id="cat-count-header">Daftar Rubrikasi Resmi (10 Kategori)</h2>
+          <span class="text-xs text-gray-500" id="cat-total-articles">Total: 8 Artikel Terpetakan</span>
         </div>
 
         <div class="overflow-x-auto">
@@ -160,7 +149,7 @@
                 <th class="py-3 px-4 text-right">Aksi</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 text-xs">
+            <tbody id="category-table-body" class="divide-y divide-gray-100 text-xs">
               
               <!-- 1. Nasional -->
               <tr class="hover:bg-gray-50 transition-colors">
@@ -169,11 +158,11 @@
                   <span>Nasional</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/nasional</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">54 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">8 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Nasional', 'nasional', 'Berita peristiwa skala nasional')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Nasional')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(1, 'Nasional', 'nasional', 'Kabar berita peristiwa, regulasi, dan pembangunan nasional Indonesia.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(1, 'Nasional')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -184,11 +173,11 @@
                   <span>Daerah</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/daerah</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">31 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Daerah', 'daerah', 'Liputan daerah dan pelosok tanah air')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Daerah')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(2, 'Daerah', 'daerah', 'Laporan eksklusif peristiwa dan perkembangan di berbagai daerah nusantara.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(2, 'Daerah')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -199,11 +188,11 @@
                   <span>Politik</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/politik</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">38 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Politik', 'politik', 'Dinamika politik dan kebijakan publik')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Politik')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(3, 'Politik', 'politik', 'Dinamika parlemen, kebijakan publik, dan kontestasi politik terkini.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(3, 'Politik')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -214,11 +203,11 @@
                   <span>Kriminal</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/kriminal</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">46 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Kriminal', 'kriminal', 'Berita kriminal, investigasi, dan hukum')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Kriminal')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(4, 'Kriminal', 'kriminal', 'Investigasi hukum, penegakan keadilan, dan laporan kriminalitas faktual.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(4, 'Kriminal')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -229,11 +218,11 @@
                   <span>Ekonomi</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/ekonomi</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">25 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Ekonomi', 'ekonomi', 'Pasar modal, perbankan, dan fiskal')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Ekonomi')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(5, 'Ekonomi', 'ekonomi', 'Pasar keuangan, perbankan, industri makro, dan bisnis strategis.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(5, 'Ekonomi')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -244,11 +233,11 @@
                   <span>Pendidikan</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/pendidikan</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">14 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Pendidikan', 'pendidikan', 'Dunia sekolah dan kampus')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Pendidikan')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(6, 'Pendidikan', 'pendidikan', 'Dunia akademik, inovasi belajar, riset kampus, dan kurikulum.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(6, 'Pendidikan')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -259,11 +248,11 @@
                   <span>Teknologi</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/teknologi</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">18 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Teknologi', 'teknologi', 'Inovasi AI, gadget, dan keamanan siber')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Teknologi')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(7, 'Teknologi', 'teknologi', 'Transformasi digital, AI, keamanan siber, dan gawai terkini.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(7, 'Teknologi')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -274,11 +263,11 @@
                   <span>Olahraga</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/olahraga</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">11 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Olahraga', 'olahraga', 'Sepak bola dan atletik nasional')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Olahraga')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(8, 'Olahraga', 'olahraga', 'Kompetisi sepak bola, bulutangkis, dan prestasi atlet tanah air & dunia.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(8, 'Olahraga')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -289,11 +278,11 @@
                   <span>Internasional</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/internasional</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">7 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Internasional', 'internasional', 'Kabar mancanegara dan geopolitik')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Internasional')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(9, 'Internasional', 'internasional', 'Sorotan diplomasi global, geopolitik, dan peristiwa mancanegara.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(9, 'Internasional')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -304,11 +293,11 @@
                   <span>Lifestyle</span>
                 </td>
                 <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/lifestyle</td>
-                <td class="py-3.5 px-4 font-semibold text-gray-900">4 artikel</td>
+                <td class="py-3.5 px-4 font-semibold text-gray-900">0 artikel</td>
                 <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
                 <td class="py-3.5 px-4 text-right space-x-1">
-                  <button type="button" onclick="editCatModal('Lifestyle', 'lifestyle', 'Gaya hidup, kesehatan, dan kuliner')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
-                  <button type="button" onclick="deleteCatModal('Lifestyle')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+                  <button type="button" onclick="editCatModal(10, 'Lifestyle', 'lifestyle', 'Gaya hidup sehat, budaya populer, kuliner, dan hiburan edukatif.')" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+                  <button type="button" onclick="deleteCatModal(10, 'Lifestyle')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
                 </td>
               </tr>
 
@@ -340,6 +329,7 @@
       </div>
 
       <form id="cat-form" class="mt-4 space-y-3 text-xs">
+        <input type="hidden" id="cat-id-input" value="">
         <div>
           <label for="cat-name-input" class="block font-semibold text-gray-700 mb-1">Nama Kategori</label>
           <input type="text" id="cat-name-input" required placeholder="misal: Otomotif" class="w-full py-2 px-3 border border-gray-300 rounded-lg focus:ring-buser-red">
@@ -368,16 +358,86 @@
     </div>
   </div>
 
+  <script src="../assets/js/api-client.js"></script>
   <script src="js/admin.js"></script>
   <script>
     const catModal = document.getElementById('category-modal');
     const catModalTitle = document.getElementById('cat-modal-title');
+    const catIdInput = document.getElementById('cat-id-input');
     const catNameInput = document.getElementById('cat-name-input');
     const catSlugInput = document.getElementById('cat-slug-input');
     const catDescInput = document.getElementById('cat-desc-input');
+    const tableBody = document.getElementById('category-table-body');
+    const catCountHeader = document.getElementById('cat-count-header');
+    const catTotalArticles = document.getElementById('cat-total-articles');
+
+    const colorMap = {
+      'nasional': 'bg-red-600',
+      'daerah': 'bg-gray-700',
+      'politik': 'bg-red-500',
+      'kriminal': 'bg-black',
+      'ekonomi': 'bg-emerald-600',
+      'pendidikan': 'bg-indigo-600',
+      'teknologi': 'bg-blue-600',
+      'olahraga': 'bg-amber-600',
+      'internasional': 'bg-teal-600',
+      'lifestyle': 'bg-rose-500'
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadLiveCategories();
+    });
+
+    async function loadLiveCategories() {
+      if (!window.BuserInfoAPI) return;
+      try {
+        const categories = await window.BuserInfoAPI.getCategories();
+        if (!categories || categories.length === 0) return;
+
+        const totalArts = categories.reduce((sum, c) => sum + parseInt(c.total_artikel || 0), 0);
+        if (catCountHeader) catCountHeader.textContent = `Daftar Rubrikasi Resmi (${categories.length} Kategori)`;
+        if (catTotalArticles) catTotalArticles.textContent = `Total: ${totalArts} Artikel Terpetakan`;
+
+        tableBody.innerHTML = '';
+        categories.forEach(cat => {
+          const slug = cat.slug || cat.name_kategori.toLowerCase().replace(/[^a-z0-9]/g, '-');
+          const colorClass = colorMap[slug] || 'bg-buser-red';
+          const total = parseInt(cat.total_artikel || 0);
+
+          const tr = document.createElement('tr');
+          tr.className = 'hover:bg-gray-50 transition-colors';
+          tr.innerHTML = `
+            <td class="py-3.5 px-4 font-bold text-gray-900 flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full ${colorClass}"></span>
+              <span>${cat.name_kategori}</span>
+            </td>
+            <td class="py-3.5 px-4 font-mono text-gray-500">/kategori/${slug}</td>
+            <td class="py-3.5 px-4 font-semibold text-gray-900">${total} artikel</td>
+            <td class="py-3.5 px-4"><span class="badge-status badge-published">Aktif</span></td>
+            <td class="py-3.5 px-4 text-right space-x-1">
+              <button type="button" class="btn-edit p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50">Edit</button>
+              <button type="button" class="btn-del p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50">Hapus</button>
+            </td>
+          `;
+
+          tr.querySelector('.btn-edit').addEventListener('click', () => {
+            editCatModal(cat.id_kategori, cat.name_kategori, slug, cat.deskripsi || '');
+          });
+
+          tr.querySelector('.btn-del').addEventListener('click', () => {
+            deleteCatModal(cat.id_kategori, cat.name_kategori);
+          });
+
+          tableBody.appendChild(tr);
+        });
+      } catch (e) {
+        console.error('Gagal memuat kategori:', e);
+      }
+    }
 
     document.getElementById('btn-add-category').addEventListener('click', () => {
       catModalTitle.textContent = 'Tambah Kategori Baru';
+      catIdInput.value = '';
       catNameInput.value = '';
       catSlugInput.value = '';
       catDescInput.value = '';
@@ -388,30 +448,65 @@
       catSlugInput.value = catNameInput.value.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
     });
 
-    function editCatModal(name, slug, desc) {
+    function editCatModal(id, name, slug, desc) {
       catModalTitle.textContent = 'Edit Kategori: ' + name;
+      catIdInput.value = id || '';
       catNameInput.value = name;
       catSlugInput.value = slug;
       catDescInput.value = desc || '';
       openModal('category-modal');
     }
 
-    function deleteCatModal(name) {
+    function deleteCatModal(id, name) {
       confirmAction({
         title: 'Hapus Kategori?',
-        message: `Kategori "${name}" akan dihapus. Berita terkait akan dialihkan ke kategori default "Umum".`,
-        confirmText: 'Hapus Kategori',
+        message: `Apakah Anda yakin ingin menghapus kategori "${name}"?`,
+        confirmText: 'Hapus',
         type: 'danger',
-        onConfirm: () => {
-          showToast('success', 'Kategori Dihapus', `Kategori ${name} berhasil dihapus.`);
+        onConfirm: async () => {
+          if (window.BuserInfoAPI && id) {
+            const res = await window.BuserInfoAPI.deleteCategory(id);
+            if (res && res.status === 'success') {
+              showToast('success', 'Berhasil', `Kategori ${name} berhasil dihapus.`);
+              loadLiveCategories();
+            } else {
+              showToast('error', 'Gagal', (res && res.message) ? res.message : 'Gagal menghapus kategori.');
+            }
+          } else {
+            showToast('success', 'Berhasil', `Kategori ${name} berhasil dihapus.`);
+          }
         }
       });
     }
 
-    document.getElementById('cat-form').addEventListener('submit', (e) => {
+    document.getElementById('cat-form').addEventListener('submit', async (e) => {
       e.preventDefault();
+      const id = catIdInput.value;
+      const name = catNameInput.value.trim();
+      const slug = catSlugInput.value.trim();
+      const desc = catDescInput.value.trim();
+
+      if (!name) return;
+
       closeModal('category-modal');
-      showToast('success', 'Berhasil Disimpan', `Kategori "${catNameInput.value}" telah diperbarui.`);
+
+      if (window.BuserInfoAPI) {
+        let res;
+        if (id) {
+          res = await window.BuserInfoAPI.updateCategory(id, { name_kategori: name, slug, deskripsi: desc });
+        } else {
+          res = await window.BuserInfoAPI.createCategory({ name_kategori: name, slug, deskripsi: desc });
+        }
+
+        if (res && res.status === 'success') {
+          showToast('success', 'Berhasil', id ? 'Berhasil diperbarui' : 'Kategori baru berhasil ditambahkan');
+          loadLiveCategories();
+        } else {
+          showToast('error', 'Gagal', (res && res.message) ? res.message : 'Gagal menyimpan kategori');
+        }
+      } else {
+        showToast('success', 'Berhasil', `Kategori "${name}" berhasil disimpan.`);
+      }
     });
   </script>
 </body>

@@ -9,28 +9,10 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            buser: {
-              black: '#0B0B0B',
-              red: '#D71920',
-              redHover: '#B80F15',
-              dark: '#222222',
-              light: '#F5F5F5',
-              border: '#E5E7EB'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <script src="../assets/js/tailwind-config.js"></script>
   <link rel="stylesheet" href="css/admin.css">
+  <script src="../assets/js/api-client.js"></script>
+  <script src="js/auth-guard.js"></script>
 </head>
 <body class="bg-[#F5F5F5] text-gray-900 antialiased flex h-screen overflow-hidden">
 
@@ -41,8 +23,15 @@
   <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-[#0B0B0B] text-gray-300 flex flex-col justify-between transition-transform duration-200 ease-in-out -translate-x-full lg:translate-x-0 lg:static border-r border-gray-800">
     <div>
       <div class="h-16 flex items-center justify-between px-5 border-b border-gray-800">
-        <a href="index.html" class="flex items-center space-x-2">
-          <img src="../assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="h-8 w-auto">
+        <a href="index.html" class="flex items-center space-x-2.5">
+          <img src="../assets/images/logo/Logo_BuserInfo.png" alt="BUSER INFO" class="h-9 w-auto object-contain shrink-0">
+          <div class="flex flex-col justify-center">
+            <div class="flex items-center space-x-1 leading-none">
+              <span class="text-white font-black text-base tracking-wider uppercase">BUSER<span class="text-buser-red">.</span></span>
+              <span class="bg-buser-red text-white text-[9px] font-black px-1.5 py-0.5 rounded-sm tracking-wider uppercase">INFO</span>
+            </div>
+            <span class="text-[7.5px] text-gray-400 font-semibold tracking-wider uppercase mt-0.5 whitespace-nowrap">PANEL REDAKSI</span>
+          </div>
         </a>
         <button id="sidebar-close-btn" class="lg:hidden p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -59,10 +48,6 @@
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
           <span>Berita</span>
         </a>
-        <a href="tulis-berita.html" class="nav-item">
-          <svg class="w-4 h-4 mr-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-          <span>Tulis Berita</span>
-        </a>
         <a href="kategori.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
           <span>Kategori</span>
@@ -71,9 +56,17 @@
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
           <span>Penulis</span>
         </a>
+        <a href="profil.html" class="nav-item">
+          <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span>Profil Redaksi</span>
+        </a>
         <a href="media.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           <span>Media</span>
+        </a>
+        <a href="video.html" class="nav-item">
+          <svg class="w-4 h-4 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>Video</span>
         </a>
         <a href="komentar.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
@@ -81,11 +74,7 @@
           <span class="px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-400 rounded">5</span>
         </a>
 
-        <div class="px-3 pt-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-gray-400">Sistem & Analitik</div>
-        <a href="statistik.html" class="nav-item">
-          <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-          <span>Statistik</span>
-        </a>
+        <div class="px-3 pt-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-gray-400">Sistem</div>
         <a href="pengguna.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
           <span>Pengguna</span>
@@ -101,12 +90,12 @@
     <div class="p-3 border-t border-gray-800 bg-[#111111]">
       <div class="flex items-center justify-between p-2 rounded-lg bg-gray-900/60 border border-gray-800">
         <a href="profil.html" class="flex items-center space-x-2.5 min-w-0 flex-1 hover:opacity-80 transition-opacity">
-          <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-xs shrink-0 ring-2 ring-red-500/30">
-            AR
+          <div class="user-display-avatar w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-xs shrink-0 ring-2 ring-red-500/30">
+            RD
           </div>
           <div class="min-w-0 flex-1">
-            <div class="text-xs font-semibold text-white truncate">Agus Riyadi</div>
-            <div class="text-[10px] text-gray-400 truncate">Pemimpin Redaksi</div>
+            <div class="user-display-name text-xs font-semibold text-white truncate">Pemimpin Redaksi</div>
+            <div class="user-display-role text-[10px] text-gray-400 truncate">Administrator</div>
           </div>
         </a>
         <a href="login.html" title="Keluar" class="p-1.5 text-gray-400 hover:text-red-400 hover:bg-gray-800 rounded transition-colors">
@@ -131,9 +120,13 @@
         </div>
       </div>
 
-      <div>
-        <button type="button" id="btn-save-all-settings" class="btn btn-primary btn-sm">
-          Simpan Semua Pengaturan
+      <div class="flex items-center space-x-2">
+        <button type="button" id="btn-reset-defaults" class="btn btn-outline btn-sm text-xs hidden sm:inline-flex text-gray-600 hover:text-red-600 hover:border-red-300">
+          Pulihkan Bawaan
+        </button>
+        <button type="button" id="btn-save-all-settings" class="btn btn-primary btn-sm flex items-center space-x-1.5 shadow-sm">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          <span>Simpan Semua Pengaturan</span>
         </button>
       </div>
     </header>
@@ -173,158 +166,274 @@
         </div>
 
         <!-- SETTINGS SECTIONS -->
-        <div class="flex-1">
+        <div class="flex-1 space-y-6">
           
           <!-- TAB 1: WEBSITE IDENTITAS -->
           <div id="tab-website" class="settings-pane cms-card p-6 space-y-4">
-            <h2 class="text-sm font-bold text-gray-900 border-b border-gray-100 pb-3">Identitas & Branding Portal</h2>
+            <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+              <div>
+                <h2 class="text-sm font-bold text-gray-900">Identitas & Branding Portal</h2>
+                <p class="text-[11px] text-gray-500">Nama portal, slogan resmi media, badan penerbit, dan logo utama</p>
+              </div>
+            </div>
 
             <div>
               <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Portal (Site Name)</label>
-              <input type="text" value="BUSER INFO" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs font-bold text-gray-900 focus:ring-buser-red">
+              <input type="text" id="setting-site-name" value="BUSER INFO" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs font-bold text-gray-900 focus:ring-buser-red">
             </div>
 
             <div>
               <label class="block text-xs font-semibold text-gray-700 mb-1">Slogan Media (Site Tagline)</label>
-              <input type="text" value="Berita Terkini, Fakta Tanpa Batas" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs text-gray-900 focus:ring-buser-red">
+              <input type="text" id="setting-site-tagline" value="Berita Terkini, Fakta Tanpa Batas" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs text-gray-900 focus:ring-buser-red">
             </div>
 
             <div>
               <label class="block text-xs font-semibold text-gray-700 mb-1">Badan Usaha / Penerbit</label>
-              <input type="text" value="PT. GOLDENMIX MEDIA BUSERINFO" readonly class="w-full py-2 px-3 bg-gray-100 border border-gray-300 rounded-lg text-xs font-semibold text-gray-700 cursor-not-allowed">
-              <p class="text-[10px] text-gray-400 mt-1">AHU.008226.AH.01.31.TAHUN.2023 • NIB.0208230150016</p>
+              <input type="text" id="setting-company-name" value="PT. GOLDENMIX MEDIA BUSERINFO" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs font-bold text-gray-800">
+              <input type="text" id="setting-company-legal" value="AHU.008226.AH.01.31.TAHUN.2023 • NIB.0208230150016" class="w-full py-1.5 px-3 mt-1 bg-gray-100 border border-gray-200 rounded text-[11px] text-gray-500">
             </div>
 
             <div class="pt-2">
               <label class="block text-xs font-semibold text-gray-700 mb-2">Logo Utama Website</label>
-              <div class="flex items-center gap-4 bg-[#0B0B0B] p-4 rounded-lg">
-                <img src="../assets/images/logo/buserinfo-logo.svg" alt="Preview Logo" class="h-8 w-auto">
-                <button type="button" class="btn btn-outline btn-sm text-xs ml-auto">Ganti File Logo</button>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#0B0B0B] p-4 rounded-lg">
+                <div class="flex items-center space-x-3">
+                  <img id="preview-site-logo" src="../assets/images/logo/Logo_BuserInfo.png" alt="Preview Logo" class="h-10 w-auto object-contain shrink-0 max-w-[160px]">
+                  <div class="text-left">
+                    <span class="text-[10px] text-gray-400 block">Format Disarankan: PNG Transparan atau SVG</span>
+                    <span class="text-[10px] text-gray-500 block">Maksimal Ukuran File: 5MB</span>
+                  </div>
+                </div>
+                <div class="shrink-0">
+                  <input type="file" id="input-site-logo-file" accept="image/png,image/jpeg,image/webp,image/svg+xml" class="hidden">
+                  <button type="button" id="btn-trigger-upload-logo" class="btn btn-outline btn-sm text-xs w-full sm:w-auto text-white border-gray-700 hover:bg-gray-800">
+                    Ganti File Logo
+                  </button>
+                </div>
               </div>
             </div>
 
             <div>
               <label class="block text-xs font-semibold text-gray-700 mb-1">Deskripsi Ringkas Portal</label>
-              <textarea rows="3" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs text-gray-900 focus:ring-buser-red">Portal berita digital terdepan di Indonesia yang menyajikan informasi terkini, akurat, tajam, dan tepercaya seputar peristiwa nasional, hukum, kriminal, dan politik.</textarea>
+              <textarea id="setting-site-description" rows="3" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs text-gray-900 focus:ring-buser-red">Portal berita digital terdepan di Indonesia yang menyajikan informasi terkini, akurat, tajam, dan tepercaya seputar peristiwa nasional, hukum, kriminal, dan politik.</textarea>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex justify-end">
+              <button type="button" class="btn btn-primary btn-sm btn-save-tab">Simpan Perubahan Identitas</button>
             </div>
           </div>
 
           <!-- TAB 2: EDITORIAL -->
-          <div id="tab-editorial" class="settings-pane cms-card p-6 space-y-4 hidden">
-            <h2 class="text-sm font-bold text-gray-900 border-b border-gray-100 pb-3">Konfigurasi Alur Editorial</h2>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Penulis Bawaan (Default Author)</label>
-              <select class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
-                <option selected>Agus Riyadi (Pemimpin Redaksi)</option>
-                <option>Redaksi BUSER INFO</option>
-              </select>
+          <div id="tab-editorial" class="settings-pane cms-card p-6 space-y-6 hidden">
+            <div class="border-b border-gray-100 pb-3">
+              <h2 class="text-sm font-bold text-gray-900">Konfigurasi Alur Editorial</h2>
+              <p class="text-[11px] text-gray-500">Penulis bawaan, kategori rujukan, kebijakan review naskah, dan sensor moderasi</p>
             </div>
 
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Kategori Bawaan</label>
-              <select class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
-                <option selected>Nasional</option>
-                <option>Kriminal</option>
-                <option>Politik</option>
-              </select>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Penulis Bawaan (Default Author)</label>
+                <select id="setting-default-author" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+                  <option selected>Bambang Sudiro, S.I.Kom. (Pemimpin Redaksi)</option>
+                  <option>Redaksi BUSER INFO</option>
+                </select>
+                <p class="text-[10px] text-gray-400 mt-1">Digunakan secara otomatis jika reporter tidak memilih nama penulis khusus saat membuat artikel.</p>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Kategori Bawaan</label>
+                <select id="setting-default-category" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+                  <option selected>Nasional</option>
+                  <option>Kriminal</option>
+                  <option>Politik</option>
+                </select>
+              </div>
+
+              <div class="pt-2 space-y-2.5">
+                <label class="flex items-center space-x-2.5 cursor-pointer">
+                  <input type="checkbox" id="setting-require-editor-review" checked class="w-4 h-4 text-buser-red rounded border-gray-300 focus:ring-buser-red">
+                  <span class="text-xs font-semibold text-gray-800">Wajibkan Review Editor untuk Naskah Reporter</span>
+                </label>
+                <label class="flex items-center space-x-2.5 cursor-pointer">
+                  <input type="checkbox" id="setting-enable-comment-moderation" checked class="w-4 h-4 text-buser-red rounded border-gray-300 focus:ring-buser-red">
+                  <span class="text-xs font-semibold text-gray-800">Aktifkan Moderasi Komentar Otomatis (Filter Kata Kasar)</span>
+                </label>
+                <label class="flex items-center space-x-2.5 cursor-pointer">
+                  <input type="checkbox" id="setting-show-update-timestamp" checked class="w-4 h-4 text-buser-red rounded border-gray-300 focus:ring-buser-red">
+                  <span class="text-xs font-semibold text-gray-800">Tampilkan Tanda Waktu 'Update Terkini' pada Berita Utama</span>
+                </label>
+              </div>
             </div>
 
-            <div class="pt-2 space-y-2">
-              <label class="flex items-center space-x-2.5 cursor-pointer">
-                <input type="checkbox" checked class="w-4 h-4 text-buser-red rounded border-gray-300 focus:ring-buser-red">
-                <span class="text-xs font-semibold text-gray-800">Wajibkan Review Editor untuk Naskah Reporter</span>
-              </label>
-              <label class="flex items-center space-x-2.5 cursor-pointer">
-                <input type="checkbox" checked class="w-4 h-4 text-buser-red rounded border-gray-300 focus:ring-buser-red">
-                <span class="text-xs font-semibold text-gray-800">Aktifkan Moderasi Komentar Otomatis (Filter Kata Kasar)</span>
-              </label>
-              <label class="flex items-center space-x-2.5 cursor-pointer">
-                <input type="checkbox" checked class="w-4 h-4 text-buser-red rounded border-gray-300 focus:ring-buser-red">
-                <span class="text-xs font-semibold text-gray-800">Tampilkan Tanda Waktu 'Update Terkini' pada Berita Utama</span>
-              </label>
+            <!-- BAGIAN KATA SENSOR KOMENTAR (BISA TAMBAH, UBAH, HAPUS) -->
+            <div class="pt-4 border-t border-gray-200 space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h3 class="text-xs font-bold text-gray-900 uppercase tracking-wider" id="blocked-words-count-header">
+                    Daftar Kata Terlarang (Filter Sensor Komentar)
+                  </h3>
+                  <p class="text-[11px] text-gray-500">Kata atau frasa yang otomatis disensor atau ditolak saat pembaca mengirim komentar</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <input type="text" id="search-blocked-words" placeholder="Cari kata..." class="py-1 px-2.5 text-xs bg-gray-50 border border-gray-300 rounded focus:ring-buser-red">
+                  <button type="button" id="btn-add-blocked-word" class="btn btn-primary btn-sm text-xs shrink-0 flex items-center space-x-1">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                    <span>Tambah Kata Sensor</span>
+                  </button>
+                </div>
+              </div>
+
+              <div id="blocked-words-items-container">
+                <!-- Daftar kata sensor dimuat dinamis -->
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex justify-end">
+              <button type="button" class="btn btn-primary btn-sm btn-save-tab">Simpan Pengaturan Editorial</button>
             </div>
           </div>
 
           <!-- TAB 3: CONTACT -->
-          <div id="tab-contact" class="settings-pane cms-card p-6 space-y-4 hidden">
-            <h2 class="text-sm font-bold text-gray-900 border-b border-gray-100 pb-3">Kontak & Alamat Kantor Redaksi</h2>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Nomor Hotline Redaksi / WhatsApp</label>
-              <input type="text" value="+62 831-7298-8502" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+          <div id="tab-contact" class="settings-pane cms-card p-6 space-y-6 hidden">
+            <div class="border-b border-gray-100 pb-3">
+              <h2 class="text-sm font-bold text-gray-900">Kontak & Alamat Kantor Redaksi</h2>
+              <p class="text-[11px] text-gray-500">Informasi alamat kantor redaksi utama serta saluran layanan resmi</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="space-y-4">
               <div>
-                <label class="block text-xs font-semibold text-gray-700 mb-1">Email Redaksi</label>
-                <input type="email" value="redaksi@buserinfo.com" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Nomor Hotline Utama Redaksi / WhatsApp</label>
+                <input type="text" id="setting-hotline-phone" value="+62 831-7298-8502" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-medium">
               </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Email Redaksi</label>
+                  <input type="email" id="setting-redaksi-email" value="redaksi@buserinfo.com" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-medium">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Email Iklan & Kerjasama</label>
+                  <input type="email" id="setting-iklan-email" value="iklan@buserinfo.com" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-medium">
+                </div>
+              </div>
+
               <div>
-                <label class="block text-xs font-semibold text-gray-700 mb-1">Email Iklan & Kerjasama</label>
-                <input type="email" value="iklan@buserinfo.com" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Alamat Kantor Redaksi Utama</label>
+                <textarea id="setting-office-address" rows="3" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red leading-relaxed">Gedung Graha Media Utama Lt. 4, Jl. Jenderal Sudirman Kav. 28, Jakarta Pusat 10210, Indonesia.</textarea>
               </div>
             </div>
 
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Alamat Kantor Redaksi</label>
-              <textarea rows="3" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">Gedung Graha Media Utama Lt. 4, Jl. Jenderal Sudirman Kav. 28, Jakarta Pusat 10210, Indonesia.</textarea>
+            <!-- BAGIAN SALURAN KONTAK LAYANAN (BISA TAMBAH, UBAH, HAPUS) -->
+            <div class="pt-4 border-t border-gray-200 space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h3 class="text-xs font-bold text-gray-900 uppercase tracking-wider" id="contacts-count-header">
+                    Saluran Komunikasi & Layanan Redaksi
+                  </h3>
+                  <p class="text-[11px] text-gray-500">Kelola nomor hotline, meja investigasi, hak jawab, atau biro perwakilan daerah</p>
+                </div>
+                <button type="button" id="btn-add-contact" class="btn btn-primary btn-sm text-xs shrink-0 flex items-center space-x-1">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                  <span>Tambah Saluran Kontak</span>
+                </button>
+              </div>
+
+              <div id="office-contacts-items-container">
+                <!-- Daftar saluran kontak dimuat dinamis -->
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex justify-end">
+              <button type="button" class="btn btn-primary btn-sm btn-save-tab">Simpan Pengaturan Kontak</button>
             </div>
           </div>
 
           <!-- TAB 4: SOCIAL MEDIA -->
-          <div id="tab-social" class="settings-pane cms-card p-6 space-y-4 hidden">
-            <h2 class="text-sm font-bold text-gray-900 border-b border-gray-100 pb-3">Tautan Akun Resmi Media Sosial</h2>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Facebook</label>
-              <input type="url" value="https://facebook.com/buserinfo.official" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+          <div id="tab-social" class="settings-pane cms-card p-6 space-y-6 hidden">
+            <div class="border-b border-gray-100 pb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h2 class="text-sm font-bold text-gray-900">Tautan Akun Resmi Media Sosial</h2>
+                <p class="text-[11px] text-gray-500">Kelola seluruh saluran dan akun media sosial resmi portal berita BUSER INFO</p>
+              </div>
+              <button type="button" id="btn-add-social" class="btn btn-primary btn-sm text-xs shrink-0 flex items-center space-x-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                <span>Tambah Saluran Media Sosial</span>
+              </button>
             </div>
 
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Instagram</label>
-              <input type="url" value="https://instagram.com/buserinfo_id" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+            <!-- BAGIAN DAFTAR MEDIA SOSIAL (BISA TAMBAH, UBAH, HAPUS) -->
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <h3 class="text-xs font-bold text-gray-900 uppercase tracking-wider" id="social-count-header">
+                  Daftar Saluran Media Sosial Resmi
+                </h3>
+              </div>
+
+              <div id="social-media-items-container">
+                <!-- Daftar media sosial dimuat dinamis -->
+              </div>
             </div>
 
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">YouTube Channel</label>
-              <input type="url" value="https://youtube.com/@buserinfotv" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">TikTok</label>
-              <input type="url" value="https://tiktok.com/@buserinfo.news" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">X (Twitter)</label>
-              <input type="url" value="https://x.com/buserinfo_id" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+            <div class="pt-3 border-t border-gray-100 flex justify-end">
+              <button type="button" class="btn btn-primary btn-sm btn-save-tab">Simpan Pengaturan Media Sosial</button>
             </div>
           </div>
 
           <!-- TAB 5: SEO GLOBAL -->
-          <div id="tab-seo" class="settings-pane cms-card p-6 space-y-4 hidden">
-            <h2 class="text-sm font-bold text-gray-900 border-b border-gray-100 pb-3">Optimasi SEO Global Portal</h2>
-
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Meta Title Default</label>
-              <input type="text" value="BUSER INFO — Berita Terkini, Fakta Tanpa Batas" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+          <div id="tab-seo" class="settings-pane cms-card p-6 space-y-6 hidden">
+            <div class="border-b border-gray-100 pb-3">
+              <h2 class="text-sm font-bold text-gray-900">Optimasi SEO Global Portal</h2>
+              <p class="text-[11px] text-gray-500">Meta title, deskripsi bawaan pencarian, kata kunci, dan kode pelacak analitik</p>
             </div>
 
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Meta Description Default</label>
-              <textarea rows="3" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">Portal berita digital Indonesia menyajikan informasi terkini, aktual, tajam, dan terpercaya seputar peristiwa nasional, politik, hukum, kriminal, ekonomi, dan internasional.</textarea>
+            <div class="space-y-4">
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Meta Title Default</label>
+                <input type="text" id="setting-meta-title" value="BUSER INFO — Berita Terkini, Fakta Tanpa Batas" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-bold">
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Meta Description Default</label>
+                <textarea id="setting-meta-description" rows="3" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red leading-relaxed">Portal berita digital Indonesia menyajikan informasi terkini, aktual, tajam, dan terpercaya seputar peristiwa nasional, politik, hukum, kriminal, ekonomi, dan internasional.</textarea>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-gray-700 mb-1">Target Keywords</label>
+                <input type="text" id="setting-meta-keywords" value="buser info, berita terkini, kriminal, hukum, politik, nasional, indonesia" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+                <p class="text-[10px] text-gray-400 mt-1">Pisahkan setiap kata kunci dengan tanda koma (,)</p>
+              </div>
             </div>
 
-            <div>
-              <label class="block text-xs font-semibold text-gray-700 mb-1">Target Keywords</label>
-              <input type="text" value="buser info, berita terkini, kriminal, hukum, politik, nasional, indonesia" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+            <!-- BAGIAN TAG VERIFIKASI & PELACAK (BISA TAMBAH, UBAH, HAPUS) -->
+            <div class="pt-4 border-t border-gray-200 space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h3 class="text-xs font-bold text-gray-900 uppercase tracking-wider" id="seo-tags-count-header">
+                    Tag Verifikasi & Kode Pelacak (SEO)
+                  </h3>
+                  <p class="text-[11px] text-gray-500">Kode verifikasi Google Search Console, Bing Webmaster, Google Analytics 4, dll.</p>
+                </div>
+                <button type="button" id="btn-add-seo-tag" class="btn btn-primary btn-sm text-xs shrink-0 flex items-center space-x-1">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                  <span>Tambah Tag Verifikasi</span>
+                </button>
+              </div>
+
+              <div id="seo-tags-items-container">
+                <!-- Daftar tag SEO dimuat dinamis -->
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex justify-end">
+              <button type="button" class="btn btn-primary btn-sm btn-save-tab">Simpan Pengaturan SEO</button>
             </div>
           </div>
 
           <!-- TAB 6: SECURITY -->
-          <div id="tab-security" class="settings-pane cms-card p-6 space-y-4 hidden">
-            <h2 class="text-sm font-bold text-gray-900 border-b border-gray-100 pb-3">Keamanan Akses & Sesi CMS</h2>
+          <div id="tab-security" class="settings-pane cms-card p-6 space-y-6 hidden">
+            <div class="border-b border-gray-100 pb-3">
+              <h2 class="text-sm font-bold text-gray-900">Keamanan Akses & Sesi CMS</h2>
+              <p class="text-[11px] text-gray-500">Proteksi login, batas waktu inaktivitas sesi, dan aturan akses jaringan</p>
+            </div>
 
             <div class="space-y-3">
               <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-between">
@@ -333,7 +442,7 @@
                   <p class="text-[11px] text-gray-500 mt-0.5">Wajibkan kode TOTP Google Authenticator saat login administrator.</p>
                 </div>
                 <label class="relative inline-flex items-center cursor-pointer">
-                  <input type="checkbox" checked class="sr-only peer">
+                  <input type="checkbox" id="setting-two-factor-auth" checked class="sr-only peer">
                   <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-buser-red"></div>
                 </label>
               </div>
@@ -341,16 +450,45 @@
               <div class="p-4 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-between">
                 <div>
                   <h4 class="text-xs font-bold text-gray-900">Batasi Waktu Sesi Tidak Aktif (Session Timeout)</h4>
-                  <p class="text-[11px] text-gray-500 mt-0.5">Otomatis kunci layar jika tidak ada aktivitas selama 30 menit.</p>
+                  <p class="text-[11px] text-gray-500 mt-0.5">Otomatis kunci layar jika tidak ada aktivitas pengguna.</p>
                 </div>
-                <span class="text-xs font-bold text-gray-700">30 Menit</span>
+                <select id="setting-session-timeout" class="py-1 px-2.5 bg-white border border-gray-300 rounded text-xs font-bold text-gray-700">
+                  <option value="15 Menit">15 Menit</option>
+                  <option value="30 Menit" selected>30 Menit</option>
+                  <option value="1 Jam">1 Jam</option>
+                  <option value="2 Jam">2 Jam</option>
+                </select>
               </div>
 
-              <div class="pt-3">
+              <div class="pt-2">
                 <button type="button" onclick="terminateAllSessions()" class="btn btn-outline btn-sm text-red-600 border-red-300 hover:bg-red-50">
                   Keluarkan Semua Sesi Perangkat Lain
                 </button>
               </div>
+            </div>
+
+            <!-- BAGIAN ATURAN AKSES IP (BISA TAMBAH, UBAH, HAPUS) -->
+            <div class="pt-4 border-t border-gray-200 space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h3 class="text-xs font-bold text-gray-900 uppercase tracking-wider" id="security-ips-count-header">
+                    Aturan Pembatasan Akses IP
+                  </h3>
+                  <p class="text-[11px] text-gray-500">Daftar alamat IP yang diizinkan (whitelist) atau diblokir (blacklist)</p>
+                </div>
+                <button type="button" id="btn-add-security-ip" class="btn btn-primary btn-sm text-xs shrink-0 flex items-center space-x-1">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                  <span>Tambah Aturan IP</span>
+                </button>
+              </div>
+
+              <div id="security-ips-items-container">
+                <!-- Daftar aturan IP dimuat dinamis -->
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex justify-end">
+              <button type="button" class="btn btn-primary btn-sm btn-save-tab">Simpan Pengaturan Keamanan</button>
             </div>
           </div>
 
@@ -369,40 +507,280 @@
 
   </div>
 
+  <!-- =========================================================================
+       MODAL 1: TAMBAH & UBAH SALURAN MEDIA SOSIAL
+       ========================================================================= -->
+  <div id="modal-social-media" class="modal-container hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in duration-150">
+      <div class="p-4 bg-[#0B0B0B] text-white flex items-center justify-between">
+        <h3 id="modal-social-title" class="font-bold text-sm">Tambah Saluran Media Sosial</h3>
+        <button type="button" data-modal-close class="text-gray-400 hover:text-white p-1 rounded">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="form-social-modal" class="p-5 space-y-3.5">
+        <input type="hidden" id="social-item-id" value="">
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Pilihan Platform</label>
+          <select id="social-item-platform" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-medium">
+            <option value="Facebook">Facebook</option>
+            <option value="TikTok">TikTok</option>
+            <option value="Instagram">Instagram</option>
+            <option value="YouTube">YouTube</option>
+            <option value="X">X (Twitter)</option>
+            <option value="WhatsApp Channel">WhatsApp Channel</option>
+            <option value="Telegram">Telegram</option>
+            <option value="Threads">Threads</option>
+            <option value="LinkedIn">LinkedIn</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Akun / Handle Resmi</label>
+          <input type="text" id="social-item-name" placeholder="contoh: @buserinfo_official" required class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-bold">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Tautan URL Akun Lengkap</label>
+          <input type="url" id="social-item-url" placeholder="https://instagram.com/..." required class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Keterangan / Catatan Singkat</label>
+          <input type="text" id="social-item-note" placeholder="contoh: Halaman Berita Video Singkat" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Status Publikasi</label>
+          <select id="social-item-status" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+            <option value="active">Tampilkan di Publik (Aktif)</option>
+            <option value="inactive">Sembunyikan Sementara</option>
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-gray-100 flex items-center justify-end space-x-2">
+          <button type="button" data-modal-close class="btn btn-outline btn-sm text-xs">Batal</button>
+          <button type="submit" class="btn btn-primary btn-sm text-xs">Simpan Saluran</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 2: TAMBAH & UBAH SALURAN KONTAK LAYANAN
+       ========================================================================= -->
+  <div id="modal-contact-channel" class="modal-container hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in duration-150">
+      <div class="p-4 bg-[#0B0B0B] text-white flex items-center justify-between">
+        <h3 id="modal-contact-title" class="font-bold text-sm">Tambah Saluran Kontak Baru</h3>
+        <button type="button" data-modal-close class="text-gray-400 hover:text-white p-1 rounded">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="form-contact-modal" class="p-5 space-y-3.5">
+        <input type="hidden" id="contact-item-id" value="">
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Layanan / Unit Redaksi</label>
+          <input type="text" id="contact-item-unit" placeholder="contoh: Layanan Hak Jawab & Klarifikasi" required class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-bold">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Jenis Saluran</label>
+          <select id="contact-item-type" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-medium">
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Telepon">Telepon Kantor</option>
+            <option value="Email">Email Resmi</option>
+            <option value="Alamat">Alamat Fisik / Biro</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Detail Nomor / Alamat Email</label>
+          <input type="text" id="contact-item-val" placeholder="contoh: +62 831-7298-8502" required class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-semibold">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Jam Operasional / Keterangan Layanan</label>
+          <input type="text" id="contact-item-hours" placeholder="contoh: Senin - Jumat 09:00 - 17:00 WIB" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Status Saluran</label>
+          <select id="contact-item-status" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+            <option value="active">Aktif Beroperasi</option>
+            <option value="inactive">Nonaktif Sementara</option>
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-gray-100 flex items-center justify-end space-x-2">
+          <button type="button" data-modal-close class="btn btn-outline btn-sm text-xs">Batal</button>
+          <button type="submit" class="btn btn-primary btn-sm text-xs">Simpan Kontak</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 3: TAMBAH & UBAH KATA SENSOR KOMENTAR
+       ========================================================================= -->
+  <div id="modal-blocked-word" class="modal-container hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in duration-150">
+      <div class="p-4 bg-[#0B0B0B] text-white flex items-center justify-between">
+        <h3 id="modal-blocked-word-title" class="font-bold text-sm">Tambah Kata Sensor Baru</h3>
+        <button type="button" data-modal-close class="text-gray-400 hover:text-white p-1 rounded">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="form-blocked-word-modal" class="p-5 space-y-3.5">
+        <input type="hidden" id="blocked-word-id" value="">
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Kata atau Frasa yang Disaring</label>
+          <input type="text" id="blocked-word-val" placeholder="contoh: slot gacor, penipu, kata makian..." required class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-mono font-bold">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Kategori Pelanggaran</label>
+          <select id="blocked-word-category" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-medium">
+            <option value="Judi Online & Slot">Judi Online & Slot</option>
+            <option value="Kata Kasar & Makian">Kata Kasar & Makian</option>
+            <option value="Pencemaran & Ujaran Kasar">Pencemaran & Ujaran Kasar</option>
+            <option value="Spam & Penipuan">Spam & Penipuan</option>
+            <option value="Ujaran Kebencian / SARA">Ujaran Kebencian / SARA</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Tindakan Otomatis Sistem</label>
+          <select id="blocked-word-action" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-medium">
+            <option value="Tolak Komentar">Tolak / Blokir Komentar Langsung</option>
+            <option value="Sensor Bintang">Ganti dengan Bintang (***)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Status Saringan</label>
+          <select id="blocked-word-status" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+            <option value="active">Aktif Disaring</option>
+            <option value="inactive">Nonaktifkan Saringan</option>
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-gray-100 flex items-center justify-end space-x-2">
+          <button type="button" data-modal-close class="btn btn-outline btn-sm text-xs">Batal</button>
+          <button type="submit" class="btn btn-primary btn-sm text-xs">Simpan Kata Sensor</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 4: TAMBAH & UBAH TAG VERIFIKASI SEO
+       ========================================================================= -->
+  <div id="modal-seo-tag" class="modal-container hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in duration-150">
+      <div class="p-4 bg-[#0B0B0B] text-white flex items-center justify-between">
+        <h3 id="modal-seo-tag-title" class="font-bold text-sm">Tambah Tag Verifikasi Baru</h3>
+        <button type="button" data-modal-close class="text-gray-400 hover:text-white p-1 rounded">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="form-seo-tag-modal" class="p-5 space-y-3.5">
+        <input type="hidden" id="seo-tag-id" value="">
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Nama Layanan / Tag</label>
+          <input type="text" id="seo-tag-service" placeholder="contoh: Google Search Console, Meta Pixel" required class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-bold">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Kode Tag / ID Verifikasi</label>
+          <input type="text" id="seo-tag-code" placeholder="contoh: google-site-verification=... atau G-ABC123" required class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-mono">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Keterangan / Fungsi Tag</label>
+          <input type="text" id="seo-tag-note" placeholder="contoh: Verifikasi Indeksasi Mesin Pencari" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Status Tag</label>
+          <select id="seo-tag-status" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+            <option value="active">Aktif Terpasang</option>
+            <option value="inactive">Nonaktifkan Sementara</option>
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-gray-100 flex items-center justify-end space-x-2">
+          <button type="button" data-modal-close class="btn btn-outline btn-sm text-xs">Batal</button>
+          <button type="submit" class="btn btn-primary btn-sm text-xs">Simpan Tag</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MODAL 5: TAMBAH & UBAH ATURAN PEMBATASAN AKSES IP
+       ========================================================================= -->
+  <div id="modal-security-ip" class="modal-container hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in duration-150">
+      <div class="p-4 bg-[#0B0B0B] text-white flex items-center justify-between">
+        <h3 id="modal-security-ip-title" class="font-bold text-sm">Tambah Aturan Akses IP Baru</h3>
+        <button type="button" data-modal-close class="text-gray-400 hover:text-white p-1 rounded">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="form-security-ip-modal" class="p-5 space-y-3.5">
+        <input type="hidden" id="security-ip-id" value="">
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Alamat IP / Rentang Jaringan (CIDR)</label>
+          <input type="text" id="security-ip-val" placeholder="contoh: 103.144.12.0/24 atau 192.168.1.10" required class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-mono font-bold">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Jenis Aturan Akses</label>
+          <select id="security-ip-type" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red font-medium">
+            <option value="Izinkan Akses">Izinkan Akses (Daftar Putih / Whitelist)</option>
+            <option value="Blokir Akses">Blokir Akses (Daftar Hitam / Blacklist)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Keterangan / Lokasi Jaringan</label>
+          <input type="text" id="security-ip-note" placeholder="contoh: Jaringan Kantor Redaksi Utama" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-gray-700 mb-1">Status Aturan</label>
+          <select id="security-ip-status" class="w-full py-2 px-3 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-buser-red">
+            <option value="active">Aktif Berlaku</option>
+            <option value="inactive">Nonaktifkan Sementara</option>
+          </select>
+        </div>
+
+        <div class="pt-3 border-t border-gray-100 flex items-center justify-end space-x-2">
+          <button type="button" data-modal-close class="btn btn-outline btn-sm text-xs">Batal</button>
+          <button type="submit" class="btn btn-primary btn-sm text-xs">Simpan Aturan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script src="js/admin.js"></script>
+  <script src="js/admin-pengaturan-live.js"></script>
   <script>
-    // Tab switching for settings
-    const settingTabs = document.querySelectorAll('.settings-tab-btn');
-    const settingPanes = document.querySelectorAll('.settings-pane');
-
-    settingTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        settingTabs.forEach(t => {
-          t.classList.remove('active', 'bg-buser-black', 'text-white', 'font-bold');
-          t.classList.add('text-gray-600', 'font-medium');
-        });
-        tab.classList.add('active', 'bg-buser-black', 'text-white', 'font-bold');
-        tab.classList.remove('text-gray-600', 'font-medium');
-
-        const targetId = tab.getAttribute('data-target');
-        settingPanes.forEach(pane => {
-          if (pane.id === targetId) {
-            pane.classList.remove('hidden');
-          } else {
-            pane.classList.add('hidden');
-          }
-        });
-      });
-    });
-
-    document.getElementById('btn-save-all-settings').addEventListener('click', () => {
-      showToast('success', 'Pengaturan Disimpan', 'Semua perubahan konfigurasi portal BUSER INFO telah diterapkan.');
-    });
-
     function terminateAllSessions() {
       confirmAction({
         title: 'Keluarkan Semua Perangkat?',
-        message: 'Perangkat lain yang sedang login akan dipaksa logout untuk menjaga keamanan.',
+        message: 'Perangkat lain yang sedang login akan dipaksa logout untuk menjaga keamanan portal.',
         confirmText: 'Keluarkan Sesi',
         type: 'danger',
         onConfirm: () => {

@@ -20,7 +20,6 @@ backend_ci4/
 │   │       ├── Penulis.php        # Manajemen Wartawan & Redaktur
 │   │       ├── Media.php          # Upload Foto & Dokumen
 │   │       ├── Komentar.php       # Moderasi Komentar Pembaca
-│   │       ├── Statistik.php      # Analisis Trafik & Top 5 Berita
 │   │       ├── Pengguna.php       # Manajemen Role & Hak Akses
 │   │       ├── Pengaturan.php     # Konfigurasi Portal & SEO Global
 │   │       └── Profil.php         # Profil Redaksi & Ubah Password
@@ -46,7 +45,6 @@ backend_ci4/
 │           ├── kategori/
 │           ├── media/
 │           ├── komentar/
-│           ├── statistik/
 │           ├── pengguna/
 │           ├── pengaturan/
 │           └── profil/

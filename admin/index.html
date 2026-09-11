@@ -9,32 +9,13 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            buser: {
-              black: '#0B0B0B',
-              red: '#D71920',
-              redHover: '#B80F15',
-              dark: '#222222',
-              light: '#F5F5F5',
-              border: '#E5E7EB'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif'],
-            serif: ['Merriweather', 'Georgia', 'serif']
-          }
-        }
-      }
-    }
-  </script>
+  <script src="../assets/js/tailwind-config.js"></script>
   
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="css/admin.css">
+  <script src="../assets/js/api-client.js"></script>
+  <script src="js/auth-guard.js"></script>
 </head>
 <body class="bg-[#F5F5F5] text-gray-900 antialiased flex h-screen overflow-hidden">
 
@@ -47,8 +28,15 @@
     <!-- Sidebar Top: Logo & Close for mobile -->
     <div>
       <div class="h-16 flex items-center justify-between px-5 border-b border-gray-800">
-        <a href="index.html" class="flex items-center space-x-2">
-          <img src="../assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="h-8 w-auto">
+        <a href="index.html" class="flex items-center space-x-2.5">
+          <img src="../assets/images/logo/Logo_BuserInfo.png" alt="BUSER INFO" class="h-9 w-auto object-contain shrink-0">
+          <div class="flex flex-col justify-center">
+            <div class="flex items-center space-x-1 leading-none">
+              <span class="text-white font-black text-base tracking-wider uppercase">BUSER<span class="text-buser-red">.</span></span>
+              <span class="bg-buser-red text-white text-[9px] font-black px-1.5 py-0.5 rounded-sm tracking-wider uppercase">INFO</span>
+            </div>
+            <span class="text-[7.5px] text-gray-400 font-semibold tracking-wider uppercase mt-0.5 whitespace-nowrap">PANEL REDAKSI</span>
+          </div>
         </a>
         <button id="sidebar-close-btn" class="lg:hidden p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none" aria-label="Tutup Menu">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -69,11 +57,6 @@
           <span>Berita</span>
         </a>
 
-        <a href="tulis-berita.html" class="nav-item">
-          <svg class="w-4 h-4 mr-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-          <span>Tulis Berita</span>
-        </a>
-
         <a href="kategori.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg>
           <span>Kategori</span>
@@ -84,9 +67,19 @@
           <span>Penulis</span>
         </a>
 
+        <a href="profil.html" class="nav-item">
+          <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span>Profil Redaksi</span>
+        </a>
+
         <a href="media.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           <span>Media</span>
+        </a>
+
+        <a href="video.html" class="nav-item">
+          <svg class="w-4 h-4 mr-3 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>Video</span>
         </a>
 
         <a href="komentar.html" class="nav-item">
@@ -95,12 +88,7 @@
           <span class="px-1.5 py-0.5 text-[10px] font-bold bg-amber-500/20 text-amber-400 rounded">5</span>
         </a>
 
-        <div class="px-3 pt-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-gray-400">Sistem & Analitik</div>
-
-        <a href="statistik.html" class="nav-item">
-          <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-          <span>Statistik</span>
-        </a>
+        <div class="px-3 pt-3 pb-2 text-[10px] font-bold uppercase tracking-wider text-gray-400">Sistem</div>
 
         <a href="pengguna.html" class="nav-item">
           <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
@@ -118,12 +106,12 @@
     <div class="p-3 border-t border-gray-800 bg-[#111111]">
       <div class="flex items-center justify-between p-2 rounded-lg bg-gray-900/60 border border-gray-800">
         <a href="profil.html" class="flex items-center space-x-2.5 min-w-0 flex-1 hover:opacity-80 transition-opacity">
-          <div class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-xs shrink-0 ring-2 ring-red-500/30">
-            AR
+          <div class="user-display-avatar w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-xs shrink-0 ring-2 ring-red-500/30">
+            RD
           </div>
           <div class="min-w-0 flex-1">
-            <div class="text-xs font-semibold text-white truncate">Agus Riyadi</div>
-            <div class="text-[10px] text-gray-400 truncate">Pemimpin Redaksi</div>
+            <div id="sidebar-user-name" class="user-display-name text-xs font-semibold text-white truncate">Pemimpin Redaksi</div>
+            <div id="sidebar-user-role" class="user-display-role text-[10px] text-gray-400 truncate">Administrator</div>
           </div>
         </a>
         <a href="login.html" title="Keluar dari Sistem" class="p-1.5 text-gray-400 hover:text-red-400 hover:bg-gray-800 rounded transition-colors">
@@ -174,10 +162,10 @@
           Memuat waktu...
         </span>
 
-        <!-- Quick CTA: + Tulis Berita -->
-        <a href="tulis-berita.html" class="btn btn-primary btn-sm hidden sm:inline-flex shadow-sm">
+        <!-- Quick CTA: Tambah Berita -->
+        <a href="berita.html?action=tambah" class="btn btn-primary btn-sm hidden sm:inline-flex shadow-sm">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-          <span>Tulis Berita</span>
+          <span>Tambah Berita</span>
         </a>
 
         <!-- Notification Bell with Dropdown -->
@@ -198,8 +186,8 @@
               <a href="berita.html?status=review" class="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors">
                 <span class="w-2 h-2 mt-1.5 rounded-full bg-buser-red shrink-0 notif-dot"></span>
                 <div class="text-xs">
-                  <p class="font-semibold text-gray-900">Berita baru menunggu review</p>
-                  <p class="text-gray-500 mt-0.5">Artikel &ldquo;Perkembangan Ekonomi Nasional Kuartal I 2026&rdquo; oleh Dimas Anggara membutuhkan verifikasi editor.</p>
+                  <p class="font-semibold text-gray-900" id="notif-review-text">0 Berita baru menunggu review</p>
+                  <p class="text-gray-500 mt-0.5">Periksa naskah masuk dari wartawan dan penulis daerah.</p>
                   <span class="text-[10px] text-gray-400 mt-1 block">15 menit yang lalu</span>
                 </div>
               </a>
@@ -231,17 +219,17 @@
         <!-- Admin Profile Avatar / Dropdown Button -->
         <div class="relative">
           <button id="user-menu-btn" class="flex items-center space-x-2 p-1.5 rounded-lg hover:bg-gray-100 focus:outline-none">
-            <div class="w-7 h-7 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center ring-2 ring-red-600/20">
-              AR
+            <div class="user-display-avatar w-7 h-7 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center ring-2 ring-red-600/20">
+              RD
             </div>
-            <span class="hidden md:inline-block text-xs font-semibold text-gray-800">Agus Riyadi</span>
+            <span class="user-display-name hidden md:inline-block text-xs font-semibold text-gray-800">Pemimpin Redaksi</span>
             <svg class="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
 
           <!-- User Dropdown Menu -->
           <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg border border-gray-200 shadow-xl z-50 py-1 text-xs">
             <div class="px-3 py-2 border-b border-gray-100">
-              <p class="font-semibold text-gray-900 truncate">Agus Riyadi</p>
+              <p class="user-display-name font-semibold text-gray-900 truncate">Pemimpin Redaksi</p>
               <p class="text-gray-400 text-[10px] truncate">redaksi@buserinfo.com</p>
             </div>
             <a href="profil.html" class="flex items-center px-3 py-2 text-gray-700 hover:bg-gray-50">
@@ -297,10 +285,10 @@
               </div>
             </div>
             <div class="mt-3">
-              <div class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">248</div>
-              <div class="mt-1 flex items-center text-xs text-emerald-600 font-medium">
+              <div id="stat-total-berita" class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">--</div>
+              <div id="stat-total-sub" class="mt-1 flex items-center text-xs text-emerald-600 font-medium">
                 <svg class="w-3.5 h-3.5 mr-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
-                <span>+12 bulan ini</span>
+                <span>+0 bulan ini</span>
               </div>
             </div>
           </div>
@@ -314,8 +302,8 @@
               </div>
             </div>
             <div class="mt-3">
-              <div class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">18</div>
-              <div class="mt-1 text-xs text-gray-500">
+              <div id="stat-draft-berita" class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">--</div>
+              <div id="stat-draft-sub" class="mt-1 text-xs text-gray-500">
                 Dalam proses penyusunan
               </div>
             </div>
@@ -330,9 +318,9 @@
               </div>
             </div>
             <div class="mt-3">
-              <div class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">213</div>
-              <div class="mt-1 text-xs text-emerald-600 font-medium">
-                85.8% dari total artikel
+              <div id="stat-terbit-berita" class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">--</div>
+              <div id="stat-terbit-sub" class="mt-1 text-xs text-emerald-600 font-medium">
+                0% dari total artikel
               </div>
             </div>
           </div>
@@ -346,8 +334,8 @@
               </div>
             </div>
             <div class="mt-3">
-              <div class="text-2xl sm:text-3xl font-black text-buser-red tracking-tight">17</div>
-              <div class="mt-1 text-xs text-red-600 font-medium">
+              <div id="stat-review-berita" class="text-2xl sm:text-3xl font-black text-buser-red tracking-tight">--</div>
+              <div id="stat-review-sub" class="mt-1 text-xs text-red-600 font-medium">
                 Butuh persetujuan editor
               </div>
             </div>
@@ -388,108 +376,8 @@
             <a href="kategori.html" class="text-xs text-buser-red font-semibold hover:underline">Kelola &rarr;</a>
           </div>
           
-          <div class="mt-4 space-y-2.5 max-h-72 overflow-y-auto pr-1">
-            
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Nasional</span>
-                <span class="text-gray-900">54 artikel (22%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-buser-red h-2 rounded-full" style="width: 22%"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Kriminal & Hukum</span>
-                <span class="text-gray-900">46 artikel (19%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-[#0B0B0B] h-2 rounded-full" style="width: 19%"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Politik</span>
-                <span class="text-gray-900">38 artikel (15%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-red-600 h-2 rounded-full" style="width: 15%"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Daerah</span>
-                <span class="text-gray-900">31 artikel (12%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-gray-700 h-2 rounded-full" style="width: 12%"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Ekonomi & Bisnis</span>
-                <span class="text-gray-900">25 artikel (10%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-emerald-600 h-2 rounded-full" style="width: 10%"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Teknologi</span>
-                <span class="text-gray-900">18 artikel (7%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-blue-600 h-2 rounded-full" style="width: 7%"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Pendidikan</span>
-                <span class="text-gray-900">14 artikel (6%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-indigo-600 h-2 rounded-full" style="width: 6%"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Olahraga</span>
-                <span class="text-gray-900">11 artikel (4%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-amber-600 h-2 rounded-full" style="width: 4%"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Internasional</span>
-                <span class="text-gray-900">7 artikel (3%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-teal-600 h-2 rounded-full" style="width: 3%"></div>
-              </div>
-            </div>
-
-            <div>
-              <div class="flex justify-between text-xs font-semibold mb-1">
-                <span class="text-gray-700">Lifestyle</span>
-                <span class="text-gray-900">4 artikel (2%)</span>
-              </div>
-              <div class="w-full bg-gray-100 rounded-full h-2">
-                <div class="bg-rose-500 h-2 rounded-full" style="width: 2%"></div>
-              </div>
-            </div>
-
+          <div id="category-distribution-container" class="mt-4 space-y-2.5 max-h-72 overflow-y-auto pr-1">
+            <div class="text-center py-6 text-gray-400 text-xs">Memuat data kategori riil...</div>
           </div>
         </div>
 
@@ -509,9 +397,9 @@
               <span>Buka Semua Berita</span>
               <svg class="w-3.5 h-3.5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
-            <a href="tulis-berita.html" class="btn btn-primary btn-sm">
+            <a href="berita.html?action=tambah" class="btn btn-primary btn-sm">
               <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-              <span>+ Berita Baru</span>
+              <span>Berita Baru</span>
             </a>
           </div>
         </div>
@@ -530,170 +418,13 @@
                 <th class="py-3 px-4 text-right">Aksi</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100 text-xs">
-              
-              <!-- Row 1: Published -->
-              <tr class="hover:bg-gray-50/80 transition-colors">
-                <td class="py-3 px-4">
-                  <img src="../assets/images/berita/hero/sorotan-utama-dunia.jpg" alt="Thumb" class="w-14 h-10 object-cover rounded border border-gray-200">
-                </td>
-                <td class="py-3 px-4 font-semibold text-gray-900 max-w-xs">
-                  <a href="tulis-berita.html?id=1" class="hover:text-buser-red transition-colors line-clamp-2">
-                    Operasi Tangkap Tangan Kasus Suap Proyek Infrastruktur, Penyidik Amankan Bukti Valas
-                  </a>
-                  <span class="text-[10px] text-gray-400 font-mono mt-0.5 block">slug: operasi-tangkap-tangan-kasus-suap</span>
-                </td>
-                <td class="py-3 px-4">
-                  <span class="inline-block px-2 py-0.5 font-medium bg-red-50 text-buser-red rounded">Kriminal</span>
-                </td>
-                <td class="py-3 px-4 font-medium text-gray-700">
-                  Dimas Pratama
-                </td>
-                <td class="py-3 px-4">
-                  <span class="badge-status badge-published">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    Published
-                  </span>
-                </td>
-                <td class="py-3 px-4 text-gray-500">
-                  9 Sep 2026, 14:30
-                </td>
-                <td class="py-3 px-4 text-right space-x-1">
-                  <a href="../artikel.html" target="_blank" class="p-1.5 text-gray-500 hover:text-gray-900 rounded hover:bg-gray-100 inline-block" title="Lihat Pratinjau">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                  </a>
-                  <a href="tulis-berita.html?id=1" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50 inline-block" title="Edit Artikel">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                  </a>
-                  <button type="button" onclick="deleteArticleConfirm(1, 'Operasi Tangkap Tangan Kasus Suap')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50 inline-block" title="Hapus">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                  </button>
+            <tbody id="recent-news-tbody" class="divide-y divide-gray-100 text-xs">
+              <tr>
+                <td colspan="7" class="py-8 text-center text-gray-400">
+                  <svg class="animate-spin inline-block w-4 h-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path></svg>
+                  Memuat berita terbaru dari database...
                 </td>
               </tr>
-
-              <!-- Row 2: Review -->
-              <tr class="hover:bg-gray-50/80 transition-colors">
-                <td class="py-3 px-4">
-                  <div class="w-14 h-10 bg-amber-100 text-amber-600 rounded flex items-center justify-center font-bold text-[10px]">
-                    REVIEW
-                  </div>
-                </td>
-                <td class="py-3 px-4 font-semibold text-gray-900 max-w-xs">
-                  <a href="tulis-berita.html?id=2" class="hover:text-buser-red transition-colors line-clamp-2">
-                    Sidang Paripurna DPR Bahas RUU Ketahanan Energi Nasional 2026-2035
-                  </a>
-                  <span class="text-[10px] text-gray-400 font-mono mt-0.5 block">slug: sidang-paripurna-dpr-bahas-ruu</span>
-                </td>
-                <td class="py-3 px-4">
-                  <span class="inline-block px-2 py-0.5 font-medium bg-gray-100 text-gray-700 rounded">Politik</span>
-                </td>
-                <td class="py-3 px-4 font-medium text-gray-700">
-                  Siti Nurhaliza
-                </td>
-                <td class="py-3 px-4">
-                  <span class="badge-status badge-review">
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                    Review
-                  </span>
-                </td>
-                <td class="py-3 px-4 text-gray-500">
-                  9 Sep 2026, 12:15
-                </td>
-                <td class="py-3 px-4 text-right space-x-1">
-                  <a href="../artikel.html" target="_blank" class="p-1.5 text-gray-500 hover:text-gray-900 rounded hover:bg-gray-100 inline-block" title="Pratinjau">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                  </a>
-                  <a href="tulis-berita.html?id=2" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50 inline-block" title="Review & Edit">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                  </a>
-                  <button type="button" onclick="deleteArticleConfirm(2, 'Sidang Paripurna DPR Bahas RUU')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50 inline-block" title="Hapus">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                  </button>
-                </td>
-              </tr>
-
-              <!-- Row 3: Scheduled -->
-              <tr class="hover:bg-gray-50/80 transition-colors">
-                <td class="py-3 px-4">
-                  <div class="w-14 h-10 bg-blue-100 text-blue-600 rounded flex items-center justify-center font-bold text-[10px]">
-                    SCHEDULED
-                  </div>
-                </td>
-                <td class="py-3 px-4 font-semibold text-gray-900 max-w-xs">
-                  <a href="tulis-berita.html?id=3" class="hover:text-buser-red transition-colors line-clamp-2">
-                    Laporan Khusus: Transformasi Ekosistem Riset AI Indonesia Menuju 2030
-                  </a>
-                  <span class="text-[10px] text-gray-400 font-mono mt-0.5 block">slug: laporan-khusus-transformasi-ekosistem-riset</span>
-                </td>
-                <td class="py-3 px-4">
-                  <span class="inline-block px-2 py-0.5 font-medium bg-blue-50 text-blue-700 rounded">Teknologi</span>
-                </td>
-                <td class="py-3 px-4 font-medium text-gray-700">
-                  Rudi Hartono
-                </td>
-                <td class="py-3 px-4">
-                  <span class="badge-status badge-scheduled">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                    Scheduled
-                  </span>
-                </td>
-                <td class="py-3 px-4 text-blue-700 font-medium">
-                  9 Sep 2026, 19:00 WIB
-                </td>
-                <td class="py-3 px-4 text-right space-x-1">
-                  <a href="../artikel.html" target="_blank" class="p-1.5 text-gray-500 hover:text-gray-900 rounded hover:bg-gray-100 inline-block" title="Pratinjau">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                  </a>
-                  <a href="tulis-berita.html?id=3" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50 inline-block" title="Edit Jadwal">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                  </a>
-                  <button type="button" onclick="deleteArticleConfirm(3, 'Laporan Khusus AI')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50 inline-block" title="Hapus">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                  </button>
-                </td>
-              </tr>
-
-              <!-- Row 4: Draft -->
-              <tr class="hover:bg-gray-50/80 transition-colors">
-                <td class="py-3 px-4">
-                  <div class="w-14 h-10 bg-gray-100 text-gray-500 rounded flex items-center justify-center font-bold text-[10px]">
-                    DRAFT
-                  </div>
-                </td>
-                <td class="py-3 px-4 font-semibold text-gray-900 max-w-xs">
-                  <a href="tulis-berita.html?id=4" class="hover:text-buser-red transition-colors line-clamp-2">
-                    Investigasi Dugaan Penimbunan Bahan Pokok Menjelang Akhir Tahun di Pelabuhan
-                  </a>
-                  <span class="text-[10px] text-gray-400 font-mono mt-0.5 block">slug: investigasi-dugaan-penimbunan-bahan-pokok</span>
-                </td>
-                <td class="py-3 px-4">
-                  <span class="inline-block px-2 py-0.5 font-medium bg-gray-100 text-gray-700 rounded">Ekonomi</span>
-                </td>
-                <td class="py-3 px-4 font-medium text-gray-700">
-                  Agus Riyadi
-                </td>
-                <td class="py-3 px-4">
-                  <span class="badge-status badge-draft">
-                    <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span>
-                    Draft
-                  </span>
-                </td>
-                <td class="py-3 px-4 text-gray-500">
-                  8 Sep 2026, 21:05
-                </td>
-                <td class="py-3 px-4 text-right space-x-1">
-                  <a href="../artikel.html" target="_blank" class="p-1.5 text-gray-500 hover:text-gray-900 rounded hover:bg-gray-100 inline-block" title="Pratinjau">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                  </a>
-                  <a href="tulis-berita.html?id=4" class="p-1.5 text-blue-600 hover:text-blue-800 rounded hover:bg-blue-50 inline-block" title="Lanjutkan Menulis">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
-                  </a>
-                  <button type="button" onclick="deleteArticleConfirm(4, 'Investigasi Dugaan Penimbunan')" class="p-1.5 text-red-600 hover:text-red-800 rounded hover:bg-red-50 inline-block" title="Hapus">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
-                  </button>
-                </td>
-              </tr>
-
             </tbody>
           </table>
         </div>
@@ -717,132 +448,8 @@
 
   </div>
 
+  <script src="../assets/js/api-client.js"></script>
   <script src="js/admin.js"></script>
-  <script>
-    // Initialize Chart.js for Publication Statistics
-    const ctx = document.getElementById('publicationChart').getContext('2d');
-    
-    const chartData = {
-      '7d': {
-        labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
-        published: [8, 12, 15, 11, 14, 9, 13],
-        drafts: [2, 4, 3, 5, 2, 1, 3],
-        updated: [3, 5, 6, 4, 7, 2, 4]
-      },
-      '30d': {
-        labels: ['Mgg 1', 'Mgg 2', 'Mgg 3', 'Mgg 4'],
-        published: [48, 56, 52, 57],
-        drafts: [12, 15, 9, 14],
-        updated: [18, 22, 19, 24]
-      },
-      '3m': {
-        labels: ['Juli', 'Agustus', 'September'],
-        published: [180, 210, 213],
-        drafts: [45, 52, 48],
-        updated: [62, 70, 75]
-      },
-      '1y': {
-        labels: ['Q1', 'Q2', 'Q3', 'Q4 (Est)'],
-        published: [520, 610, 680, 740],
-        drafts: [120, 135, 140, 150],
-        updated: [190, 220, 240, 260]
-      }
-    };
-
-    let publicationChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: chartData['7d'].labels,
-        datasets: [
-          {
-            label: 'Berita Diterbitkan',
-            data: chartData['7d'].published,
-            backgroundColor: '#D71920',
-            borderRadius: 4,
-            barPercentage: 0.6
-          },
-          {
-            label: 'Draft',
-            data: chartData['7d'].drafts,
-            backgroundColor: '#6B7280',
-            borderRadius: 4,
-            barPercentage: 0.6
-          },
-          {
-            label: 'Berita Diperbarui',
-            data: chartData['7d'].updated,
-            backgroundColor: '#0B0B0B',
-            borderRadius: 4,
-            barPercentage: 0.6
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'top',
-            labels: {
-              boxWidth: 12,
-              font: { family: 'Inter', size: 11, weight: '500' }
-            }
-          },
-          tooltip: {
-            backgroundColor: '#0B0B0B',
-            titleFont: { family: 'Inter', size: 12, weight: '700' },
-            bodyFont: { family: 'Inter', size: 11 },
-            padding: 10,
-            cornerRadius: 6
-          }
-        },
-        scales: {
-          x: {
-            grid: { display: false },
-            ticks: { font: { family: 'Inter', size: 11 }, color: '#6B7280' }
-          },
-          y: {
-            grid: { color: '#F3F4F6' },
-            ticks: { font: { family: 'Inter', size: 11 }, color: '#6B7280', stepSize: 5 }
-          }
-        }
-      }
-    });
-
-    // Chart filter toggle
-    document.querySelectorAll('.chart-filter-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        document.querySelectorAll('.chart-filter-btn').forEach(b => {
-          b.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
-          b.classList.add('text-gray-600');
-        });
-        btn.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
-        btn.classList.remove('text-gray-600');
-
-        const range = btn.getAttribute('data-range');
-        if (chartData[range]) {
-          publicationChart.data.labels = chartData[range].labels;
-          publicationChart.data.datasets[0].data = chartData[range].published;
-          publicationChart.data.datasets[1].data = chartData[range].drafts;
-          publicationChart.data.datasets[2].data = chartData[range].updated;
-          publicationChart.update();
-        }
-      });
-    });
-
-    // Delete confirmation handler
-    function deleteArticleConfirm(id, title) {
-      confirmAction({
-        title: 'Hapus Berita?',
-        message: `Berita "${title}" akan dipindahkan ke tempat sampah dan tidak dapat diakses pembaca publik. Lanjutkan?`,
-        confirmText: 'Hapus Berita',
-        cancelText: 'Batal',
-        type: 'danger',
-        onConfirm: () => {
-          showToast('success', 'Berita Dihapus', `Berita #${id} berhasil dihapus dari sistem.`);
-        }
-      });
-    }
-  </script>
+  <script src="js/admin-dashboard-live.js"></script>
 </body>
 </html>

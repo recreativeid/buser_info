@@ -90,16 +90,47 @@ function initMobileDrawer() {
 /* --------------------------------------------------------------------------
    3. Breaking News Ticker
    -------------------------------------------------------------------------- */
-function initBreakingNewsTicker() {
+async function initBreakingNewsTicker() {
   const track = document.getElementById('breaking-ticker-track');
-  if (!track || typeof window.BREAKING_NEWS_LIST === 'undefined') return;
+  if (!track) return;
 
-  const items = window.BREAKING_NEWS_LIST;
+  let items = [];
+
+  if (window.BuserInfoAPI) {
+    try {
+      const res = await window.BuserInfoAPI.getArticles({ limit: 8, status: 'published' });
+      const articles = res.articles || [];
+      if (articles.length > 0) {
+        items = articles.map(art => ({
+          title: art.title,
+          link: `artikel.html?slug=${encodeURIComponent(art.slug)}`
+        }));
+      }
+    } catch (e) {}
+  }
+
+  if (items.length === 0) {
+    items = [
+      {
+        title: 'Selamat Datang di BUSER INFO — Portal Berita Terkini, Fakta Tanpa Batas',
+        link: 'tentang.html'
+      },
+      {
+        title: 'BUSER INFO berkomitmen menyajikan karya jurnalistik independen, tajam, dan terverifikasi',
+        link: 'tentang.html'
+      },
+      {
+        title: 'Layanan Pengaduan & Informasi Warga: Hubungi WhatsApp 0831-7298-8502',
+        link: 'https://wa.me/6283172988502'
+      }
+    ];
+  }
+
   let html = '';
   // Repeat items for continuous marquee loop
   const repeatCount = 2;
   for (let r = 0; r < repeatCount; r++) {
-    items.forEach((item, index) => {
+    items.forEach((item) => {
       html += `
         <a href="${item.link}" class="inline-flex items-center text-sm font-medium hover:underline text-white mr-10 transition-colors">
           <span class="inline-block w-2 h-2 rounded-full bg-yellow-400 mr-2 flex-shrink-0"></span>
@@ -391,3 +422,39 @@ window.removeBookmark = removeBookmark;
 window.toggleBookmark = toggleBookmark;
 window.isBookmarked = isBookmarked;
 window.showToast = showToast;
+
+/* --------------------------------------------------------------------------
+   9. Unified Brand Palette Helpers (Hitam, Merah, Biru, Kuning)
+   -------------------------------------------------------------------------- */
+function getCategoryBadgeClasses(catName) {
+  const c = String(catName || '').toLowerCase();
+  if (c.includes('kriminal') || c.includes('hukum') || c.includes('politik') || c.includes('investigasi') || c.includes('peristiwa') || c.includes('buser') || c.includes('hot')) {
+    return 'bg-buser-red text-white';
+  }
+  if (c.includes('ekonomi') || c.includes('bisnis') || c.includes('teknologi') || c.includes('lifestyle') || c.includes('gaya') || c.includes('hiburan') || c.includes('seleb')) {
+    return 'bg-buser-yellow text-gray-950 font-bold';
+  }
+  return 'bg-buser-blue text-white';
+}
+
+function getTrendingNumberClass(index) {
+  if (index === 0) return 'text-buser-red';
+  if (index === 1) return 'text-buser-blue';
+  if (index === 2) return 'text-buser-yellow';
+  return 'text-gray-400';
+}
+
+function getCategoryAccentClass(catName) {
+  const c = String(catName || '').toLowerCase();
+  if (c.includes('kriminal') || c.includes('hukum') || c.includes('politik') || c.includes('investigasi')) {
+    return 'accent-red';
+  }
+  if (c.includes('ekonomi') || c.includes('bisnis') || c.includes('teknologi') || c.includes('lifestyle')) {
+    return 'accent-yellow';
+  }
+  return 'accent-blue';
+}
+
+window.getCategoryBadgeClasses = getCategoryBadgeClasses;
+window.getTrendingNumberClass = getTrendingNumberClass;
+window.getCategoryAccentClass = getCategoryAccentClass;

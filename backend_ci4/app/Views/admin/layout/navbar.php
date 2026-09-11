@@ -15,9 +15,9 @@
           Memuat waktu...
         </span>
 
-        <a href="<?= base_url('admin/berita/tambah') ?>" class="btn btn-primary btn-sm hidden sm:inline-flex">
+        <a href="<?= base_url('admin/berita?action=tambah') ?>" class="btn btn-primary btn-sm hidden sm:inline-flex">
           <svg class="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
-          <span>Tulis Berita</span>
+          <span>Tambah Berita</span>
         </a>
 
         <!-- Notifications -->
@@ -32,9 +32,9 @@
         <div class="relative">
           <button id="user-menu-btn" class="flex items-center space-x-2 p-1.5 rounded-lg hover:bg-gray-100">
             <div class="w-7 h-7 rounded-full bg-black text-white text-xs font-bold flex items-center justify-center">
-              <?= strtoupper(substr(session()->get('user_name') ?? 'AR', 0, 2)) ?>
+              <?= strtoupper(substr(session()->get('user_name') ?? 'RD', 0, 2)) ?>
             </div>
-            <span class="hidden md:inline-block text-xs font-semibold text-gray-800"><?= esc(session()->get('user_name') ?? 'Agus Riyadi') ?></span>
+            <span class="hidden md:inline-block text-xs font-semibold text-gray-800"><?= esc(session()->get('user_name') ?? 'Pemimpin Redaksi') ?></span>
           </button>
           <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg border border-gray-200 shadow-xl z-50 py-1 text-xs">
             <a href="<?= base_url('admin/profil') ?>" class="block px-3 py-2 text-gray-700 hover:bg-gray-50">Profil Saya</a>

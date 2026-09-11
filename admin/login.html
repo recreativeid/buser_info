@@ -9,28 +9,10 @@
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            buser: {
-              black: '#0B0B0B',
-              red: '#D71920',
-              redHover: '#B80F15',
-              dark: '#222222',
-              light: '#F5F5F5',
-              border: '#E5E7EB'
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
+  <script src="../assets/js/tailwind-config.js"></script>
   <link rel="stylesheet" href="css/admin.css">
+  <script src="../assets/js/api-client.js"></script>
+  <script src="js/auth-guard.js"></script>
 </head>
 <body class="bg-[#F5F5F5] min-h-screen flex flex-col justify-between antialiased">
 
@@ -51,6 +33,13 @@
     </div>
   </header>
 
+  <!-- 4-COLOR BRAND SIGNATURE STRIPE -->
+  <div class="brand-accent-stripe" aria-hidden="true">
+    <div class="stripe-red"></div>
+    <div class="stripe-yellow"></div>
+    <div class="stripe-blue"></div>
+  </div>
+
   <!-- Main Login Card Container -->
   <main class="flex-1 flex items-center justify-center p-4 sm:p-8">
     <div class="w-full max-w-md">
@@ -58,9 +47,16 @@
       <!-- Login Card -->
       <div class="bg-white rounded-xl border border-gray-200 shadow-xl overflow-hidden">
         <!-- Card Header with Brand Pattern -->
-        <div class="bg-[#0B0B0B] p-6 sm:p-8 text-center relative border-b-4 border-b-buser-red">
-          <div class="w-48 sm:w-56 mx-auto mb-3">
-            <img src="../assets/images/logo/buserinfo-logo.svg" alt="BUSER INFO" class="w-full h-auto">
+        <div class="bg-[#0B0B0B] p-6 sm:p-8 text-center relative">
+          <div class="flex items-center justify-center space-x-3 mb-4">
+            <img src="../assets/images/logo/Logo_BuserInfo.png" alt="BUSER INFO" class="h-14 w-auto object-contain">
+            <div class="flex flex-col items-start justify-center">
+              <div class="flex items-center space-x-1.5 leading-none">
+                <span class="text-white font-black text-2xl tracking-wider uppercase">BUSER<span class="text-buser-red">.</span></span>
+                <span class="bg-buser-red text-white text-xs font-black px-1.5 py-0.5 rounded-sm tracking-wider uppercase">INFO</span>
+              </div>
+              <span class="text-[8.5px] text-gray-400 font-semibold tracking-widest uppercase mt-1 whitespace-nowrap">BERITA TERKINI, FAKTA TANPA BATAS</span>
+            </div>
           </div>
           <p class="text-xs font-semibold tracking-wider text-gray-300 uppercase">
             Sistem Editorial & Content Management
@@ -68,6 +64,11 @@
           <div class="mt-2 text-[11px] text-gray-400 font-medium">
             PT. GOLDENMIX MEDIA BUSERINFO
           </div>
+        </div>
+        <div class="brand-accent-stripe" aria-hidden="true">
+          <div class="stripe-red"></div>
+          <div class="stripe-yellow"></div>
+          <div class="stripe-blue"></div>
         </div>
 
         <!-- Form Body -->
@@ -128,10 +129,10 @@
                   type="password" 
                   id="password" 
                   name="password" 
-                  value="••••••••••••" 
+                  value="BuserInfo#2026" 
                   required 
                   class="w-full pl-9 pr-10 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-buser-red focus:border-buser-red focus:bg-white transition-all"
-                  placeholder="••••••••">
+                  placeholder="Masukkan kata sandi">
                 <button 
                   type="button" 
                   id="toggle-password" 
@@ -145,13 +146,15 @@
               </div>
             </div>
 
-            <!-- Remember me checkbox -->
-            <div class="flex items-center justify-between pt-1">
-              <label class="flex items-center space-x-2 text-xs text-gray-600 cursor-pointer select-none">
-                <input type="checkbox" id="remember" checked class="w-4 h-4 text-buser-red rounded border-gray-300 focus:ring-buser-red">
-                <span>Ingat saya di perangkat ini</span>
-              </label>
-              <span class="text-[11px] text-gray-400">Sesi 30 hari</span>
+            <!-- Session Security & Timeout Notice -->
+            <div class="flex items-center justify-between pt-1 bg-gray-50 p-2.5 rounded-lg border border-gray-200 text-xs">
+              <div class="flex items-center space-x-2 text-gray-700">
+                <svg class="w-4 h-4 text-buser-red shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span class="font-medium">Batas Waktu Sesi Aktif</span>
+              </div>
+              <span class="text-[11px] font-semibold text-gray-600 bg-white px-2 py-0.5 rounded border border-gray-200">Maks. 2 Jam / Inaktif 30 Mnt</span>
             </div>
 
             <!-- CTA Button -->
@@ -171,7 +174,7 @@
           <!-- Quick Test Credentials helper -->
           <div class="mt-6 pt-4 border-t border-gray-100 bg-gray-50 -mx-6 -mb-6 p-4 text-center rounded-b-xl">
             <p class="text-[11px] text-gray-500 font-medium">
-              Demo Mode: Klik <span class="font-bold text-gray-800">"Masuk ke Dashboard"</span> untuk langsung menuju panel redaksi.
+              Akses Cepat: <span class="font-bold text-gray-800">redaksi@buserinfo.com</span> &bull; Sandi: <span class="font-mono font-semibold text-buser-red">BuserInfo#2026</span> (Klik "Masuk ke Dashboard" untuk langsung masuk)
             </p>
           </div>
         </div>
@@ -189,6 +192,13 @@
 
     </div>
   </main>
+
+  <!-- 4-COLOR BRAND SIGNATURE STRIPE -->
+  <div class="brand-accent-stripe" aria-hidden="true">
+    <div class="stripe-red"></div>
+    <div class="stripe-yellow"></div>
+    <div class="stripe-blue"></div>
+  </div>
 
   <!-- Minimal Corporate Footer -->
   <footer class="bg-white border-t border-gray-200 py-4 px-6 text-center text-xs text-gray-500">
@@ -227,10 +237,38 @@
       }
     });
 
+    // Cek parameter URL untuk notifikasi sesi expired
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('expired')) {
+      const alertBox = document.getElementById('login-alert');
+      const alertText = document.getElementById('login-alert-text');
+      if (alertBox && alertText) {
+        alertText.textContent = 'Sesi Anda telah kedaluwarsa karena batas waktu (maksimal 2 jam atau tidak aktif selama 30 menit). Silakan masuk kembali.';
+        alertBox.classList.remove('hidden');
+      }
+    }
+
     // Form submit
-    document.getElementById('login-form').addEventListener('submit', (e) => {
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = document.getElementById('btn-login');
+      const alertBox = document.getElementById('login-alert');
+      const alertText = document.getElementById('login-alert-text');
+      
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) {
+        if (alertBox && alertText) {
+          alertText.textContent = 'Email dan kata sandi wajib diisi.';
+          alertBox.classList.remove('hidden');
+        }
+        return;
+      }
+
+      if (alertBox) alertBox.classList.add('hidden');
+
+      const originalBtnHtml = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = `
         <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
@@ -239,12 +277,32 @@
         </svg>
         <span>Memverifikasi...</span>
       `;
-      setTimeout(() => {
-        showToast('success', 'Login Berhasil', 'Mengarahkan ke Dashboard Editorial...');
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 800);
-      }, 700);
+
+      try {
+        const res = await window.BuserInfoAPI.login(email, password);
+        if (res && res.status === 'success') {
+          showToast('success', 'Login Berhasil', 'Mengarahkan ke Dashboard Editorial...');
+          setTimeout(() => {
+            window.location.href = 'index.html';
+          }, 600);
+        } else {
+          const errMsg = (res && res.message) ? res.message : 'Email atau kata sandi tidak valid.';
+          if (alertBox && alertText) {
+            alertText.textContent = errMsg;
+            alertBox.classList.remove('hidden');
+          }
+          showToast('error', 'Login Gagal', errMsg);
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+        }
+      } catch (err) {
+        if (alertBox && alertText) {
+          alertText.textContent = 'Terjadi kesalahan sistem saat menghubungi server login.';
+          alertBox.classList.remove('hidden');
+        }
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+      }
     });
 
     // Forgot password handler

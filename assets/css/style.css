@@ -1,11 +1,13 @@
 /* ==========================================================================
    BUSER INFO - Modern Indonesian News Portal Stylesheet
    Brand Colors:
-   - BUSER Black: #0B0B0B
-   - BUSER Red:   #D71920
-   - BUSER Dark:  #222222
-   - BUSER Light: #F5F5F5
-   - BUSER White: #FFFFFF
+   - BUSER Black:  #0B0B0B
+   - BUSER Red:    #D71920
+   - BUSER Blue:   #1D4ED8
+   - BUSER Yellow: #F59E0B
+   - BUSER Dark:   #222222
+   - BUSER Light:  #F5F5F5
+   - BUSER White:  #FFFFFF
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap');
@@ -14,6 +16,10 @@
   --buser-black: #0B0B0B;
   --buser-red: #D71920;
   --buser-red-hover: #B80F15;
+  --buser-blue: #1D4ED8;
+  --buser-blue-hover: #1E40AF;
+  --buser-yellow: #F59E0B;
+  --buser-yellow-hover: #D97706;
   --buser-dark: #222222;
   --buser-light: #F5F5F5;
   --buser-gray-border: #E5E7EB;
@@ -117,16 +123,35 @@ body {
   animation: pulseDot 1.4s ease-in-out infinite;
 }
 
-/* Reading Progress Bar on Article Details */
+/* Reading Progress Bar on Article Details (Brand Gradient) */
 #reading-progress-bar {
   position: fixed;
   top: 0;
   left: 0;
-  height: 3px;
-  background-color: var(--buser-red);
+  height: 3.5px;
+  background: linear-gradient(90deg, var(--buser-blue) 0%, var(--buser-yellow) 50%, var(--buser-red) 100%);
   width: 0%;
   z-index: 100;
   transition: width 0.1s ease-out;
+}
+
+/* 4-Color Brand Stripe Signature */
+.brand-accent-stripe {
+  display: flex;
+  height: 4px;
+  width: 100%;
+}
+.brand-accent-stripe > .stripe-red {
+  background-color: var(--buser-red);
+  flex: 4;
+}
+.brand-accent-stripe > .stripe-yellow {
+  background-color: var(--buser-yellow);
+  flex: 2;
+}
+.brand-accent-stripe > .stripe-blue {
+  background-color: var(--buser-blue);
+  flex: 4;
 }
 
 /* Article Body Typography Variations */
@@ -202,7 +227,7 @@ body {
   font-weight: 700;
 }
 
-/* Red Bar Heading Accent */
+/* Section Bar Heading Accents */
 .section-heading-bar {
   position: relative;
   display: flex;
@@ -218,6 +243,12 @@ body {
   width: 64px;
   height: 3px;
   background-color: var(--buser-red);
+}
+.section-heading-bar.accent-blue::after {
+  background-color: var(--buser-blue);
+}
+.section-heading-bar.accent-yellow::after {
+  background-color: var(--buser-yellow);
 }
 
 /* Print styles */

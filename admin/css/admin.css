@@ -12,6 +12,10 @@
   --buser-red: #D71920;
   --buser-red-hover: #B80F15;
   --buser-red-light: #FDF2F2;
+  --buser-blue: #1D4ED8;
+  --buser-blue-hover: #1E40AF;
+  --buser-yellow: #F59E0B;
+  --buser-yellow-hover: #D97706;
   --buser-bg: #F5F5F5;
   --buser-card: #FFFFFF;
   --buser-border: #E5E7EB;
@@ -35,6 +39,25 @@
   --status-sch-bg: #EFF6FF;
   --status-sch-text: #1E40AF;
   --status-sch-border: #BFDBFE;
+}
+
+/* 4-Color Brand Stripe Signature */
+.brand-accent-stripe {
+  display: flex;
+  height: 3px;
+  width: 100%;
+}
+.brand-accent-stripe > .stripe-red {
+  background-color: var(--buser-red);
+  flex: 4;
+}
+.brand-accent-stripe > .stripe-yellow {
+  background-color: var(--buser-yellow);
+  flex: 2;
+}
+.brand-accent-stripe > .stripe-blue {
+  background-color: var(--buser-blue);
+  flex: 4;
 }
 
 /* Base resets & typography */
@@ -112,6 +135,21 @@ body {
   width: 3.5px;
   background-color: var(--buser-red);
   border-radius: 0 2px 2px 0;
+}
+
+/* Admin Top Header Signature 4-Color Stripe */
+header.h-16 {
+  position: relative;
+}
+header.h-16::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--buser-red) 0%, var(--buser-red) 40%, var(--buser-yellow) 40%, var(--buser-yellow) 60%, var(--buser-blue) 60%, var(--buser-blue) 100%);
+  z-index: 20;
 }
 
 /* Badges */

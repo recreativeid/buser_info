@@ -74,9 +74,6 @@ $routes->group('admin', ['namespace' => 'App\Controllers\Admin', 'filter' => 'au
     $routes->post('komentar/update-status/(:num)', 'Komentar::updateStatus/$1');
     $routes->post('komentar/delete/(:num)', 'Komentar::delete/$1');
 
-    // 7. Statistik (Analytics)
-    $routes->get('statistik', 'Statistik::index');
-    $routes->get('statistik/data-json', 'Statistik::dataJson');
 
     // 8. Pengguna (User Management)
     $routes->get('pengguna', 'Pengguna::index');
